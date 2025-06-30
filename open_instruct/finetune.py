@@ -335,6 +335,8 @@ class FlatArguments:
     """The wandb's project name"""
     wandb_entity: Optional[str] = None
     """The entity (team) of wandb's project"""
+    wandb_tags: Optional[str] = None
+    """The tags to use for the wandb run. If not set, will use the exp_name and fetch tags dynamically."""
     push_to_hub: bool = True
     """Whether to upload the saved model to huggingface"""
     hf_entity: Optional[str] = None
@@ -413,7 +415,7 @@ def main(args: FlatArguments, tc: TokenizerConfig):
 
     # ------------------------------------------------------------
     # Set up runtime variables
-    args.run_name = f"{args.exp_name}__{args.seed}__{int(time.time())}"
+    args.run_name = f"{args.exp_name}__{args.seed}__{int(time.time())}" if args.run_name is None else args.run_name
     if not args.do_not_randomize_output_dir:
         args.output_dir = os.path.join(args.output_dir, args.run_name)
     logger.info("using the output directory: %s", args.output_dir)
@@ -454,8 +456,10 @@ def main(args: FlatArguments, tc: TokenizerConfig):
             init_kwargs={
                 "wandb": {
                     "name": args.run_name,
+                    "id": args.run_name,
                     "entity": args.wandb_entity,
-                    "tags": [args.exp_name] + get_wandb_tags(),
+                    "tags": args.tags.split(",") if args.wandb_tags else get_wandb_tags(),
+                    "resume": "allow",
                 }
             },
         )
@@ -936,7 +940,6 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     accelerator.wait_for_everyone()
     if args.with_tracking:
         accelerator.end_training()
-
 
 if __name__ == "__main__":
     parser = ArgumentParserPlus((FlatArguments, TokenizerConfig))

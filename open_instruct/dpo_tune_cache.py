@@ -491,7 +491,7 @@ def main(args: FlatArguments, tc: TokenizerConfig):
 
     # ------------------------------------------------------------
     # Set up runtime variables
-    args.run_name = f"{args.exp_name}__{args.seed}__{int(time.time())}"
+    args.run_name = f"{args.exp_name}__{args.seed}__{int(time.time())}" if args.run_name is None else args.run_name
     args.output_dir = os.path.join(args.output_dir, args.run_name)
     args.dataset_local_cache_dir = os.path.abspath(args.dataset_local_cache_dir)
     if is_beaker_job():
@@ -1081,7 +1081,6 @@ def print_gpu_stats(init_gpu_memory: Optional[int]):
         print(f"Peak memory usage: {peak_memory / 1024**3:.2f} GB")
         print(f"Total memory usage: {total_gpu_memory / 1024**3:.2f} GB")
         print(f"Free memory: {free_gpu_memory / 1024**3:.2f} GB")
-
 
 if __name__ == "__main__":
     parser = ArgumentParserPlus((FlatArguments, TokenizerConfig))
