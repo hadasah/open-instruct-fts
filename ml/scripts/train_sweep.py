@@ -4,19 +4,26 @@ import os
 from datetime import datetime
 from copy import copy
 from slurm_job import run_grid
-from constants import PROJECT_SPECS, HARDWARE_SPECS_DICT, MODEL_HP_DEFAULTS
+from constants import (
+    MODEL_NAME_TEMPLATE,
+    REVISION_TEMPLATE,
+    DD_MODEL_SIZES,
+    DD_TRAIN_SETS,
+    MODEL_HP_DEFAULTS,
+    PROJECT_SPECS,
+    HARDWARE_SPECS_DICT,
+)
 from utils import dict_update
 
 
-MODELS = [
-    "allenai/DataDecide-{train_data}-{size}" for train_data, size in [
-        ("dolma1_7", "300M"),
-        ("dolma1_7", "600M"),
-    ]
-]
+
 
 def main(
     sweep_name,
+    model_train_data=None,
+    model_size=None,
+    model_seed=None,
+    model_step=None,
     command=None,
     relaunch_path=None,
     relaunch_name=None,
@@ -34,7 +41,7 @@ def main(
     ignore_specs_check_keys=["NUM_CPUS", "MEM_GB"],
     filter_succeeded=True,
     filter_running=True,
-
+    use_local_model=True,
     **kwargs,
 ):
     if account is None or partition is None:
@@ -122,11 +129,23 @@ def main(
         
     else:
         SWEEP_NAME = sweep_name
+            
+        models = [
+            MODEL_NAME_TEMPLATE.format(train_data=model_train_data, size=model_size)
+            for model_train_data in (model_train_data or DD_TRAIN_SETS)
+            for model_size in (model_size or DD_MODEL_SIZES)
+        ]
+        revisions = [
+            REVISION_TEMPLATE.format(step=model_step, seed=model_seed) 
+            for model_step in model_steps if model_step is not None else [None]
+            if model_steps is not None else "main"
+        ]
+
         if add_time_to_name == 'front':
             time_str = str(datetime.now().strftime('%Y_%m_%d-%H_%M_%S'))
             SWEEP_NAME = f"{time_str}_{SWEEP_NAME}" if SWEEP_NAME else time_str
-        for model in MODELS:
-            model_sweep_name = f"{SWEEP_NAME}_{model}" if add_model_to_name == 'end' else SWEEP_NAME
+        for model, revision in models:
+            model_sweep_name = f"{SWEEP_NAME}_{model}_{revision}" if add_model_to_name == 'end' else SWEEP_NAME
             SPECS = dict_update(copy(PROJECT_SPECS[os.environ.get('USER')]), HARDWARE_SPECS_DICT['all'])
             SPECS = dict_update(SPECS, HARDWARE_SPECS_DICT[model].get(partition, {}))
             SPECS['NUM_GPUS'] = gpus or SPECS['NUM_GPUS']
@@ -137,7 +156,7 @@ def main(
                 # combined with the subgrids
                 "main_grid": { 
                     "--model_name_or_path": [model],
-                    "--revision": ["main"],
+                    "--revision": [revision],
                     "--learning_rate": [],
                 },
                 # allows you to bundle multiple hyperparameters together
@@ -203,6 +222,10 @@ if __name__ == '__main__':
     parser.add_argument('--mem', type=str)
     parser.add_argument('-i', '--include-jobs-indices', type=str, default=None)
     parser.add_argument('-nf', '--no-filter', action='store_true', help="If set, will not filter out jobs that have already been run in the sweep. Useful for debugging.")
+    parser.add_argument('--model-train-data', type=str, choices=DD_TRAIN_SETS, help="Training data for the model.")
+    parser.add_argument('--model-size', type=str, choices=DD_MODEL_SIZES, help="Size of the model.")
+    parser.add_argument('--model-seed', type=str, choices=SEEDS, help="Seed for the model. Used to differentiate runs with different seeds.")
+    parser.add_argument('--model-step', type=int, help="Training step for the model. Used to differentiate between checkpoints / revisions of the model.")
 
     args = parser.parse_args()
 

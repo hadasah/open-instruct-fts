@@ -958,8 +958,91 @@ def download_from_hf(model_name_or_path: str, revision: str) -> None:
 ['gsutil', '-o', 'GSUtil:parallel_composite_upload_threshold=150M', 'cp', '-r', '/root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/9c925d64d72725edaf899c6cb9c377fd0709d9c5', 'gs://ai2-llm/post-training/deletable_cache_models/Qwen/Qwen3-8B/9c925d64d72725edaf899c6cb9c377fd0709d9c5']
 
 
+def parse_commands(command_args: List[str]) -> List[List[str]]:
+    """the inputs are ['--', 'which', 'python', '--', 'echo', 'hello'], and this function converts it into [['which', 'python'], ['echo', 'hello']]"""
+    if command_args[0] != "--":
+        msg = (
+            "Please separate the Python command you want to run with ' -- ', like "
+            "`mason [mason-args] -- python [python-args]`."
+        )
+        raise Exception(msg)
+    
+    commands = []
+    command = []
+    for item in command_args:
+        if item == "--":
+            if command:
+                commands.append(command)
+                command = []
+        else:
+            command.append(item)
+    if command:
+        commands.append(command)
+    return commands
+
+def find_list_idx(lst: List[str], item: str):
+    for i in range(len(lst)):
+        if item == lst[i]:
+            return i
+    return -1
+
+def remove_arg_from_list(lst: List[str], item: str, remove_value: bool = False):
+    idx = find_list_idx(lst, item)
+    if idx != -1 and idx + 1 < len(lst):
+        if remove_value:
+            lst.pop(idx + 1)
+        lst.pop(idx)
+
+def parse_env_var(env_var_str: str) -> Dict[str, str]:
+    """Parse environment variable string in the format 'name=value'"""
+    if '=' not in env_var_str:
+        raise argparse.ArgumentTypeError(
+            f"Environment variable must be in format 'name=value', got: {env_var_str}"
+        )
+    name, value = env_var_str.split('=', 1)
+    if not name:
+        raise argparse.ArgumentTypeError("Environment variable name cannot be empty")
+    return {"name": name, "value": value}
 
 
+
+# OPEN_INSTRUCT_COMMANDS = [
+#     "open_instruct/finetune.py",
+#     "open_instruct/dpo_tune_cache.py",
+#     "open_instruct/grpo_fast.py",
+#     "open_instruct/ppo_fast.py",
+#     "open_instruct/grpo_vllm_thread_ray_gtrl.py",
+#     "open_instruct/ppo2.py",
+#     "open_instruct/ppo_vllm_thread_ray_gtrl.py",
+#     "open_instruct/reward_modeling.py",
+# ]
+
+# OPEN_INSTRUCT_RESUMABLES = [
+#     "open_instruct/grpo_fast.py",
+# ]
+
+# for file in OPEN_INSTRUCT_COMMANDS:
+#     # add cache_dataset_only to the command
+#     idx = find_list_idx(command, file)
+#     if idx != -1:
+#         # then try executing the same command with 
+#         caching_command = command.copy()
+#         remove_arg_from_list(caching_command, "--with_tracking", False)
+#         remove_arg_from_list(caching_command, "--checkpoint_state_freq", True)
+#         remove_arg_from_list(caching_command, "--checkpoint_state_dir", True)
+#         remove_arg_from_list(caching_command, "--gs_checkpoint_state_dir", True)
+#         caching_command = "python " + " ".join(caching_command[idx:]) + " --cache_dataset_only"
+#         print(f"📦📦📦 Running the caching command with `--cache_dataset_only`")
+#         import subprocess
+#         # Use Popen to get real-time output while also capturing it
+#         process = subprocess.Popen(
+#             caching_command, 
+#             shell=True, 
+#             stdout=subprocess.PIPE, 
+#             stderr=subprocess.PIPE,
+#             text=True,
+#             bufsize=1
+#         )
 
 
 

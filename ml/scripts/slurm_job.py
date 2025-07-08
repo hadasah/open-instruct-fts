@@ -192,6 +192,7 @@ def run_grid(
     filter_succeeded=True,
     filter_running=True,
     sweep_port_start=None,
+    use_local_model=True,
 ):
     """Generates full commands from a grid.
 
@@ -301,6 +302,18 @@ def run_grid(
             print(f"Job {job_name} may be running right now, skipping.")
         return running
 
+
+    def maybe_download_model_and_replace_path(main_grid, use_local_model=True):
+        from open_instruct.utils import download_from_hf
+
+        if not use_local_model:
+            return main_grid  # do not download model if using local model
+    
+        model_name_or_path, model_revision = main_grid['model'][0], main_grid['revision'][0]
+        download_from_hf(model_name_or_path, model_revision) # first download the model
+        main_grid['model'] = [download_from_hf(model_name_or_path, model_revision)] # then get the path
+        main_grid['revision'] = ["main"]
+        return main_grid
     
 
     if not prefix:
@@ -323,6 +336,7 @@ def run_grid(
 
     all_permutation_dicts = {}
     main_grid = dict_update(deepcopy(default_grid), grid["main_grid"])
+    main_grid = maybe_download_model_and_replace_path(main_grid, use_local_model=use_local_model)
     for subgrid_name, subgrid in grid["subgrids"].items():
         subgrid_merged = dict_update(deepcopy(main_grid), subgrid)
         # print(subgrid_merged)

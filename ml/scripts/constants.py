@@ -5,6 +5,7 @@ from utils import dict_update
 
 #  = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
+
 DEFAULT_DIR_PATH = '/'.join(os.path.normpath(os.path.realpath(__file__)).split(os.path.sep)[:-3])
 
 MODEL_HP_DEFAULTS = {
@@ -18,7 +19,11 @@ MODEL_HP_DEFAULTS = {
     },
 }
 
-data_decide_model_sizes = [
+
+MODEL_NAME_TEMPLATE = "allenai/DataDecide-{train_data}-{size}"
+REVISION_TEMPLATE = "step{step}-seed-{seed}"
+
+DD_MODEL_SIZES = [
     "4M", 
     "6M",
     "8M",
@@ -35,7 +40,7 @@ data_decide_model_sizes = [
     "1B",
 ]
 
-data_decide_train_sets = [
+DD_TRAIN_SETS = [
     "dolma1_7",
     "dolma1_7-no-code",
     "dolma1_7-no-math-code",
@@ -62,6 +67,8 @@ data_decide_train_sets = [
     "dclm-baseline-50p-dolma1.7-50p",
     "dclm-baseline-75p-dolma1.7-25p",
 ]
+
+DD_MODEL_SEEDS = ["default", "small-aux-2", "small-aux-3"]
 
 # MODEL_HP_DEFAULTS = dict_update(MODEL_HP_DEFAULTS, {f"allenai/DataDecide-dolma1_7-300M": )
 
