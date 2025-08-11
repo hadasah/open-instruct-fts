@@ -70,6 +70,17 @@ DD_TRAIN_SETS = [
 
 DD_MODEL_SEEDS = ["default", "small-aux-2", "small-aux-3"]
 
+OPEN_INSTRUCT_COMMANDS = [
+    "finetune",
+    "dpo_tune_cache",
+    "grpo_fast",
+    "ppo_fast",
+    "grpo_vllm_thread_ray_gtrl",
+    "ppo2",
+    "ppo_vllm_thread_ray_gtrl",
+    "reward_modeling",
+]
+
 # MODEL_HP_DEFAULTS = dict_update(MODEL_HP_DEFAULTS, {f"allenai/DataDecide-dolma1_7-300M": )
 
 CMD_DEFAULTS = {

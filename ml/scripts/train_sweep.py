@@ -1,4 +1,5 @@
 import argparse
+import itertools
 import json
 import os
 from datetime import datetime
@@ -9,6 +10,8 @@ from constants import (
     REVISION_TEMPLATE,
     DD_MODEL_SIZES,
     DD_TRAIN_SETS,
+    DD_MODEL_SEEDS,
+    OPEN_INSTRUCT_COMMANDS,
     MODEL_HP_DEFAULTS,
     PROJECT_SPECS,
     HARDWARE_SPECS_DICT,
@@ -16,14 +19,14 @@ from constants import (
 from utils import dict_update
 
 
-
-
 def main(
     sweep_name,
-    model_train_data=None,
-    model_size=None,
-    model_seed=None,
-    model_step=None,
+    models=None,
+    model_train_data_sets=None,
+    model_sizes=None,
+    model_revisions=None,
+    model_seeds=None,
+    model_steps=None,
     command=None,
     relaunch_path=None,
     relaunch_name=None,
@@ -57,8 +60,8 @@ def main(
         raise ValueError(f"User {user} not found in PROJECT_SPECS. Please add your user to the PROJECT_SPECS dictionary.")
     USER_SPECS = PROJECT_SPECS[user]
 
-    # command_prefix = f"{USER_SPECS['DEFAULT_DIR_PATH']}/ml/scripts/{command}.py"
-    command_prefix = f"{USER_SPECS['DEFAULT_DIR_PATH']}/open_instruct/{command}.py"
+    # command_prefix = f"{USER_SPECS['PROJECT_DIR']}/ml/scripts/{command}.py"
+    command_prefix = f"{USER_SPECS['PROJECT_DIR']}/open_instruct/{command}.py"
 
     if relaunch_path or relaunch_name:
         if relaunch_name and relaunch_path:
@@ -129,22 +132,29 @@ def main(
         
     else:
         SWEEP_NAME = sweep_name
-            
+        
+        if models and (model_train_data_sets or model_sizes):
+            raise ValueError("Cannot specify both models and model_train_data_sets or model_sizes")
+
+        if model_revisions is not None and (model_seeds or model_steps):
+            raise ValueError("Cannot specify both model_revisions and model_seeds or model_steps")
+        
         models = [
             MODEL_NAME_TEMPLATE.format(train_data=model_train_data, size=model_size)
-            for model_train_data in (model_train_data or DD_TRAIN_SETS)
-            for model_size in (model_size or DD_MODEL_SIZES)
-        ]
-        revisions = [
-            REVISION_TEMPLATE.format(step=model_step, seed=model_seed) 
-            for model_step in model_steps if model_step is not None else [None]
-            if model_steps is not None else "main"
-        ]
+            # for model_train_data, model_size in zip(model_train_data_sets, model_sizes)
+            for model_train_data, model_size in itertools.product(model_train_data_sets, model_sizes)
+        ] if not models else models
+
+        model_revisions = [
+            REVISION_TEMPLATE.format(step=step, seed=seed) 
+            # for step in model_steps for seed in model_seeds 
+            for step, seed in itertools.product(model_steps, model_seeds)
+        ] if (not model_revisions and model_steps is not None and model_seeds is not None) else model_revisions or ["main"]
 
         if add_time_to_name == 'front':
             time_str = str(datetime.now().strftime('%Y_%m_%d-%H_%M_%S'))
             SWEEP_NAME = f"{time_str}_{SWEEP_NAME}" if SWEEP_NAME else time_str
-        for model, revision in models:
+        for model, revision in itertools.product(models, model_revisions):
             model_sweep_name = f"{SWEEP_NAME}_{model}_{revision}" if add_model_to_name == 'end' else SWEEP_NAME
             SPECS = dict_update(copy(PROJECT_SPECS[os.environ.get('USER')]), HARDWARE_SPECS_DICT['all'])
             SPECS = dict_update(SPECS, HARDWARE_SPECS_DICT[model].get(partition, {}))
@@ -208,7 +218,7 @@ def main(
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--sweep-name', type=str, default="", help="Name of the sweep. If not specified, will use the current date and time.")
-    parser.add_argument('-c', '--command', type=str, choices=["finetune", "dpo_tune_cache"], help="Command to run for each job.")
+    parser.add_argument('-c', '--command', type=str, default=OPEN_INSTRUCT_COMMANDS[0], choices=OPEN_INSTRUCT_COMMANDS, help="Command to run for each job.")
     parser.add_argument('-rp', '--relaunch-path', type=str, default=None, help="Path to the sweep directory containing grid.json and specs.json. Used to restart jobs from a previous sweep.")
     parser.add_argument('-rn', '--relaunch-name', type=str, default=None, help="Name of sweep, also base of sweep directory containing grid.json and specs.json. Used to restart jobs from a previous sweep.")
     parser.add_argument('--add-time-to-name', type=str, default='front', choices=['front', 'none'])
@@ -222,15 +232,23 @@ if __name__ == '__main__':
     parser.add_argument('--mem', type=str)
     parser.add_argument('-i', '--include-jobs-indices', type=str, default=None)
     parser.add_argument('-nf', '--no-filter', action='store_true', help="If set, will not filter out jobs that have already been run in the sweep. Useful for debugging.")
-    parser.add_argument('--model-train-data', type=str, choices=DD_TRAIN_SETS, help="Training data for the model.")
-    parser.add_argument('--model-size', type=str, choices=DD_MODEL_SIZES, help="Size of the model.")
-    parser.add_argument('--model-seed', type=str, choices=SEEDS, help="Seed for the model. Used to differentiate runs with different seeds.")
-    parser.add_argument('--model-step', type=int, help="Training step for the model. Used to differentiate between checkpoints / revisions of the model.")
+    parser.add_argument('--model-train-data', type=str, default=DD_TRAIN_SETS[0], choices=DD_TRAIN_SETS, help="Training data for the model.")
+    parser.add_argument('--model-size', type=str, default=DD_MODEL_SIZES[0], choices=DD_MODEL_SIZES, help="Size of the model.")
+    parser.add_argument('--model-seed', type=str, default=DD_MODEL_SEEDS[0], choices=DD_MODEL_SEEDS, help="Seed for the model. Used to differentiate runs with different seeds.")
+    parser.add_argument('--model-step', type=int, help="Training steps for the model. Used to differentiate between checkpoints / revisions of the model.")
 
     args = parser.parse_args()
 
     main(
         sweep_name=args.sweep_name,
+        models=None,
+        model_train_data_sets=[args.model_train_data] if args.model_train_data else None,
+        # model_train_data_sets=args.model_train_data.split(",") if args.model_train_data else None,
+        # model_sizes=args.model_size.split(",") if args.model_size else None,
+        model_sizes=[args.model_size] if args.model_size else None,
+        model_revisions=None,
+        model_seeds=[args.model_seed] if args.model_seed else None,
+        model_steps=[args.model_step] if args.model_step is not None else None,
         command=args.command,
         relaunch_path=args.relaunch_path,
         relaunch_name=args.relaunch_name,

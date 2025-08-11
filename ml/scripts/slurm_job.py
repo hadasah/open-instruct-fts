@@ -367,7 +367,7 @@ def run_grid(
                 name = make_job_name(name_key_list, cmd_args, sweep_name=sweep_name, subgrid_name=subgrid_name)
                 name = name[:cutoff] if cutoff else name
                 name = sha1(name) if hashname else name
-                cmd = f"{prefix} {name} " + ' '.join([f'{k} {v}' if v else k for k, v in cmd_args.items()])
+                cmd = f"{prefix} --exp_name {name} " + ' '.join([f'{k} {v}' if v else k for k, v in cmd_args.items()])
                 if include_job_id:
                     name += '/_jobid=' + str(job_id)
                 final_jobs.append(Job(cmd=cmd, name=name))
