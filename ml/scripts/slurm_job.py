@@ -309,10 +309,10 @@ def run_grid(
         if not use_local_model:
             return main_grid  # do not download model if using local model
     
-        model_name_or_path, model_revision = main_grid['model'][0], main_grid['revision'][0]
+        model_name_or_path, model_revision = main_grid['--model'][0], main_grid['--revision'][0]
         download_from_hf(model_name_or_path, model_revision) # first download the model
-        main_grid['model'] = [download_from_hf(model_name_or_path, model_revision)] # then get the path
-        main_grid['revision'] = ["main"]
+        main_grid['--model'] = [download_from_hf(model_name_or_path, model_revision)] # then get the path
+        main_grid['--revision'] = ["main"]
         return main_grid
     
 

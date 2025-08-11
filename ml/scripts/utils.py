@@ -28,6 +28,8 @@ def dict_update(d, u):
     If the value in the second dict is not a dict, it will
     overwrite the value in the first dict.
     """
+    if not u:
+        return d
     for k, v in u.items():
         if isinstance(v, collections.abc.Mapping):
             d[k] = dict_update(d.get(k, {}), v)

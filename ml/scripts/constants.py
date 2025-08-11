@@ -141,14 +141,14 @@ PROJECT_SPECS = {
 BATCH_SIZE = 512
 HARDWARE_SPECS_DICT = {
     "all": {
-        "NUM_GPUS": 4,
+        "NUM_GPUS": 2,
         "NUM_CPUS": 5,
         "MEM_GB": 120,
         "per_gpu_batch_size": 16,
     },
-    "olmo2_10M": { 
-        "gpu-rtx6k": {
-            "per_gpu_batch_size": 16,
-        }, 
-    },
+    # "": { 
+    #     "gpu-rtx6k": {
+    #         "per_gpu_batch_size": 16,
+    #     }, 
+    # },
 }

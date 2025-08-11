@@ -80,7 +80,7 @@ def main(
 
         SPECS = copy(USER_SPECS)
         SPECS = dict_update(SPECS, HARDWARE_SPECS_DICT['all'])
-        SPECS = dict_update(SPECS, HARDWARE_SPECS_DICT[model][partition])
+        SPECS = dict_update(SPECS, HARDWARE_SPECS_DICT.get(model, {}).get(partition))
         SPECS['NUM_GPUS'] = gpus or SPECS['NUM_GPUS']
         SPECS["NUM_CPUS"] = cpus or SPECS["NUM_CPUS"]
         SPECS["MEM_GB"] = mem or SPECS["MEM_GB"]
@@ -157,7 +157,7 @@ def main(
         for model, revision in itertools.product(models, model_revisions):
             model_sweep_name = f"{SWEEP_NAME}_{model}_{revision}" if add_model_to_name == 'end' else SWEEP_NAME
             SPECS = dict_update(copy(PROJECT_SPECS[os.environ.get('USER')]), HARDWARE_SPECS_DICT['all'])
-            SPECS = dict_update(SPECS, HARDWARE_SPECS_DICT[model].get(partition, {}))
+            SPECS = dict_update(SPECS, HARDWARE_SPECS_DICT.get(model, {}).get(partition))
             SPECS['NUM_GPUS'] = gpus or SPECS['NUM_GPUS']
             SPECS["NUM_CPUS"] = cpus or SPECS["NUM_CPUS"]
             SPECS["MEM_GB"] = mem or SPECS["MEM_GB"]
@@ -165,7 +165,7 @@ def main(
                 # main_grid is the top-level grid, the sweep will run over all combinations of these hyperparameters, 
                 # combined with the subgrids
                 "main_grid": { 
-                    "--model_name_or_path": [model],
+                    "--model": [model],
                     "--revision": [revision],
                     "--learning_rate": [],
                 },
