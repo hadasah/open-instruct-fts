@@ -40,7 +40,7 @@ import sys
 import time
 from ctypes import CDLL, POINTER, Structure, c_char_p, c_int, c_ulong, c_void_p
 from dataclasses import dataclass
-from typing import Any, List, NewType, Optional, Tuple, Union
+from typing import Any, List, NewType, Optional, Tuple, Union, Dict
 
 import numpy as np
 import ray
@@ -53,6 +53,9 @@ from dateutil import parser
 from huggingface_hub import HfApi
 from rich.pretty import pprint
 from transformers import MODEL_FOR_CAUSAL_LM_MAPPING, HfArgumentParser
+
+from hf_olmo import modeling_olmo, configuration_olmo
+
 
 MODEL_CONFIG_CLASSES = list(MODEL_FOR_CAUSAL_LM_MAPPING.keys())
 MODEL_TYPES = tuple(conf.model_type for conf in MODEL_CONFIG_CLASSES)
@@ -955,6 +958,7 @@ def download_from_hf(model_name_or_path: str, revision: str) -> None:
     return output
 
 
+
 ['gsutil', '-o', 'GSUtil:parallel_composite_upload_threshold=150M', 'cp', '-r', '/root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/9c925d64d72725edaf899c6cb9c377fd0709d9c5', 'gs://ai2-llm/post-training/deletable_cache_models/Qwen/Qwen3-8B/9c925d64d72725edaf899c6cb9c377fd0709d9c5']
 
 
@@ -992,18 +996,6 @@ def remove_arg_from_list(lst: List[str], item: str, remove_value: bool = False):
         if remove_value:
             lst.pop(idx + 1)
         lst.pop(idx)
-
-# def parse_env_var(env_var_str: str) -> Dict[str, str]:
-#     """Parse environment variable string in the format 'name=value'"""
-#     if '=' not in env_var_str:
-#         raise argparse.ArgumentTypeError(
-#             f"Environment variable must be in format 'name=value', got: {env_var_str}"
-#         )
-#     name, value = env_var_str.split('=', 1)
-#     if not name:
-#         raise argparse.ArgumentTypeError("Environment variable name cannot be empty")
-#     return {"name": name, "value": value}
-
 
 
 # OPEN_INSTRUCT_COMMANDS = [
@@ -1180,3 +1172,381 @@ def extract_final_answer(prediction: str) -> str:
         return cleaned.strip()
 
     return prediction
+
+
+
+###### UNUSED
+
+def parse_env_var(env_var_str: str) -> Dict[str, str]:
+    """Parse environment variable string in the format 'name=value'"""
+    if '=' not in env_var_str:
+        raise argparse.ArgumentTypeError(
+            f"Environment variable must be in format 'name=value', got: {env_var_str}"
+        )
+    name, value = env_var_str.split('=', 1)
+    if not name:
+        raise argparse.ArgumentTypeError("Environment variable name cannot be empty")
+    return {"name": name, "value": value}
+
+# for file in OPEN_INSTRUCT_COMMANDS:
+#     # add cache_dataset_only to the command
+#     idx = find_list_idx(command, file)
+#     if idx != -1:
+#         # then try executing the same command with 
+#         caching_command = command.copy()
+#         remove_arg_from_list(caching_command, "--with_tracking", False)
+#         remove_arg_from_list(caching_command, "--checkpoint_state_freq", True)
+#         remove_arg_from_list(caching_command, "--checkpoint_state_dir", True)
+#         remove_arg_from_list(caching_command, "--gs_checkpoint_state_dir", True)
+#         caching_command = "python " + " ".join(caching_command[idx:]) + " --cache_dataset_only"
+#         print(f"📦📦📦 Running the caching command with `--cache_dataset_only`")
+#         import subprocess
+#         # Use Popen to get real-time output while also capturing it
+#         process = subprocess.Popen(
+#             caching_command, 
+#             shell=True, 
+#             stdout=subprocess.PIPE, 
+#             stderr=subprocess.PIPE,
+#             text=True,
+#             bufsize=1
+#         )
+
+
+
+
+
+def download_from_gs_bucket(src_path: str, dest_path: str) -> None:
+    cmd = [
+        "gsutil",
+        "-o",
+        "GSUtil:parallel_thread_count=1",
+        "-o",
+        "GSUtil:sliced_object_download_threshold=150",
+        "-m",
+        "cp",
+        "-r",
+        src_path,
+        dest_path,
+    ]
+    print(f"Downloading from GS bucket with command: {cmd}")
+    live_subprocess_output(cmd)
+
+
+def gs_folder_exists(path: str) -> bool:
+    cmd = ["gsutil", "ls", path]
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    # print(f"GS stat command: {cmd}")
+    # print(f"GS stat stdout: {stdout}")
+    # print(f"GS stat stderr: {stderr}")
+    if process.returncode == 0:
+        return True
+    else:
+        return False
+
+
+def upload_to_gs_bucket(src_path: str, dest_path: str) -> None:
+    cmd = ["gsutil", "-o", "GSUtil:parallel_composite_upload_threshold=150M", "cp", "-r", src_path, dest_path]
+    print(f"Copying model to GS bucket with command: {cmd}")
+    live_subprocess_output(cmd)
+
+
+def sync_gs_bucket(src_path: str, dest_path: str) -> None:
+    cmd = [
+        "gsutil",
+        "-o",
+        "GSUtil:parallel_composite_upload_threshold=150M",
+        "-m",
+        "rsync",
+        "-r",
+        "-d",
+        src_path,
+        dest_path,
+    ]
+    print(f"Copying model to GS bucket with command: {cmd}")
+    live_subprocess_output(cmd)
+
+
+def download_latest_checkpoint_from_gs(gs_checkpoint_state_dir: str, checkpoint_state_dir: str) -> None:
+    """Download the latest checkpoint from GCS and update the latest file."""
+    if gs_folder_exists(gs_checkpoint_state_dir):
+        os.makedirs(checkpoint_state_dir, exist_ok=True)
+        print(f"Downloading model checkpoint from GCS to {checkpoint_state_dir}")
+        sync_gs_bucket(gs_checkpoint_state_dir, checkpoint_state_dir)
+
+@retry_on_exception()
+@functools.lru_cache(maxsize=1)
+def maybe_use_ai2_wandb_entity() -> Optional[str]:
+    """Ai2 internal logic: try use the ai2-llm team if possible. Should not affect external users."""
+    import wandb
+
+    wandb.login()
+    api = wandb.Api()
+    current_user = api.viewer
+    teams = current_user.teams
+    if "ai2-llm" in teams:
+        return "ai2-llm"
+    else:
+        return None
+
+
+
+@functools.lru_cache(maxsize=1)
+def maybe_use_ai2_hf_entity() -> Optional[str]:
+    """Ai2 internal logic: try use the allenai entity if possible. Should not affect external users."""
+    orgs = hf_whoami()
+    orgs = [item["name"] for item in orgs["orgs"]]
+    if "allenai" in orgs:
+        return "allenai"
+    else:
+        return None
+
+
+@retry_on_exception()
+def upload_metadata_to_hf(
+    metadata_dict,
+    filename,
+    hf_dataset_name,
+    hf_dataset_save_dir,
+):
+    # upload a random dict to HF. Originally for uploading metadata to HF
+    # about a model for leaderboard displays.
+    with open("tmp.json", "w") as f:
+        json.dump(metadata_dict, f)
+    api = HfApi()
+    api.upload_file(
+        path_or_fileobj="tmp.json",
+        path_in_repo=f"{hf_dataset_save_dir}/{filename}",
+        repo_id=hf_dataset_name,
+        repo_type="dataset",
+    )
+    os.remove("tmp.json")
+
+
+# ----------------------------------------------------------------------------
+# Ray utilities
+# Taken from https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero
+def get_train_ds_config(
+    offload,
+    adam_offload=False,
+    stage=0,
+    bf16=True,
+    max_norm=1.0,
+    zpg=8,
+    grad_accum_dtype=None,
+    disable_trace_cache=False,
+):
+    device = "cpu" if offload else "none"
+    zero_opt_dict = {
+        "stage": stage,
+        "offload_param": {"device": device},
+        "offload_optimizer": {
+            "device": "cpu" if adam_offload else "none",
+            "pin_memory": True,
+        },
+        "sub_group_size": "auto",
+        "stage3_max_live_parameters": "auto",
+        "stage3_max_reuse_distance": "auto",
+        "stage3_param_persistence_threshold": "auto",
+        "stage3_prefetch_bucket_size": "auto",
+        "reduce_bucket_size": "auto",
+        # ZeRO++
+        "zero_hpz_partition_size": zpg,
+        "zero_quantized_weights": False,
+        "zero_quantized_gradients": False,
+    }
+    if disable_trace_cache:
+        zero_opt_dict["stage3_prefetch_bucket_size"] = 0
+        zero_opt_dict["stage3_max_live_parameters"] = 0
+        zero_opt_dict["stage3_max_reuse_distance"] = 0
+
+    return {
+        "steps_per_print": 100,
+        "zero_optimization": zero_opt_dict,
+        "bf16": {
+            "enabled": bf16,
+        },
+        "gradient_clipping": max_norm,
+        "prescale_gradients": False,
+        "wall_clock_breakdown": False,
+        "data_types": {"grad_accum_dtype": grad_accum_dtype if grad_accum_dtype else "fp32"},
+    }
+
+
+def get_eval_ds_config(
+    offload,
+    stage=0,
+    bf16=True,
+):
+    zero_opt_dict = {
+        "stage": stage,
+        "stage3_param_persistence_threshold": "auto",
+        "offload_param": {
+            "device": "cpu" if offload else "none",
+            "pin_memory": True,
+        },
+    }
+    return {
+        "steps_per_print": 100,
+        "zero_optimization": zero_opt_dict,
+        "bf16": {
+            "enabled": bf16,
+        },
+        "prescale_gradients": False,
+        "wall_clock_breakdown": False,
+    }
+
+
+def get_optimizer_grouped_parameters(
+    model: torch.nn.Module,
+    weight_decay: float,
+    no_decay_name_list=["bias", "layer_norm.weight", "layernorm.weight", "norm.weight", "ln_f.weight"],
+):
+    optimizer_grouped_parameters = [
+        {
+            "params": [
+                p
+                for n, p in model.named_parameters()
+                if (not any(nd in n for nd in no_decay_name_list) and p.requires_grad)
+            ],
+            "weight_decay": weight_decay,
+        },
+        {
+            "params": [
+                p
+                for n, p in model.named_parameters()
+                if (any(nd in n for nd in no_decay_name_list) and p.requires_grad)
+            ],
+            "weight_decay": 0.0,
+        },
+    ]
+    return optimizer_grouped_parameters
+
+
+def _z3_params_to_fetch(param_list):
+    return [p for p in param_list if hasattr(p, "ds_id") and p.ds_status == ZeroParamStatus.NOT_AVAILABLE]
+
+
+def get_ray_address() -> Optional[str]:
+    """Get the Ray address from the environment variable."""
+    return os.environ.get("RAY_ADDRESS")
+
+
+_SET_AFFINITY = False
+
+
+class RayProcess:
+    def __init__(self, world_size, rank, local_rank, master_addr, master_port):
+        logging.basicConfig(
+            format="%(asctime)s %(levelname)-8s %(message)s",
+            level=logging.INFO,
+            datefmt="%Y-%m-%d %H:%M:%S",
+        )
+        self.world_size = world_size
+        self.rank = rank
+        self.local_rank = local_rank
+        self.master_addr = master_addr if master_addr else self.get_current_node_ip()
+        self.master_port = master_port if master_port else self.get_free_port()
+        os.environ["MASTER_ADDR"] = self.master_addr
+        os.environ["MASTER_PORT"] = str(self.master_port)
+        os.environ["WORLD_SIZE"] = str(self.world_size)
+        os.environ["RANK"] = str(self.rank)
+        # NOTE: Ray will automatically set the CUDA_VISIBLE_DEVICES
+        # environment variable for each actor, so always set device to 0
+        # os.environ["LOCAL_RANK"] = str(self._local_rank)
+        os.environ["LOCAL_RANK"] = "0"
+        random.seed(self.rank)
+        np.random.seed(self.rank)
+        torch.manual_seed(self.rank)
+
+    @staticmethod
+    def get_current_node_ip():
+        address = ray._private.services.get_node_ip_address()
+        # strip ipv6 address
+        return address.strip("[]")
+
+    @staticmethod
+    def get_free_port():
+        with socket.socket() as sock:
+            sock.bind(("", 0))
+            return sock.getsockname()[1]
+
+    def get_master_addr_port(self):
+        return self.master_addr, self.master_port
+
+    def empty_cache(self) -> None:
+        torch.cuda.empty_cache()
+
+    def _set_numa_affinity(self, rank):
+        def local_rank_to_real_gpu_id(local_rank):
+            cuda_visible_devices = [
+                int(x) for x in os.environ.get("CUDA_VISIBLE_DEVICES", "0,1,2,3,4,5,6,7").split(",")
+            ]
+            return cuda_visible_devices[local_rank]
+
+        rank = local_rank_to_real_gpu_id(rank)
+
+        global _SET_AFFINITY
+        if _SET_AFFINITY:
+            return
+
+        from ctypes.util import find_library
+
+        class bitmask_t(Structure):
+            _fields_ = [
+                ("size", c_ulong),
+                ("maskp", POINTER(c_ulong)),
+            ]
+
+        LIBNUMA = CDLL(find_library("numa"))
+        LIBNUMA.numa_parse_nodestring.argtypes = [c_char_p]
+        LIBNUMA.numa_parse_nodestring.restype = POINTER(bitmask_t)
+        LIBNUMA.numa_run_on_node_mask.argtypes = [POINTER(bitmask_t)]
+        LIBNUMA.numa_run_on_node_mask.restype = c_int
+        LIBNUMA.numa_set_membind.argtypes = [POINTER(bitmask_t)]
+        LIBNUMA.numa_set_membind.restype = c_void_p
+        LIBNUMA.numa_num_configured_nodes.argtypes = []
+        LIBNUMA.numa_num_configured_nodes.restype = c_int
+
+        def numa_bind(nid: int):
+            bitmask = LIBNUMA.numa_parse_nodestring(bytes(str(nid), "ascii"))
+            LIBNUMA.numa_run_on_node_mask(bitmask)
+            LIBNUMA.numa_set_membind(bitmask)
+
+        numa_nodes = LIBNUMA.numa_num_configured_nodes()
+        num_gpu_pre_numa_node = 8 // numa_nodes
+        numa_bind(self.local_rank // num_gpu_pre_numa_node)
+        _SET_AFFINITY = True
+
+    def offload_to_cpu(self, model, pin_memory=True, non_blocking=True):
+        """This function guaratees the memory are all released (only torch context cache <100M will remain)."""
+        self._set_numa_affinity(torch.distributed.get_rank() % torch.cuda.device_count())
+
+        if model.zero_optimization_stage() == 3:
+            from deepspeed.runtime.zero.offload_config import OffloadStateTypeEnum
+
+            model.optimizer.offload_states(
+                include=[
+                    OffloadStateTypeEnum.optim_states,
+                    OffloadStateTypeEnum.contiguous_grad_buffer,
+                    OffloadStateTypeEnum.hp_params,
+                    # OffloadStateTypeEnum.lp_grads,
+                    # OffloadStateTypeEnum.lp_params, # dangerous
+                ],
+                device=OffloadDeviceEnum.cpu,
+                pin_memory=pin_memory,
+                non_blocking=non_blocking,
+            )
+            torch.cuda.synchronize()
+            return
+
+        raise NotImplementedError("Zero stage 2 is not supported yet")
+
+    def backload_to_gpu(self, model, non_blocking=True):
+        # NOTE: this function reloads the weights, ensuring the calculation
+        if model.zero_optimization_stage() == 3:
+            model.reload_states(non_blocking=non_blocking)
+            torch.cuda.synchronize()
+            return
+
+        raise NotImplementedError("Zero stage 2 is not supported yet")

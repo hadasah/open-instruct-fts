@@ -12,7 +12,7 @@ import os
 import random
 import subprocess
 import sys
-from utils import dict_update, has_file_been_modified_recently
+from utils import seq_dict_update, has_file_been_modified_recently
 
 # BASH_IF_CLAUSE = """
 # if [[ "$SLURM_ARRAY_TASK_ID" == "{index}" ]]; then
@@ -46,7 +46,7 @@ SLRM_JOB_ARRAY_TEMPLATE = """
 {SBATCH_EXTRAS}
 
 source ~/.bashrc
-{conda_command}
+{setup_command}
 
 echo "# -------- BEGIN CALL TO run.sh --------"
 # -K kills all subtasks if one particular task crashes. This is necessary for
@@ -107,6 +107,8 @@ echo
 nvidia-smi
 
 source ~/.bashrc
+{setup_command}
+
 
 echo "SLURM_PROCID"=$SLURM_PROCID
 echo "node-list: $SLURM_JOB_NODELIST"
@@ -140,13 +142,16 @@ export OLMO_SHARED_FS=1
 cd {NEW_DIR_PATH}
 export PYTHONPATH={SAVE_ROOT}/{repo_name}:$PYTHONPATH
 if [[ "$SLURM_PROCID" == "0" ]]; then 
-    CUDA_LAUNCH_BLOCKING=1 {cmd_launcher} {cmd} 
+    CUDA_LAUNCH_BLOCKING=1 torchrun --nproc-per-node=gpu --rdzv-endpoint=$MASTER_ADDR:$MASTER_PORT {cmd} 
+
 fi
 echo "# -------- FINISHED CALL TO SRUN --------"
 echo
 nvidia-smi
 
 """
+    # CUDA_LAUNCH_BLOCKING=1 {cmd_launcher} {cmd} 
+
 
 
 def sha1(string):
@@ -172,6 +177,8 @@ def run_grid(
     jobtime='01:59:59',
     include_job_id=False,
     hashname=False,
+    replace_jobname_slashes=True,
+    sweep_wandb_tags=[],
     saveroot='',
     logroot='',
     mem_gb=64,
@@ -188,6 +195,7 @@ def run_grid(
     dependencies=[],
     repo_name="code",
     conda_env_name=None,
+    bash_setup_script=None,
     include_jobs_indices=None,
     filter_succeeded=True,
     filter_running=True,
@@ -224,11 +232,15 @@ def run_grid(
     dependencies -- (list) list of job ids that this job depends on
     repo_name -- (str) name of the repository to copy
     conda_env_name -- (str) name of the conda environment to activate
+    bash_setup_script -- (str) path of the script with additional setup
     include_jobs_indices -- (list) list of job indices to include in the sweep
     filter_succeeded -- (bool) if True, filters out jobs that have already
         succeeded (i.e. have a log file with "got exitcode: 0")
     sweep_port_start -- (int) starting port for the sweep, if None, a random
         port will be chosen for each job
+    use_local_model -- (bool) if True, downloads the model from Hugging Face
+        and replaces the model path in the grid with the local path.
+        If False, uses the model path as is.
     """
     
     def get_name_keys(dictionary, parents_key_list=[], name_keys=[], use_all_keys=False):
@@ -273,7 +285,7 @@ def run_grid(
         args = {}
         for k, v in d.items():
             if isinstance(v, collections.abc.Mapping):
-                args = dict_update(args, unroll_args(v, f'{prefix}.{k}' if prefix else k))
+                args = seq_dict_update([args, unroll_args(v, f'{prefix}.{k}' if prefix else k)])
             else:
                 if prefix:
                     args[f"{prefix}.{k}"] = v
@@ -303,16 +315,27 @@ def run_grid(
         return running
 
 
-    def maybe_download_model_and_replace_path(main_grid, use_local_model=True):
+    def maybe_replace_model_path(main_grid, use_local_model=True):
         from open_instruct.utils import download_from_hf
 
         if not use_local_model:
-            return main_grid  # do not download model if using local model
+            return main_grid  # do not download model if use_local_model is False
     
-        model_name_or_path, model_revision = main_grid['--model'][0], main_grid['--revision'][0]
-        download_from_hf(model_name_or_path, model_revision) # first download the model
-        main_grid['--model'] = [download_from_hf(model_name_or_path, model_revision)] # then get the path
-        main_grid['--revision'] = ["main"]
+        model_name_or_path, model_revision = main_grid['--model_name_or_path'][0], main_grid['--model_revision'][0]
+        hf_cache = (
+            os.path.join(os.environ.get('HF_HOME'), "hub")
+            if os.environ.get('HF_HOME') 
+            else os.environ.get('HF_HUB_CACHE') or os.path.expanduser('~/.cache/huggingface')
+        )
+        if not os.path.exists(os.path.join(hf_cache, f'models--{model_name_or_path.replace("/", "--")}', 'refs', model_revision)):
+            raise RuntimeError("""
+                               Model not found in Hugging Face cache. Please download the model first by running:
+                               `huggingface-cli download --model_name_or_path {model_name_or_path} --model_revision {model_revision}`
+                               or set `use_local_model=False`
+                               """.format(model_name_or_path=model_name_or_path, model_revision=model_revision))
+        # download_from_hf(model_name_or_path, model_revision) # first download the model
+        main_grid['--model_name_or_path'] = [download_from_hf(model_name_or_path, model_revision)] # then get the path
+        main_grid['--model_revision'] = ["main"]
         return main_grid
     
 
@@ -335,15 +358,17 @@ def run_grid(
                 yield dict(zip(d.keys(), i))
 
     all_permutation_dicts = {}
-    main_grid = dict_update(deepcopy(default_grid), grid["main_grid"])
-    main_grid = maybe_download_model_and_replace_path(main_grid, use_local_model=use_local_model)
+    main_grid = seq_dict_update([default_grid, grid["main_grid"]])
+    main_grid = maybe_replace_model_path(main_grid, use_local_model=use_local_model)
+    if not grid.get("subgrids"):
+        grid["subgrids"] = {"default": {}}
     for subgrid_name, subgrid in grid["subgrids"].items():
-        subgrid_merged = dict_update(deepcopy(main_grid), subgrid)
-        # print(subgrid_merged)
-        all_permutation_dicts[subgrid_name] = list(c_prod(subgrid_merged))
+        subgrid_merged = seq_dict_update([main_grid, subgrid])
+        print(subgrid_merged)
+        all_permutation_dicts[subgrid_name] = list(c_prod(subgrid_merged)) if subgrid_merged else [{}]
         name_key_lists[subgrid_name] = get_name_keys(subgrid_merged, name_keys=name_keys)
 
-    # shorten names if possiblep
+    # shorten names if possible
     if hashname:
         # keep the names from getting too long
         full_names = [name for _, _, name in all_jobs]
@@ -356,6 +381,34 @@ def run_grid(
     else:
         cutoff = None
 
+    def get_wandb_tags_str(cmd_args, sweep_tags, ):
+        """Get wandb tags from the command args."""
+        tags = deepcopy(sweep_tags) if sweep_tags else []
+        if 'command' in cmd_args:
+            tags.append(cmd_args['command'])
+        if 'model_name_or_path' in cmd_args:
+            short_name = cmd_args['model_name_or_path'].rsplit('-', 1)[0]
+            short_name = short_name.split('-', 1)[1]
+            if any([s == short_name for s in [
+                                                "dclm-baseline",
+                                                "dclm-baseline-25p-dolma1.7-75p",
+                                                "dclm-baseline-50p-dolma1.7-50p",
+                                                "dclm-baseline-75p-dolma1.7-25p",
+                                                "dolma1_7",
+            ]]):
+                tags.append('dclm-dolma')
+            if any([s == short_name for s in [
+                                                "dclm-baseline",
+                                                "dclm-baseline-qc-7p-fw2",
+                                                "dclm-baseline-qc-7p-fw3",
+                                                "dclm-baseline-qc-fw-3p",
+                                                "dclm-baseline-qc-fw-10p",
+                                                "dclm-baseline-qc-10p",
+                                                "dclm-baseline-qc-20p",
+            ]]):
+                tags.append('dolma-qc')
+        return ','.join(tags)
+
     final_jobs = []
     job_id = job_id_start
 
@@ -366,8 +419,14 @@ def run_grid(
                 cmd_args = unroll_args(config_dict)
                 name = make_job_name(name_key_list, cmd_args, sweep_name=sweep_name, subgrid_name=subgrid_name)
                 name = name[:cutoff] if cutoff else name
+                name = name.replace('/', '--') if replace_jobname_slashes else name
                 name = sha1(name) if hashname else name
-                cmd = f"{prefix} --exp_name {name} " + ' '.join([f'{k} {v}' if v else k for k, v in cmd_args.items()])
+                wandb_tags_str = get_wandb_tags_str(cmd_args, sweep_tags=sweep_wandb_tags)
+                wandb_tags_str = "--wandb_tags " + wandb_tags_str if wandb_tags_str else ""
+                cmd = (
+                    f"{prefix} --exp_name {name} --run_name {name} --output_dir {SAVE_ROOT} {wandb_tags_str}" + " " +
+                    ' '.join([f'{k} {v}' if (v is not None and v!="") else k for k, v in cmd_args.items()])
+                )
                 if include_job_id:
                     name += '/_jobid=' + str(job_id)
                 final_jobs.append(Job(cmd=cmd, name=name))
@@ -412,6 +471,8 @@ def run_grid(
     if filter_running:
         final_jobs = [job for job in final_jobs if not check_if_job_is_running(job.name, SAVE_ROOT)]
 
+
+
     # Dump grid, specs, jobs to files
     if not os.path.exists(SAVE_ROOT):
         os.makedirs(SAVE_ROOT)
@@ -423,8 +484,14 @@ def run_grid(
             for i, job in enumerate(final_jobs):
                 f.write(json.dumps({'i': i, 'name': job.name, 'cmd': job.cmd}) + '\n')
     
-    jobs_path = []
     sweep_port_start = sweep_port_start or random.randint(10000, 20000)
+    setup_command = ""
+    if bash_setup_script:
+        setup_command += f"source {bash_setup_script}; "
+    if conda_env_name: 
+        setup_command += f'conda activate {conda_env_name}; '
+
+    jobs_path = []
     for i, job in enumerate(final_jobs):
         jobs_path.append(
             create_job_files(
@@ -434,6 +501,7 @@ def run_grid(
                 job.name,
                 job.cmd,
                 cmd_launcher=cmd_launcher,
+                setup_command=setup_command,
                 gpus=gpus,
                 nodes=nodes,
                 data_parallel=data_parallel,
@@ -462,7 +530,7 @@ def run_grid(
         NEW_DIR_PATH=NEW_DIR_PATH,
         jobs_path=jobs_path,
         dependencies=dependencies,
-        conda_env_name=conda_env_name,
+        setup_command=setup_command,
     )
 
 
@@ -481,6 +549,7 @@ def create_job_files(
     job_name,
     cmd,
     cmd_launcher='python',
+    setup_command="",
     job_args=[],
     gpus=1,
     nodes=1,
@@ -531,7 +600,7 @@ def submit_array_jobs(
     NEW_DIR_PATH="",
     jobs_path=[],
     dependencies=[],
-    conda_env_name=None,
+    setup_command="",
     append_to_sbatch_str=None,
 ):  
     """Submits the jobs as a SLURM job array."""
@@ -576,8 +645,6 @@ def submit_array_jobs(
 
     if dependencies:
         SBATCH_EXTRAS.append('#SBATCH --dependency="{}"'.format(','.join(['afterok:' + str(d) for d in dependencies])))
-
-    conda_command = f'conda activate {conda_env_name}' if conda_env_name else ''
 
     # make sure sbatch extras are a string
     SBATCH_EXTRAS = "\n".join(SBATCH_EXTRAS)

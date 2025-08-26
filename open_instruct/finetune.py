@@ -27,9 +27,11 @@ try:
 except Exception:
     pass
 # isort: on
+import json
 import logging
 import math
 import os
+import random
 import shutil
 import time
 from dataclasses import dataclass, field
@@ -43,6 +45,7 @@ from accelerate import Accelerator, DataLoaderConfiguration
 from accelerate.logging import get_logger
 from accelerate.utils import InitProcessGroupKwargs, set_seed
 from huggingface_hub import HfApi
+from pathlib import Path
 from peft import LoraConfig, TaskType, get_peft_model, prepare_model_for_kbit_training
 from rich.pretty import pprint
 from torch.utils.data import DataLoader
@@ -68,11 +71,11 @@ from open_instruct.utils import (
     clean_last_n_checkpoints,
     get_last_checkpoint_path,
     get_wandb_tags,
-    is_beaker_job,
-    launch_ai2_evals_on_weka,
-    maybe_get_beaker_config,
-    maybe_use_ai2_hf_entity,
-    maybe_use_ai2_wandb_entity,
+    # is_beaker_job,
+    # launch_ai2_evals_on_weka,
+    # maybe_get_beaker_config,
+    # maybe_use_ai2_hf_entity,
+    # maybe_use_ai2_wandb_entity,
 )
 
 logger = get_logger(__name__)
@@ -159,7 +162,7 @@ class FlatArguments:
         metadata={
             "help": (
                 "For debugging purposes or quicker training, truncate the number of training examples to this "
-                "value if set."
+                "value if set." 
             )
         },
     )
@@ -380,6 +383,9 @@ class FlatArguments:
 
 
 def main(args: FlatArguments, tc: TokenizerConfig):
+    # needed to use OLMO models
+    # from hf_olmo import modeling_olmo, configuration_olmo
+    
     # ------------------------------------------------------------
     # Initialize the accelerator. We will let the accelerator handle device placement for us in this example.
     # If we're using tracking, we also need to initialize it here and it will by default pick up all supported trackers
@@ -420,21 +426,21 @@ def main(args: FlatArguments, tc: TokenizerConfig):
         args.output_dir = os.path.join(args.output_dir, args.run_name)
     logger.info("using the output directory: %s", args.output_dir)
     args.dataset_local_cache_dir = os.path.abspath(args.dataset_local_cache_dir)
-    if is_beaker_job():
-        args.dataset_local_cache_dir = "/weka/oe-adapt-default/allennlp/deletable_open_instruct_dataset_cache"
-    if args.push_to_hub and accelerator.is_main_process:
-        if args.hf_repo_id is None:  # auto-generate one
-            args.hf_repo_id = "open_instruct_dev"
-        if args.hf_entity is None:  # first try to use AI2 entity
-            args.hf_entity = maybe_use_ai2_hf_entity()
-        if args.hf_entity is None:  # then try to use the user's entity
-            args.hf_entity = HfApi().whoami()["name"]
-        args.hf_repo_id = f"{args.hf_entity}/{args.hf_repo_id}"
-        if args.hf_repo_revision is None:
-            args.hf_repo_revision = args.run_name
-        args.hf_repo_url = f"https://huggingface.co/{args.hf_repo_id}/tree/{args.hf_repo_revision}"
-        if is_beaker_job():
-            beaker_config = maybe_get_beaker_config()
+    # if is_beaker_job():
+    #     args.dataset_local_cache_dir = "/weka/oe-adapt-default/allennlp/deletable_open_instruct_dataset_cache"
+    # if args.push_to_hub and accelerator.is_main_process:
+    #     if args.hf_repo_id is None:  # auto-generate one
+    #         args.hf_repo_id = "open_instruct_dev"
+    #     if args.hf_entity is None:  # first try to use AI2 entity
+    #         args.hf_entity = maybe_use_ai2_hf_entity()
+    #     if args.hf_entity is None:  # then try to use the user's entity
+    #         args.hf_entity = HfApi().whoami()["name"]
+    #     args.hf_repo_id = f"{args.hf_entity}/{args.hf_repo_id}"
+    #     if args.hf_repo_revision is None:
+    #         args.hf_repo_revision = args.run_name
+    #     args.hf_repo_url = f"https://huggingface.co/{args.hf_repo_id}/tree/{args.hf_repo_revision}"
+    #     if is_beaker_job():
+    #         beaker_config = maybe_get_beaker_config()
 
     # ------------------------------------------------------------
     # Initialize the trackers we use, and also store our configuration.
@@ -445,20 +451,24 @@ def main(args: FlatArguments, tc: TokenizerConfig):
         experiment_config["lr_scheduler_type"] = experiment_config["lr_scheduler_type"]
 
         # (Optional) Ai2 internal tracking
-        if args.wandb_entity is None:
-            args.wandb_entity = maybe_use_ai2_wandb_entity()
-        if accelerator.is_main_process and is_beaker_job():
-            experiment_config.update(vars(beaker_config))
+        # if args.wandb_entity is None:
+        #     args.wandb_entity = maybe_use_ai2_wandb_entity()
+        # if accelerator.is_main_process and is_beaker_job():
+        #     experiment_config.update(vars(beaker_config))
         experiment_config.update(vars(tc))
+
+        if args.report_to in ["wandb", "all" ]:
+            os.makedirs(os.path.join(args.output_dir, "wandb"), exist_ok=True)
         accelerator.init_trackers(
             args.wandb_project_name,
             experiment_config,
             init_kwargs={
                 "wandb": {
+                    "dir": args.output_dir,
                     "name": args.run_name,
                     "id": args.run_name,
                     "entity": args.wandb_entity,
-                    "tags": args.tags.split(",") if args.wandb_tags else get_wandb_tags(),
+                    "tags": args.wandb_tags.split(",") if args.wandb_tags else get_wandb_tags(),
                     "resume": "allow",
                 }
             },
@@ -486,6 +496,8 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     if args.seed is not None:
         set_seed(args.seed)
 
+    if args.output_dir is not None:
+        args.output_dir = os.path.join(args.output_dir, "model")
     if accelerator.is_main_process:
         if args.output_dir is not None:
             os.makedirs(args.output_dir, exist_ok=True)
@@ -513,6 +525,7 @@ def main(args: FlatArguments, tc: TokenizerConfig):
             dataset_skip_cache=args.dataset_skip_cache,
         )
         train_dataset = train_dataset.shuffle(seed=args.seed)
+        # train_dataset = train_dataset.select(range(args.max_train_samples)) if args.max_train_samples else train_dataset
         train_dataset.set_format(type="pt")
     if accelerator.is_main_process:
         visualize_token(train_dataset[0][INPUT_IDS_KEY], tokenizer)
@@ -633,6 +646,16 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     elif args.gradient_checkpointing:
         model.gradient_checkpointing_enable()
 
+    # debugging tool for fewer samples
+    if args.max_train_samples is not None and args.max_train_samples > 0:
+        max_train_samples = min(len(train_dataset), args.max_train_samples)
+        logger.info(f"Limiting training samples to {max_train_samples} from {len(train_dataset)}.")
+        train_dataset = train_dataset.select(range(max_train_samples))
+
+    # Log a few random samples from the training set:
+    for index in random.sample(range(len(train_dataset)), 3):
+        logger.info(f"Sample {index} of the training set: {train_dataset[index]}.")
+
     # DataLoaders creation:
     train_dataloader = DataLoader(
         train_dataset,
@@ -728,6 +751,8 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     progress_bar = tqdm(range(args.max_train_steps), disable=not accelerator.is_local_main_process)
     completed_steps = 0
     starting_epoch = 0
+    local_total_tokens = torch.tensor(0, dtype=torch.int64, device=accelerator.device)
+    total_token_including_padding = torch.tensor(0, dtype=torch.int64, device=accelerator.device)
 
     # Potentially load in the weights and states from a previous save
     last_checkpoint_path = get_last_checkpoint_path(args)
@@ -748,19 +773,26 @@ def main(args: FlatArguments, tc: TokenizerConfig):
             starting_epoch = resume_step // len(train_dataloader)
             completed_steps = resume_step // args.gradient_accumulation_steps
             resume_step -= starting_epoch * len(train_dataloader)
+        with open(os.path.join(args.output_dir, "metrics.json"), "r") as f:
+            metrics = json.load(f)
+        local_total_tokens = torch.tensor(metrics["total_tokens"], dtype=torch.int64, device=accelerator.device)
+        total_token_including_padding = torch.tensor(metrics["total_tokens_including_padding"], dtype=torch.int64, device=accelerator.device)
 
     print(f"Starting from epoch {starting_epoch} and step {completed_steps}.")
     # update the progress_bar if load from checkpoint
     progress_bar.update(completed_steps)
-    local_total_tokens = torch.tensor(0, dtype=torch.int64, device=accelerator.device)
-    total_token_including_padding = torch.tensor(0, dtype=torch.int64, device=accelerator.device)
     start_time = time.time()
     skipped_batches = False
+ 
+    total_loss = 0
+    total_aux_loss = 0
+    log_toks = 0
     for epoch in range(starting_epoch, args.num_train_epochs):
         model.train()
         train_dataloader.set_epoch(epoch)
-        total_loss = 0
-        total_aux_loss = 0
+        # total_loss = 0
+        # total_aux_loss = 0
+        # log_toks = 0
         if last_checkpoint_path and resume_step is not None and not skipped_batches:
             # We skip the first `n` batches in the dataloader when resuming from a checkpoint.
             active_dataloader = accelerator.skip_first_batches(train_dataloader, resume_step)
@@ -806,6 +838,7 @@ def main(args: FlatArguments, tc: TokenizerConfig):
                         loss += aux_loss
                 # We keep track of the loss at each logged step
                 total_loss += loss.detach().float()
+                log_toks += batch["attention_mask"].sum().float()
                 accelerator.backward(loss)
                 if args.load_balancing_loss:
                     total_aux_loss += aux_loss.detach().float()
@@ -821,13 +854,19 @@ def main(args: FlatArguments, tc: TokenizerConfig):
                 progress_bar.update(1)
                 completed_steps += 1
                 if args.logging_steps and completed_steps % args.logging_steps == 0:
+                    total_tokens = accelerator.gather(local_total_tokens).sum().item()
+                    total_tokens_including_padding = accelerator.gather(total_token_including_padding).sum().item()
                     avg_loss = (
                         accelerator.gather(total_loss).mean().item()
                         / args.gradient_accumulation_steps
                         / args.logging_steps
+                    )  if args.reduce_loss == "mean" else (
+                        accelerator.gather(total_loss).mean().item()
+                        / accelerator.gather(log_toks).mean().item()
                     )
-                    total_tokens = accelerator.gather(local_total_tokens).sum().item()
-                    total_tokens_including_padding = accelerator.gather(total_token_including_padding).sum().item()
+                    print("total_loss", accelerator.gather(total_loss))
+                    print("total_tokens", accelerator.gather(log_toks))
+                    print("avg_loss", avg_loss)
                     metrics_to_log = {
                         "learning_rate": lr_scheduler.get_last_lr()[0],
                         "train_loss": avg_loss,
@@ -859,6 +898,7 @@ def main(args: FlatArguments, tc: TokenizerConfig):
                         )
                     total_loss = 0
                     total_aux_loss = 0
+                    log_toks = 0
 
                 if isinstance(checkpointing_steps, int):
                     if completed_steps % checkpointing_steps == 0:
@@ -867,6 +907,10 @@ def main(args: FlatArguments, tc: TokenizerConfig):
                             output_dir = os.path.join(args.output_dir, output_dir)
                         accelerator.save_state(output_dir)
                         # use this to mark the checkpoint as completely saved, to avoid restoring from garbled checkpoints
+                        with open (
+                            os.path.join(get_last_checkpoint_path(args, incomplete=True), "metrics.json"), "w"
+                        ) as f:
+                            f.write(json.dumps(metrics_to_log, indent=2))
                         with open(
                             os.path.join(
                                 get_last_checkpoint_path(args, incomplete=True),
@@ -904,7 +948,8 @@ def main(args: FlatArguments, tc: TokenizerConfig):
             accelerator,
             model,
             tokenizer,
-            args.output_dir,
+            # args.output_dir,
+            os.path.join(args.output_dir, "final"),
             args.use_lora,
         )
 
@@ -912,24 +957,24 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     if accelerator.is_local_main_process:
         clean_last_n_checkpoints(args.output_dir, keep_last_n_checkpoints=0)
 
-    if (
-        args.try_auto_save_to_beaker
-        and accelerator.is_main_process
-        and is_beaker_job()
-        and len(beaker_config.beaker_dataset_id_urls) > 0
-        and args.output_dir.rstrip("/") != "/output"
-    ):
-        shutil.copytree(args.output_dir, "/output", dirs_exist_ok=True)
+    # if (
+    #     args.try_auto_save_to_beaker
+    #     and accelerator.is_main_process
+    #     and is_beaker_job()
+    #     and len(beaker_config.beaker_dataset_id_urls) > 0
+    #     and args.output_dir.rstrip("/") != "/output"
+    # ):
+    #     shutil.copytree(args.output_dir, "/output", dirs_exist_ok=True)
 
-    if is_beaker_job() and accelerator.is_main_process and args.try_launch_beaker_eval_jobs:
-        launch_ai2_evals_on_weka(
-            path=args.output_dir,
-            leaderboard_name=args.hf_repo_revision,
-            oe_eval_max_length=args.oe_eval_max_length,
-            wandb_url=wandb_tracker.run.get_url(),
-            oe_eval_tasks=args.oe_eval_tasks,
-            gs_bucket_path=args.gs_bucket_path,
-        )
+    # if is_beaker_job() and accelerator.is_main_process and args.try_launch_beaker_eval_jobs:
+    #     launch_ai2_evals_on_weka(
+    #         path=args.output_dir,
+    #         leaderboard_name=args.hf_repo_revision,
+    #         oe_eval_max_length=args.oe_eval_max_length,
+    #         wandb_url=wandb_tracker.run.get_url(),
+    #         oe_eval_tasks=args.oe_eval_tasks,
+    #         gs_bucket_path=args.gs_bucket_path,
+    #     )
     if args.push_to_hub:
         push_folder_to_hub(
             accelerator,

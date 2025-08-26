@@ -373,6 +373,8 @@ class FlatArguments:
     """The wandb's project name"""
     wandb_entity: Optional[str] = None
     """The entity (team) of wandb's project"""
+    wandb_tags: Optional[str] = None
+    """The tags to use for the wandb run. If not set, will use the exp_name and fetch tags dynamically."""
     push_to_hub: bool = True
     """Whether to upload the saved model to huggingface"""
     hf_entity: Optional[str] = None
@@ -411,8 +413,8 @@ class FlatArguments:
             or (self.dataset_mixer is not None and self.dataset_mixer_list is not None)
         ):
             raise ValueError("Cannot provide two dataset selection mechanisms.")
-        if self.try_launch_beaker_eval_jobs and not self.push_to_hub:
-            raise ValueError("Cannot launch Beaker evaluation jobs without pushing to the Hub.")
+        # if self.try_launch_beaker_eval_jobs and not self.push_to_hub:
+        #     raise ValueError("Cannot launch Beaker evaluation jobs without pushing to the Hub.")
 
 
 def get_cache_ref_logprobs(
@@ -494,21 +496,21 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     args.run_name = f"{args.exp_name}__{args.seed}__{int(time.time())}" if args.run_name is None else args.run_name
     args.output_dir = os.path.join(args.output_dir, args.run_name)
     args.dataset_local_cache_dir = os.path.abspath(args.dataset_local_cache_dir)
-    if is_beaker_job():
-        args.dataset_local_cache_dir = "/weka/oe-adapt-default/allennlp/deletable_open_instruct_dataset_cache"
-    if args.push_to_hub and accelerator.is_main_process:
-        if args.hf_repo_id is None:  # auto-generate one
-            args.hf_repo_id = "open_instruct_dev"
-        if args.hf_entity is None:  # first try to use AI2 entity
-            args.hf_entity = maybe_use_ai2_hf_entity()
-        if args.hf_entity is None:  # then try to use the user's entity
-            args.hf_entity = HfApi().whoami()["name"]
-        args.hf_repo_id = f"{args.hf_entity}/{args.hf_repo_id}"
-        if args.hf_repo_revision is None:
-            args.hf_repo_revision = args.run_name
-        args.hf_repo_url = f"https://huggingface.co/{args.hf_repo_id}/tree/{args.hf_repo_revision}"
-        if is_beaker_job():
-            beaker_config = maybe_get_beaker_config()
+    # if is_beaker_job():
+    #     args.dataset_local_cache_dir = "/weka/oe-adapt-default/allennlp/deletable_open_instruct_dataset_cache"
+    # if args.push_to_hub and accelerator.is_main_process:
+    #     if args.hf_repo_id is None:  # auto-generate one
+    #         args.hf_repo_id = "open_instruct_dev"
+    #     if args.hf_entity is None:  # first try to use AI2 entity
+    #         args.hf_entity = maybe_use_ai2_hf_entity()
+    #     if args.hf_entity is None:  # then try to use the user's entity
+    #         args.hf_entity = HfApi().whoami()["name"]
+    #     args.hf_repo_id = f"{args.hf_entity}/{args.hf_repo_id}"
+    #     if args.hf_repo_revision is None:
+    #         args.hf_repo_revision = args.run_name
+    #     args.hf_repo_url = f"https://huggingface.co/{args.hf_repo_id}/tree/{args.hf_repo_revision}"
+    #     if is_beaker_job():
+    #         beaker_config = maybe_get_beaker_config()
 
     # ------------------------------------------------------------
     # Initialize the trackers we use, and also store our configuration.
@@ -521,17 +523,20 @@ def main(args: FlatArguments, tc: TokenizerConfig):
         # (Optional) Ai2 internal tracking
         if args.wandb_entity is None:
             args.wandb_entity = maybe_use_ai2_wandb_entity()
-        if accelerator.is_main_process and is_beaker_job():
-            experiment_config.update(vars(beaker_config))
+        # if accelerator.is_main_process and is_beaker_job():
+        #     experiment_config.update(vars(beaker_config))
         experiment_config.update(vars(tc))
         accelerator.init_trackers(
             args.wandb_project_name,
             experiment_config,
             init_kwargs={
                 "wandb": {
+                    "dir": args.output_dir,
                     "name": args.run_name,
+                    "id": args.run_name,
                     "entity": args.wandb_entity,
-                    "tags": [args.exp_name] + get_wandb_tags(),
+                    "tags": args.wandb_tags.split(",") if args.wandb_tags else get_wandb_tags(),
+                    "resume": "allow",
                 }
             },
         )
@@ -1044,31 +1049,31 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     if accelerator.is_local_main_process:
         clean_last_n_checkpoints(args.output_dir, keep_last_n_checkpoints=0)
 
-    if (
-        args.try_auto_save_to_beaker
-        and accelerator.is_main_process
-        and is_beaker_job()
-        and len(beaker_config.beaker_dataset_id_urls) > 0
-        and args.output_dir.rstrip("/") != "/output"
-    ):
-        shutil.copytree(args.output_dir, "/output", dirs_exist_ok=True)
+    # if (
+    #     args.try_auto_save_to_beaker
+    #     and accelerator.is_main_process
+    #     and is_beaker_job()
+    #     and len(beaker_config.beaker_dataset_id_urls) > 0
+    #     and args.output_dir.rstrip("/") != "/output"
+    # ):
+    #     shutil.copytree(args.output_dir, "/output", dirs_exist_ok=True)
 
-    if is_beaker_job() and accelerator.is_main_process and args.try_launch_beaker_eval_jobs:
-        launch_ai2_evals_on_weka(
-            path=args.output_dir,
-            leaderboard_name=args.hf_repo_revision,
-            oe_eval_max_length=args.oe_eval_max_length,
-            wandb_url=wandb_tracker.run.get_url(),
-            oe_eval_tasks=args.oe_eval_tasks,
-            gs_bucket_path=args.gs_bucket_path,
-        )
-    if args.push_to_hub:
-        push_folder_to_hub(
-            accelerator,
-            args.output_dir,
-            args.hf_repo_id,
-            args.hf_repo_revision,
-        )
+    # if is_beaker_job() and accelerator.is_main_process and args.try_launch_beaker_eval_jobs:
+    #     launch_ai2_evals_on_weka(
+    #         path=args.output_dir,
+    #         leaderboard_name=args.hf_repo_revision,
+    #         oe_eval_max_length=args.oe_eval_max_length,
+    #         wandb_url=wandb_tracker.run.get_url(),
+    #         oe_eval_tasks=args.oe_eval_tasks,
+    #         gs_bucket_path=args.gs_bucket_path,
+    #     )
+    # if args.push_to_hub:
+    #     push_folder_to_hub(
+    #         accelerator,
+    #         args.output_dir,
+    #         args.hf_repo_id,
+    #         args.hf_repo_revision,
+    #     )
     accelerator.wait_for_everyone()
     if args.with_tracking:
         accelerator.end_training()

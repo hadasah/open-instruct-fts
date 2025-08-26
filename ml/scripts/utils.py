@@ -2,6 +2,8 @@ import collections.abc
 import os
 import time
 
+from copy import deepcopy
+
 # def recursive_dict_update(original_dict, update_dict):
 #     """
 #     Recursively updates a dictionary with values from another dictionary.
@@ -17,7 +19,7 @@ import time
 #     return original_dict
 
 
-def dict_update(d, u):
+def seq_dict_update(ds):
     """
     Recursively update a dict with another dict.
     This is a deep update, meaning that if a key in the first dict
@@ -28,13 +30,23 @@ def dict_update(d, u):
     If the value in the second dict is not a dict, it will
     overwrite the value in the first dict.
     """
-    if not u:
-        return d
-    for k, v in u.items():
-        if isinstance(v, collections.abc.Mapping):
-            d[k] = dict_update(d.get(k, {}), v)
+    if len(ds) == 0:
+        return {}
+    if len(ds) == 1:
+        return deepcopy(ds[0])
+    d = deepcopy(ds[0])
+    for u in ds[1:]:
+        if not u:
+            continue
+        if not d:
+            d = deepcopy(u)
         else:
-            d[k] = v
+            u = deepcopy(u)
+            for k, v in u.items():
+                if isinstance(v, collections.abc.Mapping):
+                    d[k] = seq_dict_update([d.get(k, {}), v])
+                else:
+                    d[k] = v
     return d
 
 def has_file_been_modified_recently(filepath, recent_threshold_seconds=3600):
