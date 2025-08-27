@@ -1,11 +1,14 @@
 import argparse
 import copy
 import inspect
+import json
 import logging
 import os
+import pathlib
 import re
 import subprocess
 import sys
+import wandb
 from typing import List
 
 ## This is the main launching script for running evaluations.
@@ -58,9 +61,14 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 DEFAULT_BEAKER_WORKSPACE = "ai2/lm-eval"
 
 _parser = argparse.ArgumentParser()
-_parser.add_argument("--models", default="", type=str, help="Name of model from model library")
+_parser.add_argument("--models", 
+    default="", type=str, 
+    help="Name of models from model library. Comma separated list."
+    " Each element can be of format <modelname> or <modelname>:<revision>."
+    " If no revision is specified, 'main' is assumed"
+)
 _parser.add_argument("--model-type", type=str, help="Model type (e.g., 'hf' or 'vllm')")
-_parser.add_argument("--revision", type=str, help="Revision of model in HF hub")
+_parser.add_argument("--revisions", default="", type=str, help="Revision of model in HF hub")
 _parser.add_argument("--model-paths", default="", type=str, help="Paths to model files")
 _parser.add_argument("--model-sweep-paths", default="", type=str, help="Path to top-level folder with models")
 _parser.add_argument(
@@ -130,6 +138,10 @@ _parser.add_argument("--gpus", type=int, default=None, help="Number of GPUs to u
 _parser.add_argument(
     "--save-raw-requests", type=bool, default=False, help="Save raw requests in output directory"
 )
+_parser.add_argument("--log-to-wandb", action="store_true",)
+_parser.add_argument("--wandb-override", action="store_true",)
+_parser.add_argument("--wandb-entity", type=str, default="ml-moe")
+_parser.add_argument("--wandb-project", type=str, default="ft-scaling")
 _parser.add_argument(
     "--recompute-metrics", action="store_true", help="Recompute metrics for cached predictions"
 )
@@ -370,7 +382,6 @@ def launch_eval(args_dict: dict):
         "cached_output_dir",
         "gsheet",
         "hf_save_dir",
-        "wandb_run_path",
     ]:
         if args_dict[key]:
             run_eval_args[key] = args_dict[key]
@@ -380,8 +391,16 @@ def launch_eval(args_dict: dict):
         run_eval_args["vllm-for-mc"] = True
     if model_name != "none":
         run_eval_args["model"] = model_name
-    if args_dict["model_path"]:
+    if args_dict.get("model_path"):
         run_eval_args["model-path"] = args_dict["model_path"]
+    if args_dict.get("log_to_wandb", False):
+        i = -1
+        while True:
+            run_id = pathlib.Path(args_dict["output_dir"]).parts[i]
+            i -= 1
+            if "2025" in run_id: 
+                break
+        run_eval_args["wandb-run-path"] = args_dict["wandb_run_path"] if "wandb_run_path" in args_dict else f"{args_dict['wandb_entity']}/{args_dict['wandb_project']}/runs/{run_id}"
     if model_config:
         run_eval_args["model-args"] = model_config
 
@@ -400,7 +419,24 @@ def launch_eval(args_dict: dict):
     # Only local eval is supported
     logger.info(f"Running eval locally on {len(all_tasks)} tasks!")
     logger.info(f"Command: {run_eval_command}")
-    return subprocess.run(run_eval_command, shell=True).returncode
+    maybe_rc = subprocess.run(run_eval_command, shell=True).returncode
+    # if args_dict["log_to_wandb"]:
+    #     i = -1
+    #     while True:
+    #         run_id = pathlib.Path(args_dict["output_dir"]).parts[i]
+    #         i -= 1
+    #         if "2025" in run_id: 
+    #             break
+    #     run = wandb.init(entity=args_dict["wandb_entity"], project=args_dict["wandb_project"], id=run_id, resume='must')
+    #     with open(args_dict["output_dir"], "metrics.json" ) as r:
+    #         metrics = json.read(r)["all_primary_scores"]
+    #     for key in metrics:
+    #         new_key = f"eval/{new_key}"
+    #         if args_dict["wandb_override_values"] or new_key not in run.summary:
+    #             run.summary[new_key] = metrics[key]
+    #     run.finish()
+    # return maybe_rc
+    return 
 
 
 def main():
@@ -408,10 +444,14 @@ def main():
     args_dict = vars(args)
 
     models = args_dict.get("models", "").split(",") if args_dict.get("models", "") != "" else []
+    revisions = args_dict.get("revisions", "").split(",") if args_dict.get("revisions", "") != "" else ["main"] * len(models)
+    for i, maybe_model in enumerate(models):
+        if ":" in maybe_model:
+            [models[i], revisions[i]] = maybe_model.split(":", 1)
     model_paths = args_dict.get("model_paths", "").split(",") if args_dict.get("model_paths", "") != "" else []
     assert not (len(models) > 0 and len(model_paths) > 0), "Cannot specify both --models and --model-paths!"
     
-    if args_dict.get("model_sweep_paths", None) is not None:
+    if args_dict.get("model_sweep_paths", "") != "":
         assert len(models) == 0 and len(model_paths) == 0, "Cannot specify --model-sweep-paths with --models or --model-paths!"
         model_sweep_paths = args_dict.get("model_sweep_paths", "").split(",")
         for model_sweep_path in model_sweep_paths:
@@ -421,9 +461,10 @@ def main():
                         model_paths.append(root)
     
     if len(models) > 1:
-        for model in models:
+        for model, revision in zip(models, revisions):
             model_args_dict = copy.deepcopy(args_dict)
             model_args_dict["model"] = model.strip()
+            model_args_dict["revision"] = revision.strip()
             model_args_dict["output_dir"] = os.path.join(
                 model_args_dict["output_dir"], model_args_dict["model"].replace("/", "_")
             )

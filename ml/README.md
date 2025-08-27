@@ -126,7 +126,10 @@ python ml/scripts/launch_olmes_evals.py --task ${task} --primary-metric acc_raw 
 
 model_sweep_paths=/gscratch/zlab/margsli/gitfiles/open-instruct-fts/models/2025_08_21-15_03_00_test_finetune_DD-dolma1_7-150M_main
 task=tulu_3_dev
-python ml/scripts/launch_olmes_evals.py --task ${task} --model-sweep-paths ${model_sweep_paths} --use-all-ckpts --model-args 
+
+python /gscratch/zlab/margsli/gitfiles/open-instruct-fts/ml/scripts/launch_olmes_evals.py --task tulu_3_dev --models allenai/DataDecide-dolma1_7-4M:step5725-seed-default,allenai/DataDecide-dolma1_7-10M:step15117-seed-default,allenai/DataDecide-dolma1_7-60M:step29042-seed-default,allenai/DataDecide-dolma1_7-150M:step37500-seed-default --use-all-ckpts --model-args chat_template=tulu --output-dir /gscratch/zlab/margsli/gitfiles/open-instruct-fts/models/_eval_results
+
+python /gscratch/zlab/margsli/gitfiles/open-instruct-fts/ml/scripts/launch_olmes_evals.py --task tulu_3_dev --model-paths /gscratch/zlab/margsli/gitfiles/open-instruct-fts/models/2025_08_21-15_03_00_test_finetune_DD-dolma1_7-4M_main/models/ --use-all-ckpts --model-args chat_template=tulu --output-dir /gscratch/zlab/margsli/gitfiles/open-instruct-fts/models/_eval_results
 ```
 To launch this as a job on slurm:
 ```bash

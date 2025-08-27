@@ -283,7 +283,16 @@ DD_MODEL_SEEDS_DICT = {
 }
 
 MODEL_PATH_LOOKUP = {
+    #"dd__{train_data}-{size}__{revision}__{id/hps}": "path/to/model/",
+    # "dd__allenai/DataDecide-{train_data}-{size}__step{step}-seed-{seed}": 
+    "dd__dolma1_7-4M__main__100Mt_lr=5e-06": "2025_08_21-15_03_00_test_finetune_DD-dolma1_7-4M_main/model/2025_08_21-15_03_00_test_finetune_DD-dolma1_7-4M_main_100M_toks_--learning_rate=5e-06/",
+    "dd__dolma1_7-10M__main__100Mt_lr=5e-06": "2025_08_21-15_03_00_test_finetune_DD-dolma1_7-4M_main/model/2025_08_21-15_03_00_test_finetune_DD-dolma1_7-10M_main_100M_toks_--learning_rate=5e-06/",
+    "dd__dolma1_7-60M__main__100Mt_lr=5e-06": "2025_08_21-15_03_00_test_finetune_DD-dolma1_7-4M_main/model/2025_08_21-15_03_00_test_finetune_DD-dolma1_7-60M_main_100M_toks_--learning_rate=5e-06/",
+    "dd__dolma1_7-150M__main__100Mt_lr=5e-06": "2025_08_21-15_03_00_test_finetune_DD-dolma1_7-4M_main/model/2025_08_21-15_03_00_test_finetune_DD-dolma1_7-150M_main_100M_toks_--learning_rate=5e-06/",
+}
 
+HP_SHORT_NAMES = {
+    "--learning_rate": "lr",
 }
 
 OPEN_INSTRUCT_COMMANDS = [
@@ -301,7 +310,7 @@ OPEN_INSTRUCT_COMMANDS = [
 PROJECT_SPECS = {
     "margsli": {
         'DEFAULT_SAVE_PATH': os.path.join(DEFAULT_DIR_PATH, 'models'),
-        "WANDB_PROJECT": "fts",
+        "WANDB_PROJECT": "ft-scaling",
         "WANDB_ENTITY": "ml-moe",
         "CONDA_ENV_NAME": "fts",
         "BASH_SETUP_SCRIPT": "/mmfs1/home/margsli/.fts.sh",
@@ -313,7 +322,7 @@ PROJECT_SPECS = {
     ## TODO : Update these paths to your local setup
     "": {
         'DEFAULT_SAVE_PATH': os.path.join(DEFAULT_DIR_PATH, 'models'),
-        "WANDB_PROJECT": "fts",
+        "WANDB_PROJECT": "ft-scaling",
         "WANDB_ENTITY": "ml-moe",
         "CONDA_ENV_NAME": "",
         "BASH_SETUP_SCRIPT": "",

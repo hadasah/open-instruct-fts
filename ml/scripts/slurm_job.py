@@ -320,6 +320,9 @@ def run_grid(
 
         if not use_local_model:
             return main_grid  # do not download model if use_local_model is False
+        
+        if os.path.exists(main_grid['--model_name_or_path'][0]) and os.path.isfile(os.path.join(main_grid['--model_name_or_path'][0], 'config.json')):
+            return main_grid  # already a local path
     
         model_name_or_path, model_revision = main_grid['--model_name_or_path'][0], main_grid['--model_revision'][0]
         hf_cache = (

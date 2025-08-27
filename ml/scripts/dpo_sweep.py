@@ -12,6 +12,7 @@ from constants import (
     DD_MODEL_SIZES_INFO,
     DD_TRAIN_SETS,
     DD_MODEL_SEEDS,
+    MODEL_PATH_LOOKUP,
     OPEN_INSTRUCT_COMMANDS,
     MODEL_HP_DEFAULTS,
     COMMAND_HP_DEFAULTS,
@@ -20,6 +21,13 @@ from constants import (
 )
 from utils import seq_dict_update
 
+
+def model_short_name(model, revision="", shorten=True):
+    if not shorten:
+        return f"{model}".replace('/', '--')
+    uploader, model_name = model.split('/')
+    model_name = model_name.replace('DataDecide-', 'DD-')
+    return f"{model_name}".replace('/', '--')
 
 def main(
     sweep_name,
@@ -148,34 +156,30 @@ def main(
         if model_revisions is not None and (model_seeds or model_steps):
             raise ValueError("Cannot specify both model_revisions and model_seeds or model_steps")
         
+        model_short_names = []
+        if models:
+            for i, model in enumerate(models):
+                if model in MODEL_PATH_LOOKUP:
+                    models[i] = os.path.join(USER_SPECS["DEFAULT_SAVE_PATH"], MODEL_PATH_LOOKUP[model])
+                model_short_names.append(model)
+        else:
+            models = [
+                DD_MODEL_NAME_TEMPLATE.format(train_data=model_train_data, size=model_size)
+                for model_train_data, model_size in itertools.product(model_train_data_sets, model_sizes)
+            ]
+            model_short_names = [model_short_name(model) for model in models]
 
-        models = [
-            DD_MODEL_NAME_TEMPLATE.format(train_data=model_train_data, size=model_size)
-            # for model_train_data, model_size in zip(model_train_data_sets, model_sizes)
-            for model_train_data, model_size in itertools.product(model_train_data_sets, model_sizes)
-        ] if not models else models
-
-        def model_short_name(model, revision="", shorten=True):
-            if not shorten:
-                return f"{model}".replace('/', '--')
-            uploader, model_name = model.split('/')
-            model_name = model_name.replace('DataDecide-', 'DD-')
-            return f"{model_name}".replace('/', '--')
 
         if add_time_to_name == 'front':
             time_str = str(datetime.now().strftime('%Y_%m_%d-%H_%M_%S'))
             SWEEP_NAME = f"{time_str}_{SWEEP_NAME}" if SWEEP_NAME else time_str
-        # for model, revision in itertools.product(models, model_revisions):
-        for model in models:
-            # if model_steps in DD_MODEL_STEPS_SETS:
-            #     model_steps = DD_MODEL_STEPS_SETS[model_steps]
+        for model, model_name in zip(models, model_short_names):
             model_revisions = [
                 DD_REVISION_TEMPLATE.format(step=step, seed=seed) 
-                # for step in model_steps for seed in model_seeds 
                 for step, seed in itertools.product(model_steps, model_seeds)
             ] if (not model_revisions and model_steps is not None and model_seeds is not None) else model_revisions or ["main"]
 
-            model_sweep_name = f"{SWEEP_NAME}_{command}_{model_short_name(model)}" if add_model_to_name == 'end' else SWEEP_NAME
+            model_sweep_name = f"{SWEEP_NAME}_{command}_{model_name}" if add_model_to_name == 'end' else SWEEP_NAME
             SPECS = seq_dict_update([PROJECT_SPECS[os.environ.get('USER')], HARDWARE_SPECS_DICT['all'], HARDWARE_SPECS_DICT.get(model, {}).get(partition)])
             SPECS['NUM_GPUS'] = gpus or SPECS['NUM_GPUS']
             SPECS["NUM_CPUS"] = cpus or SPECS["NUM_CPUS"]
@@ -185,20 +189,12 @@ def main(
                 # combined with the subgrids
                 "main_grid": { 
                     "--model_name_or_path": [model],
-                    # "--model_revision": [revision],
                     "--model_revision": model_revisions,
-                    "--learning_rate": [5e-7, 5e-6, 5e-5, 5e-4],
+                    "--learning_rate": [2e-7, 2e-6, 2e-5, 2e-4],
                     # "--max_train_samples": [14000, 28000], 
                 },
                 # allows you to bundle multiple hyperparameters together
                 "subgrids": {
-                    # "1Mtx1": {"--max_train_samples": [1400], "--num_train_epochs": [1],},
-                    "1Mtx10": {"--max_train_samples": [1400], "--num_train_epochs": [10],},
-                    "1Mtx100": {"--max_train_samples": [1400], "--num_train_epochs": [100],},
-                    # "10Mtx1": {"--max_train_samples": [14000], "--num_train_epochs": [1],},
-                    "10Mtx10": {"--max_train_samples": [14000], "--num_train_epochs": [10],},
-                    "100M_toks": {"--max_train_samples": [140000], "--num_train_epochs": [1],},
-                    # "e1x1c1": {"moe_num_experts_list": ["1"]},
                 },
             }
 
@@ -225,7 +221,7 @@ def main(
                 include_job_id=False,
                 hashname=False,
                 replace_jobname_slashes=True,
-                sweep_wandb_tags=[command], 
+                sweep_wandb_tags=[command], # model_name
                 saveroot=f"{SPECS['DEFAULT_SAVE_PATH']}/{model_sweep_name}",
                 logroot=f"{SPECS['DEFAULT_SAVE_PATH']}/{model_sweep_name}",
                 mem_gb=SPECS["MEM_GB"],
@@ -252,7 +248,7 @@ def main(
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-sn', '--sweep-name', type=str, default="", help="Name of the sweep. If not specified, will use the current date and time.")
-    parser.add_argument('-c', '--command', type=str, default=OPEN_INSTRUCT_COMMANDS[0], choices=OPEN_INSTRUCT_COMMANDS, help="Command to run for each job.")
+    parser.add_argument('-c', '--command', type=str, default="dpo_tune_cache", choices=OPEN_INSTRUCT_COMMANDS, help="Command to run for each job.")
     parser.add_argument('-rp', '--relaunch-path', type=str, default=None, help="Path to the sweep directory containing grid.json and specs.json. Used to restart jobs from a previous sweep.")
     parser.add_argument('-rn', '--relaunch-name', type=str, default=None, help="Name of sweep, also base of sweep directory containing grid.json and specs.json. Used to restart jobs from a previous sweep.")
     parser.add_argument('--add-time-to-name', type=str, default='front', choices=['front', 'none'])
@@ -266,6 +262,7 @@ if __name__ == '__main__':
     parser.add_argument('--mem', type=str)
     parser.add_argument('-i', '--include-jobs-indices', type=str, default=None)
     parser.add_argument('-nf', '--no-filter', action='store_true', help="If set, will not filter out jobs that have already been run in the sweep. Useful for debugging.")
+    parser.add_argument('-m', '--models', type=str, default=None, help="Comma-separated list of model names or paths. If not specified, will use model-train-data-sets and model-sizes to generate model names.")
     parser.add_argument('--model-type', type=str, default="DataDecide", help="Source of model. Only DataDecide is supported at the moment.")
     parser.add_argument('--model-train-data-sets', type=str, help="Training data for the model.")
     parser.add_argument('--model-sizes', type=str, help="Size of the model.")
@@ -277,7 +274,7 @@ if __name__ == '__main__':
 
     main(
         sweep_name=args.sweep_name,
-        models=None,
+        models=args.models.split(",") if args.models else None,
         model_type=args.model_type,
         model_train_data_sets=args.model_train_data_sets.split(",") if args.model_train_data_sets else None,
         model_sizes=args.model_sizes.split(",") if args.model_sizes else None,
