@@ -1,0 +1,6252 @@
+{
+  "dolma1_7": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 143.8685760498047,
+        "score_diff": 114.53054237365723
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 145.4125213623047,
+        "score_diff": 116.07448768615723
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 142.67616271972656,
+        "score_diff": 113.3381290435791
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 71.71697998046875,
+        "score_diff": 42.37894630432129
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 72.99746704101562,
+        "score_diff": 43.659433364868164
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 82.70195007324219,
+        "score_diff": 53.36391639709473
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 53.3101692199707,
+        "score_diff": 23.972135543823242
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 52.19472885131836,
+        "score_diff": 22.8566951751709
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 53.34572219848633,
+        "score_diff": 24.007688522338867
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 49.99361038208008,
+        "score_diff": 20.655576705932617
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 47.136959075927734,
+        "score_diff": 17.798925399780273
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 49.295433044433594,
+        "score_diff": 19.957399368286133
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 35.819576263427734,
+        "score_diff": 6.481542587280273
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 35.95555877685547,
+        "score_diff": 6.617525100708008
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 35.85943603515625,
+        "score_diff": 6.521402359008789
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 35.82564926147461,
+        "score_diff": 6.487615585327148
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 36.16136932373047,
+        "score_diff": 6.823335647583008
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 33.88858413696289,
+        "score_diff": 4.55055046081543
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14594.0,
+        "matched_score": 32.470001220703125,
+        "score_diff": 3.131967544555664
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 32.40835189819336,
+        "score_diff": 3.0703182220458984
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 32.41740036010742,
+        "score_diff": 3.079366683959961
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 6250.0,
+        "matched_score": 29.577816009521484,
+        "score_diff": 0.23978233337402344
+      },
+      "small aux 2": {
+        "matched_step": 6250.0,
+        "matched_score": 29.522960662841797,
+        "score_diff": 0.18492698669433594
+      },
+      "small aux 3": {
+        "matched_step": 6250.0,
+        "matched_score": 29.191389083862305,
+        "score_diff": 0.14664459228515625
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 27.32215690612793,
+        "score_diff": 2.0158767700195312
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 28.375219345092773,
+        "score_diff": 0.9628143310546875
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 28.145174026489254,
+        "score_diff": 1.1928596496582067
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 31.05742645263672,
+        "score_diff": 1.7193927764892578
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 30.972856521606445,
+        "score_diff": 1.6348228454589844
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 31.403629302978516,
+        "score_diff": 2.0655956268310547
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 24.439374923706055,
+        "score_diff": 4.898658752441406
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 24.692405700683594,
+        "score_diff": 4.645627975463867
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 24.84304428100586,
+        "score_diff": 4.494989395141602
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 21.61684799194336,
+        "score_diff": 7.721185684204102
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 22.072425842285156,
+        "score_diff": 7.265607833862305
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 21.48089027404785,
+        "score_diff": 7.857143402099609
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 20.130151748657227,
+        "score_diff": 9.207881927490234
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 20.19325065612793,
+        "score_diff": 9.144783020019531
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 20.00847625732422,
+        "score_diff": 9.329557418823242
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 14.753768920898438,
+        "score_diff": 14.584264755249023
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 14.888927459716797,
+        "score_diff": 14.449106216430664
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.398500442504885,
+        "score_diff": 14.939533233642576
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 14.584089279174805,
+        "score_diff": 14.753944396972656
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.574975967407228,
+        "score_diff": 14.763057708740233
+      }
+    }
+  },
+  "dolma1_7-no-code": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 190.4243927001953,
+        "score_diff": 161.08635902404785
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 198.01058959960935,
+        "score_diff": 168.67255592346189
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 188.5401153564453,
+        "score_diff": 159.20208168029785
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 96.38570404052734,
+        "score_diff": 67.04767036437988
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 97.28740692138672,
+        "score_diff": 67.94937324523926
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 99.871337890625,
+        "score_diff": 70.53330421447754
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 68.59711456298828,
+        "score_diff": 39.25908088684082
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 66.36709594726562,
+        "score_diff": 37.029062271118164
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 65.43289184570312,
+        "score_diff": 36.094858169555664
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 60.03394317626953,
+        "score_diff": 30.69590950012207
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 58.991058349609375,
+        "score_diff": 29.653024673461914
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 59.503421783447266,
+        "score_diff": 30.165388107299805
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 45.282840728759766,
+        "score_diff": 15.944807052612305
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 46.15910339355469,
+        "score_diff": 16.821069717407227
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 44.50703811645508,
+        "score_diff": 15.169004440307617
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 42.27665710449219,
+        "score_diff": 12.938623428344727
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 41.47096252441406,
+        "score_diff": 12.132928848266602
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 42.34581756591797,
+        "score_diff": 13.007783889770508
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14594.0,
+        "matched_score": 40.234134674072266,
+        "score_diff": 10.896100997924805
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 38.89972305297851,
+        "score_diff": 9.561689376831048
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 36.73100662231445,
+        "score_diff": 7.392972946166992
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 13750.0,
+        "matched_score": 29.22657012939453,
+        "score_diff": 0.11146354675292969
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 29.200485229492188,
+        "score_diff": 0.13754844665527344
+      },
+      "small aux 3": {
+        "matched_step": 13750.0,
+        "matched_score": 29.493906021118164,
+        "score_diff": 0.15587234497070312
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 30.235851287841797,
+        "score_diff": 0.8978176116943359
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 29.79871940612793,
+        "score_diff": 0.46068572998046875
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 29.984561920166016,
+        "score_diff": 0.6465282440185547
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 28.77911949157715,
+        "score_diff": 0.5589141845703125
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 28.304954528808594,
+        "score_diff": 1.0330791473388672
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 28.600048065185547,
+        "score_diff": 0.7379856109619141
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 29.2617244720459,
+        "score_diff": 0.0763092041015625
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 28.93829345703125,
+        "score_diff": 0.39974021911621094
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 29.09794235229492,
+        "score_diff": 0.24009132385254262
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 25.506074905395508,
+        "score_diff": 3.831958770751953
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 25.190277099609375,
+        "score_diff": 4.147756576538086
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 24.99007797241211,
+        "score_diff": 4.347955703735352
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 23.400238037109375,
+        "score_diff": 5.937795639038086
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 23.23037338256836,
+        "score_diff": 6.107660293579102
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 23.230655670166016,
+        "score_diff": 6.107378005981445
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 16.18233871459961,
+        "score_diff": 13.155694961547852
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 15.947508811950684,
+        "score_diff": 13.390524864196777
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 16.141437530517578,
+        "score_diff": 13.196596145629883
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 16.129037857055664,
+        "score_diff": 13.208995819091797
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 16.100818634033203,
+        "score_diff": 13.237215042114258
+      }
+    }
+  },
+  "dolma1_7-no-math-code": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 225.18055725097656,
+        "score_diff": 195.8425235748291
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 223.05593872070312,
+        "score_diff": 193.71790504455566
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 224.70700073242188,
+        "score_diff": 195.3689670562744
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 115.71907043457033,
+        "score_diff": 86.38103675842287
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 115.90887451171876,
+        "score_diff": 86.5708408355713
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 113.64547729492188,
+        "score_diff": 84.30744361877441
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 77.90901947021484,
+        "score_diff": 48.57098579406738
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 80.65617370605469,
+        "score_diff": 51.31814002990723
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 75.6198501586914,
+        "score_diff": 46.281816482543945
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 68.64430236816406,
+        "score_diff": 39.3062686920166
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 67.45573425292969,
+        "score_diff": 38.11770057678223
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 66.4605484008789,
+        "score_diff": 37.122514724731445
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 51.17559051513672,
+        "score_diff": 21.837556838989258
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 51.855194091796875,
+        "score_diff": 22.517160415649414
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 51.77836227416992,
+        "score_diff": 22.44032859802246
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 48.11450958251953,
+        "score_diff": 18.77647590637207
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 47.0717658996582,
+        "score_diff": 17.733732223510742
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 48.41239929199219,
+        "score_diff": 19.074365615844727
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 43.84341812133789,
+        "score_diff": 14.50538444519043
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 45.64593124389648,
+        "score_diff": 16.307897567749016
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 44.99298477172851,
+        "score_diff": 15.654951095581048
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 18750.0,
+        "matched_score": 29.37125015258789,
+        "score_diff": 0.03321647644042969
+      },
+      "small aux 2": {
+        "matched_step": 20000.0,
+        "matched_score": 29.11542320251465,
+        "score_diff": 0.2226104736328125
+      },
+      "small aux 3": {
+        "matched_step": 18750.0,
+        "matched_score": 29.674394607543945,
+        "score_diff": 0.3363609313964844
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 7500.0,
+        "matched_score": 29.352344512939453,
+        "score_diff": 0.014310836791992188
+      },
+      "small aux 2": {
+        "matched_step": 7500.0,
+        "matched_score": 29.15068626403809,
+        "score_diff": 0.18734741210937145
+      },
+      "small aux 3": {
+        "matched_step": 7500.0,
+        "matched_score": 29.09732437133789,
+        "score_diff": 0.2407093048095703
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 28.635629653930664,
+        "score_diff": 0.7024040222167969
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 28.493680953979492,
+        "score_diff": 0.8443527221679688
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 28.253429412841797,
+        "score_diff": 1.084604263305664
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 32.72550964355469,
+        "score_diff": 3.3874759674072266
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 32.363529205322266,
+        "score_diff": 3.0254955291748047
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 32.79787063598633,
+        "score_diff": 3.459836959838867
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 27.628826141357425,
+        "score_diff": 1.7092075347900355
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 28.330530166625977,
+        "score_diff": 1.0075035095214844
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 27.61629295349121,
+        "score_diff": 1.72174072265625
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 25.4337158203125,
+        "score_diff": 3.904317855834961
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 25.48390007019043,
+        "score_diff": 3.8541336059570312
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 25.4894962310791,
+        "score_diff": 3.8485374450683594
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 17.523427963256836,
+        "score_diff": 11.814605712890625
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 17.455116271972656,
+        "score_diff": 11.882917404174805
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 17.3931827545166,
+        "score_diff": 11.94485092163086
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 17.78738021850586,
+        "score_diff": 11.550653457641602
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 17.525060653686523,
+        "score_diff": 11.812973022460938
+      }
+    }
+  },
+  "dolma1_7-no-reddit": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 136.42835998535156,
+        "score_diff": 107.0903263092041
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 150.81272888183594,
+        "score_diff": 121.47469520568848
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 155.68896484375,
+        "score_diff": 126.35093116760254
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 72.1276626586914,
+        "score_diff": 42.789628982543945
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 73.11685943603516,
+        "score_diff": 43.778825759887695
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 73.34722137451172,
+        "score_diff": 44.00918769836426
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 52.962303161621094,
+        "score_diff": 23.624269485473633
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 51.68131256103515,
+        "score_diff": 22.343278884887688
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 51.93463897705078,
+        "score_diff": 22.59660530090332
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 49.68206405639648,
+        "score_diff": 20.344030380249016
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 46.19968795776367,
+        "score_diff": 16.86165428161621
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 49.68809127807617,
+        "score_diff": 20.35005760192871
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 38.28953552246094,
+        "score_diff": 8.951501846313477
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 36.7689208984375,
+        "score_diff": 7.430887222290039
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 36.62841796875,
+        "score_diff": 7.290384292602539
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 34.31101989746094,
+        "score_diff": 4.972986221313477
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 35.66109085083008,
+        "score_diff": 6.323057174682617
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 33.520713806152344,
+        "score_diff": 4.182680130004883
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14594.0,
+        "matched_score": 32.08853530883789,
+        "score_diff": 2.7505016326904297
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 32.4618034362793,
+        "score_diff": 3.123769760131836
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 31.4924259185791,
+        "score_diff": 2.1543922424316406
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 6250.0,
+        "matched_score": 29.813438415527344,
+        "score_diff": 0.4754047393798828
+      },
+      "small aux 2": {
+        "matched_step": 6250.0,
+        "matched_score": 29.424489974975582,
+        "score_diff": 0.08645629882812145
+      },
+      "small aux 3": {
+        "matched_step": 6250.0,
+        "matched_score": 28.84648895263672,
+        "score_diff": 0.4915447235107422
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 27.472341537475582,
+        "score_diff": 1.8656921386718786
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 27.962696075439453,
+        "score_diff": 1.3753376007080078
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 27.859498977661133,
+        "score_diff": 1.4785346984863281
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 31.13136863708496,
+        "score_diff": 1.7933349609375
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 24.260082244873047,
+        "score_diff": 5.077951431274414
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 31.034664154052734,
+        "score_diff": 1.6966304779052734
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 24.56226921081543,
+        "score_diff": 4.775764465332031
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 24.59170150756836,
+        "score_diff": 4.746332168579102
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 24.36918830871582,
+        "score_diff": 4.968845367431641
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 21.632041931152344,
+        "score_diff": 7.705991744995117
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 21.855131149291992,
+        "score_diff": 7.482902526855469
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 21.42560386657715,
+        "score_diff": 7.9124298095703125
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 19.816974639892575,
+        "score_diff": 9.521059036254886
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 20.036518096923828,
+        "score_diff": 9.301515579223633
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 19.77983665466309,
+        "score_diff": 9.558197021484371
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 14.243285179138184,
+        "score_diff": 15.094748497009277
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 14.527286529541016,
+        "score_diff": 14.810747146606445
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.375102996826172,
+        "score_diff": 14.962930679321289
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 14.468250274658203,
+        "score_diff": 14.869783401489258
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.491092681884766,
+        "score_diff": 14.846940994262695
+      }
+    }
+  },
+  "dolma1_7-no-flan": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 144.05577087402344,
+        "score_diff": 114.71773719787598
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 144.0420379638672,
+        "score_diff": 114.70400428771973
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 156.43154907226562,
+        "score_diff": 127.09351539611816
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 73.39396667480469,
+        "score_diff": 44.05593299865723
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 76.55123901367188,
+        "score_diff": 47.213205337524414
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 77.19634246826172,
+        "score_diff": 47.85830879211426
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 52.80457305908203,
+        "score_diff": 23.46653938293457
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 56.73628616333008,
+        "score_diff": 27.398252487182617
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 56.69490814208984,
+        "score_diff": 27.356874465942376
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 50.927242279052734,
+        "score_diff": 21.589208602905273
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 46.51039505004883,
+        "score_diff": 17.172361373901367
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 47.2223014831543,
+        "score_diff": 17.884267807006836
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 36.25715637207031,
+        "score_diff": 6.919122695922852
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 37.437496185302734,
+        "score_diff": 8.099462509155273
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 36.34482955932617,
+        "score_diff": 7.006795883178711
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 34.18477249145508,
+        "score_diff": 4.846738815307617
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 35.818023681640625,
+        "score_diff": 6.479990005493164
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 37.53346252441406,
+        "score_diff": 8.195428848266602
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 32.95410919189453,
+        "score_diff": 3.6160755157470703
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 32.926326751708984,
+        "score_diff": 3.5882930755615234
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 32.207481384277344,
+        "score_diff": 2.869447708129883
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 6250.0,
+        "matched_score": 29.22909927368164,
+        "score_diff": 0.10893440246582031
+      },
+      "small aux 2": {
+        "matched_step": 7500.0,
+        "matched_score": 29.09572982788086,
+        "score_diff": 0.24230384826660156
+      },
+      "small aux 3": {
+        "matched_step": 6250.0,
+        "matched_score": 29.70745277404785,
+        "score_diff": 0.3694190979003906
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 28.36574935913086,
+        "score_diff": 0.9722843170166016
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 28.629793167114254,
+        "score_diff": 0.7082405090332067
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 28.364707946777344,
+        "score_diff": 0.9733257293701172
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 32.08550262451172,
+        "score_diff": 2.747468948364258
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 32.48912811279297,
+        "score_diff": 3.151094436645508
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 31.433570861816406,
+        "score_diff": 2.0955371856689453
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 24.911029815673828,
+        "score_diff": 4.427003860473633
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 25.005157470703125,
+        "score_diff": 4.332876205444336
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 24.815168380737305,
+        "score_diff": 4.522865295410156
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 21.708396911621097,
+        "score_diff": 7.629636764526364
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 21.9049072265625,
+        "score_diff": 7.433126449584961
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 21.837905883789062,
+        "score_diff": 7.500127792358398
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 20.20554542541504,
+        "score_diff": 9.132488250732422
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 20.839902877807617,
+        "score_diff": 8.498130798339844
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 20.120521545410156,
+        "score_diff": 9.217512130737305
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 14.826213836669922,
+        "score_diff": 14.511819839477539
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 14.82753562927246,
+        "score_diff": 14.510498046875002
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.493663787841797,
+        "score_diff": 14.844369888305664
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 14.859832763671877,
+        "score_diff": 14.478200912475584
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.716363906860352,
+        "score_diff": 14.62166976928711
+      }
+    }
+  },
+  "dolma1_6plus": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 151.70681762695312,
+        "score_diff": 122.36878395080566
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 139.72161865234375,
+        "score_diff": 110.38358497619629
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 151.643310546875,
+        "score_diff": 122.30527687072754
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 74.07796478271484,
+        "score_diff": 44.73993110656738
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 73.8984603881836,
+        "score_diff": 44.56042671203613
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 84.80753326416016,
+        "score_diff": 55.469499588012695
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 51.8033561706543,
+        "score_diff": 22.465322494506836
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 58.37729263305664,
+        "score_diff": 29.03925895690918
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 55.2008171081543,
+        "score_diff": 25.862783432006836
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 49.836463928222656,
+        "score_diff": 20.498430252075195
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 48.06950759887695,
+        "score_diff": 18.731473922729492
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 49.849632263183594,
+        "score_diff": 20.511598587036133
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 38.96494674682617,
+        "score_diff": 9.626913070678711
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 37.407466888427734,
+        "score_diff": 8.069433212280273
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 39.55508804321289,
+        "score_diff": 10.21705436706543
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 34.80204772949219,
+        "score_diff": 5.464014053344727
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 36.63995361328125,
+        "score_diff": 7.301919937133789
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 36.33488082885742,
+        "score_diff": 6.996847152709961
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 33.01738739013672,
+        "score_diff": 3.679353713989258
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 32.7580451965332,
+        "score_diff": 3.420011520385742
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 33.357120513916016,
+        "score_diff": 4.019086837768555
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 6250.0,
+        "matched_score": 29.493167877197266,
+        "score_diff": 0.1551342010498047
+      },
+      "small aux 2": {
+        "matched_step": 7500.0,
+        "matched_score": 28.987478256225582,
+        "score_diff": 0.35055541992187855
+      },
+      "small aux 3": {
+        "matched_step": 6250.0,
+        "matched_score": 29.72473907470703,
+        "score_diff": 0.3867053985595703
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 28.210506439208984,
+        "score_diff": 1.1275272369384766
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 28.4796085357666,
+        "score_diff": 0.8584251403808594
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 28.50896453857422,
+        "score_diff": 0.8290691375732422
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 32.08897018432617,
+        "score_diff": 2.750936508178711
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 32.48433303833008,
+        "score_diff": 3.146299362182617
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 31.91416358947754,
+        "score_diff": 2.576129913330078
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 25.398237228393555,
+        "score_diff": 3.9397964477539062
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 25.032405853271484,
+        "score_diff": 4.305627822875977
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 25.272287368774418,
+        "score_diff": 4.065746307373043
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 22.093006134033203,
+        "score_diff": 7.245027542114258
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 22.213375091552734,
+        "score_diff": 7.124658584594727
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 21.891605377197266,
+        "score_diff": 7.446428298950195
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 20.49867057800293,
+        "score_diff": 8.839363098144531
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 20.62194442749023,
+        "score_diff": 8.71608924865723
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 20.39876937866211,
+        "score_diff": 8.939264297485352
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 15.37275218963623,
+        "score_diff": 13.96528148651123
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 15.149438858032228,
+        "score_diff": 14.188594818115233
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.620174407958984,
+        "score_diff": 14.717859268188477
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 14.88520336151123,
+        "score_diff": 14.45283031463623
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.746203422546388,
+        "score_diff": 14.591830253601072
+      }
+    }
+  },
+  "c4": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 494.6079406738281,
+        "score_diff": 465.26990699768066
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 478.9659118652344,
+        "score_diff": 449.6278781890869
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 511.61370849609375,
+        "score_diff": 482.2756748199463
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 266.0845642089844,
+        "score_diff": 236.7465305328369
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 232.5726318359375,
+        "score_diff": 203.23459815979004
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 239.6112365722656,
+        "score_diff": 210.27320289611814
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 170.2579803466797,
+        "score_diff": 140.91994667053223
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 160.35264587402344,
+        "score_diff": 131.01461219787598
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 168.0917205810547,
+        "score_diff": 138.75368690490723
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 142.83584594726562,
+        "score_diff": 113.49781227111816
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 142.23056030273438,
+        "score_diff": 112.89252662658691
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 138.0426483154297,
+        "score_diff": 108.70461463928223
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 108.3524169921875,
+        "score_diff": 79.01438331604004
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 108.28475189208984,
+        "score_diff": 78.94671821594238
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 105.25479125976562,
+        "score_diff": 75.91675758361816
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 101.36508178710938,
+        "score_diff": 72.02704811096191
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 102.01565551757812,
+        "score_diff": 72.67762184143066
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 98.96309661865234,
+        "score_diff": 69.62506294250488
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 13750.0,
+        "matched_score": 85.50142669677734,
+        "score_diff": 56.16339302062988
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 87.34933471679688,
+        "score_diff": 58.011301040649414
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 86.39209747314453,
+        "score_diff": 57.05406379699707
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 29042.0,
+        "matched_score": 66.2878646850586,
+        "score_diff": 36.94983100891113
+      },
+      "small aux 2": {
+        "matched_step": 29042.0,
+        "matched_score": 70.9487075805664,
+        "score_diff": 41.610673904418945
+      },
+      "small aux 3": {
+        "matched_step": 29042.0,
+        "matched_score": 67.62454986572266,
+        "score_diff": 38.286516189575195
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 27500.0,
+        "matched_score": 49.51570129394531,
+        "score_diff": 20.17766761779785
+      },
+      "small aux 2": {
+        "matched_step": 29901.0,
+        "matched_score": 56.19316864013672,
+        "score_diff": 26.855134963989258
+      },
+      "small aux 3": {
+        "matched_step": 29901.0,
+        "matched_score": 52.76301574707031,
+        "score_diff": 23.42498207092285
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 38157.0,
+        "matched_score": 43.48257827758789,
+        "score_diff": 14.14454460144043
+      },
+      "small aux 2": {
+        "matched_step": 38750.0,
+        "matched_score": 46.1812858581543,
+        "score_diff": 16.843252182006836
+      },
+      "small aux 3": {
+        "matched_step": 38750.0,
+        "matched_score": 48.11996841430664,
+        "score_diff": 18.78193473815918
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 45000.0,
+        "matched_score": 32.76522445678711,
+        "score_diff": 3.4271907806396484
+      },
+      "small aux 2": {
+        "matched_step": 43750.0,
+        "matched_score": 32.897315979003906,
+        "score_diff": 3.5592823028564453
+      },
+      "small aux 3": {
+        "matched_step": 38750.0,
+        "matched_score": 32.54179763793945,
+        "score_diff": 3.203763961791992
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 45000.0,
+        "matched_score": 29.251136779785156,
+        "score_diff": 0.08689689636230469
+      },
+      "small aux 2": {
+        "matched_step": 38750.0,
+        "matched_score": 29.310487747192383,
+        "score_diff": 0.027545928955078125
+      },
+      "small aux 3": {
+        "matched_step": 46250.0,
+        "matched_score": 29.501150131225582,
+        "score_diff": 0.16311645507812145
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 29.210922241210938,
+        "score_diff": 0.12711143493652344
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 29.2235107421875,
+        "score_diff": 0.11452293395996094
+      },
+      "small aux 3": {
+        "matched_step": 26250.0,
+        "matched_score": 29.312143325805664,
+        "score_diff": 0.025890350341796875
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 7500.0,
+        "matched_score": 29.39268493652344,
+        "score_diff": 0.054651260375980115
+      },
+      "small aux 2": {
+        "matched_step": 7500.0,
+        "matched_score": 29.18410873413086,
+        "score_diff": 0.15392494201660156
+      },
+      "small aux 3": {
+        "matched_step": 7500.0,
+        "matched_score": 29.273727416992188,
+        "score_diff": 0.06430625915527344
+      },
+      "large aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 28.756561279296875,
+        "score_diff": 0.5814723968505859
+      },
+      "large aux 3": {
+        "matched_step": 5000.0,
+        "matched_score": 29.24440574645996,
+        "score_diff": 0.0936279296875
+      }
+    }
+  },
+  "fineweb-pro": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 470.0513916015625,
+        "score_diff": 440.71335792541504
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 472.8407287597656,
+        "score_diff": 443.50269508361816
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 505.2051696777344,
+        "score_diff": 475.8671360015869
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 244.114013671875,
+        "score_diff": 214.77597999572754
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 235.34207153320312,
+        "score_diff": 206.00403785705566
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 245.9092254638672,
+        "score_diff": 216.57119178771973
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 167.8613739013672,
+        "score_diff": 138.52334022521973
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 155.38531494140625,
+        "score_diff": 126.04728126525879
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 146.6024932861328,
+        "score_diff": 117.26445960998535
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 125.30168151855467,
+        "score_diff": 95.96364784240721
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 136.13087463378906,
+        "score_diff": 106.7928409576416
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 135.1026611328125,
+        "score_diff": 105.76462745666504
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 98.37733459472656,
+        "score_diff": 69.0393009185791
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 101.84506225585938,
+        "score_diff": 72.50702857971191
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 100.6649169921875,
+        "score_diff": 71.32688331604004
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 90.0695571899414,
+        "score_diff": 60.731523513793945
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 94.27571868896484,
+        "score_diff": 64.93768501281738
+      },
+      "small aux 3": {
+        "matched_step": 23750.0,
+        "matched_score": 91.74088287353516,
+        "score_diff": 62.402849197387695
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 90.82247924804688,
+        "score_diff": 61.484445571899414
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 80.51630401611328,
+        "score_diff": 51.17827033996582
+      },
+      "small aux 3": {
+        "matched_step": 13750.0,
+        "matched_score": 96.49879455566406,
+        "score_diff": 67.1607608795166
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 28750.0,
+        "matched_score": 49.2666130065918,
+        "score_diff": 19.928579330444336
+      },
+      "small aux 2": {
+        "matched_step": 28750.0,
+        "matched_score": 52.97998809814453,
+        "score_diff": 23.64195442199707
+      },
+      "small aux 3": {
+        "matched_step": 28750.0,
+        "matched_score": 49.60743713378906,
+        "score_diff": 20.2694034576416
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 27500.0,
+        "matched_score": 41.409725189208984,
+        "score_diff": 12.071691513061523
+      },
+      "small aux 2": {
+        "matched_step": 29901.0,
+        "matched_score": 42.568450927734375,
+        "score_diff": 13.230417251586914
+      },
+      "small aux 3": {
+        "matched_step": 29901.0,
+        "matched_score": 41.40218353271485,
+        "score_diff": 12.06414985656739
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 38157.0,
+        "matched_score": 32.65481948852539,
+        "score_diff": 3.3167858123779297
+      },
+      "small aux 2": {
+        "matched_step": 38750.0,
+        "matched_score": 34.44915771484375,
+        "score_diff": 5.111124038696289
+      },
+      "small aux 3": {
+        "matched_step": 37500.0,
+        "matched_score": 32.96116638183594,
+        "score_diff": 3.6231327056884766
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 23750.0,
+        "matched_score": 29.229656219482425,
+        "score_diff": 0.10837745666503551
+      },
+      "small aux 2": {
+        "matched_step": 28750.0,
+        "matched_score": 29.615209579467773,
+        "score_diff": 0.2771759033203125
+      },
+      "small aux 3": {
+        "matched_step": 20000.0,
+        "matched_score": 29.075647354125977,
+        "score_diff": 0.2623863220214844
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 10000.0,
+        "matched_score": 29.275388717651367,
+        "score_diff": 0.06264495849609375
+      },
+      "small aux 2": {
+        "matched_step": 7500.0,
+        "matched_score": 29.28765296936035,
+        "score_diff": 0.050380706787109375
+      },
+      "small aux 3": {
+        "matched_step": 10000.0,
+        "matched_score": 29.497533798217773,
+        "score_diff": 0.1595001220703125
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 29.803098678588867,
+        "score_diff": 0.46506500244140625
+      },
+      "small aux 2": {
+        "matched_step": 5000.0,
+        "matched_score": 29.576730728149418,
+        "score_diff": 0.23869705200195668
+      },
+      "small aux 3": {
+        "matched_step": 5000.0,
+        "matched_score": 28.35804557800293,
+        "score_diff": 0.9799880981445312
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 5000.0,
+        "matched_score": 26.828542709350582,
+        "score_diff": 2.5094909667968786
+      },
+      "small aux 2": {
+        "matched_step": 5000.0,
+        "matched_score": 29.015972137451172,
+        "score_diff": 0.32206153869628906
+      },
+      "small aux 3": {
+        "matched_step": 5000.0,
+        "matched_score": 25.611635208129883,
+        "score_diff": 3.726398468017578
+      },
+      "large aux 2": {
+        "matched_step": 5000.0,
+        "matched_score": 26.544504165649418,
+        "score_diff": 2.7935295104980433
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 32.008087158203125,
+        "score_diff": 2.670053482055664
+      }
+    }
+  },
+  "fineweb-edu": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 427.30865478515625,
+        "score_diff": 397.9706211090088
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 434.4950256347656,
+        "score_diff": 405.15699195861816
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 424.1750183105469,
+        "score_diff": 394.8369846343994
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 209.4658203125,
+        "score_diff": 180.12778663635254
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 213.5799560546875,
+        "score_diff": 184.24192237854004
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 208.2326507568359,
+        "score_diff": 178.89461708068845
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 12500.0,
+        "matched_score": 142.81106567382812,
+        "score_diff": 113.47303199768066
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 143.43251037597656,
+        "score_diff": 114.0944766998291
+      },
+      "small aux 3": {
+        "matched_step": 12500.0,
+        "matched_score": 148.4000701904297,
+        "score_diff": 119.06203651428223
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 118.82698822021484,
+        "score_diff": 89.48895454406738
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 122.96422576904295,
+        "score_diff": 93.6261920928955
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 135.08094787597656,
+        "score_diff": 105.7429141998291
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21250.0,
+        "matched_score": 104.83439636230467,
+        "score_diff": 75.49636268615721
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 88.1634292602539,
+        "score_diff": 58.825395584106445
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 90.00700378417969,
+        "score_diff": 60.66897010803223
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 82.80525207519531,
+        "score_diff": 53.46721839904785
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 84.87606048583984,
+        "score_diff": 55.53802680969238
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 83.17526245117188,
+        "score_diff": 53.837228775024414
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 75.32475280761719,
+        "score_diff": 45.98671913146973
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 88.755859375,
+        "score_diff": 59.41782569885254
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 73.80253601074219,
+        "score_diff": 44.46450233459473
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 28750.0,
+        "matched_score": 50.240474700927734,
+        "score_diff": 20.902441024780273
+      },
+      "small aux 2": {
+        "matched_step": 26250.0,
+        "matched_score": 51.17007827758789,
+        "score_diff": 21.83204460144043
+      },
+      "small aux 3": {
+        "matched_step": 29042.0,
+        "matched_score": 48.317420959472656,
+        "score_diff": 18.979387283325195
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 29901.0,
+        "matched_score": 38.03326416015625,
+        "score_diff": 8.695230484008789
+      },
+      "small aux 2": {
+        "matched_step": 29901.0,
+        "matched_score": 37.10676574707031,
+        "score_diff": 7.768732070922852
+      },
+      "small aux 3": {
+        "matched_step": 29901.0,
+        "matched_score": 37.62711334228515,
+        "score_diff": 8.289079666137688
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 37500.0,
+        "matched_score": 29.39706039428711,
+        "score_diff": 0.05902671813964844
+      },
+      "small aux 2": {
+        "matched_step": 37500.0,
+        "matched_score": 31.3424072265625,
+        "score_diff": 2.004373550415039
+      },
+      "small aux 3": {
+        "matched_step": 38157.0,
+        "matched_score": 29.33803367614746,
+        "score_diff": 0.0
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 13750.0,
+        "matched_score": 28.94559860229492,
+        "score_diff": 0.3924350738525426
+      },
+      "small aux 2": {
+        "matched_step": 20000.0,
+        "matched_score": 29.164695739746097,
+        "score_diff": 0.17333793640136363
+      },
+      "small aux 3": {
+        "matched_step": 18750.0,
+        "matched_score": 29.510971069335938,
+        "score_diff": 0.17293739318847656
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 6250.0,
+        "matched_score": 28.104644775390625,
+        "score_diff": 1.233388900756836
+      },
+      "small aux 2": {
+        "matched_step": 5000.0,
+        "matched_score": 28.35024642944336,
+        "score_diff": 0.9877872467041016
+      },
+      "small aux 3": {
+        "matched_step": 5000.0,
+        "matched_score": 28.205873489379883,
+        "score_diff": 1.1321601867675781
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 28.010353088378903,
+        "score_diff": 1.3276805877685582
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 28.126310348510746,
+        "score_diff": 1.2117233276367152
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 28.50596046447754,
+        "score_diff": 0.8320732116699219
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 31.68868827819824,
+        "score_diff": 2.3506546020507777
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 30.29952621459961,
+        "score_diff": 0.9614925384521484
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 30.69393539428711,
+        "score_diff": 1.3559017181396484
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 30.504722595214844,
+        "score_diff": 1.1666889190673828
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 30.77967071533203,
+        "score_diff": 1.4416370391845703
+      }
+    }
+  },
+  "falcon": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 347.1419677734375,
+        "score_diff": 317.80393409729004
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 373.7999877929687,
+        "score_diff": 344.46195411682123
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 373.7468566894531,
+        "score_diff": 344.40882301330566
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 160.4247589111328,
+        "score_diff": 131.08672523498535
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 166.5945281982422,
+        "score_diff": 137.25649452209473
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 171.2242889404297,
+        "score_diff": 141.88625526428223
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 107.2662353515625,
+        "score_diff": 77.92820167541504
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 113.80133056640624,
+        "score_diff": 84.46329689025877
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 113.09024810791016,
+        "score_diff": 83.7522144317627
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 95.56169128417967,
+        "score_diff": 66.22365760803221
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 97.87747192382812,
+        "score_diff": 68.53943824768066
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 101.85938262939452,
+        "score_diff": 72.52134895324706
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21250.0,
+        "matched_score": 72.77156829833984,
+        "score_diff": 43.43353462219238
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 73.95930480957031,
+        "score_diff": 44.62127113342285
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 75.25302124023438,
+        "score_diff": 45.914987564086914
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 68.31687927246094,
+        "score_diff": 38.97884559631348
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 68.86668395996094,
+        "score_diff": 39.52865028381348
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 68.30339050292969,
+        "score_diff": 38.96535682678223
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14594.0,
+        "matched_score": 71.88631439208984,
+        "score_diff": 42.54828071594238
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 62.03240203857422,
+        "score_diff": 32.69436836242676
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 70.66139221191406,
+        "score_diff": 41.3233585357666
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 29052.0,
+        "matched_score": 40.502784729003906,
+        "score_diff": 11.164751052856445
+      },
+      "small aux 2": {
+        "matched_step": 28750.0,
+        "matched_score": 39.037601470947266,
+        "score_diff": 9.699567794799805
+      },
+      "small aux 3": {
+        "matched_step": 29042.0,
+        "matched_score": 39.28635025024414,
+        "score_diff": 9.94831657409668
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 29901.0,
+        "matched_score": 30.37197494506836,
+        "score_diff": 1.0339412689208984
+      },
+      "small aux 2": {
+        "matched_step": 29901.0,
+        "matched_score": 30.70747756958008,
+        "score_diff": 1.3694438934326207
+      },
+      "small aux 3": {
+        "matched_step": 29901.0,
+        "matched_score": 31.024391174316406,
+        "score_diff": 1.6863574981689453
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 23750.0,
+        "matched_score": 29.504955291748047,
+        "score_diff": 0.16692161560058594
+      },
+      "small aux 2": {
+        "matched_step": 22500.0,
+        "matched_score": 29.698741912841797,
+        "score_diff": 0.36070823669433594
+      },
+      "small aux 3": {
+        "matched_step": 22500.0,
+        "matched_score": 29.542865753173828,
+        "score_diff": 0.2048320770263672
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 6250.0,
+        "matched_score": 29.2044620513916,
+        "score_diff": 0.13357162475585938
+      },
+      "small aux 2": {
+        "matched_step": 6250.0,
+        "matched_score": 29.14309310913086,
+        "score_diff": 0.19494056701660156
+      },
+      "small aux 3": {
+        "matched_step": 7500.0,
+        "matched_score": 29.394067764282227,
+        "score_diff": 0.056034088134765625
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 27.044660568237305,
+        "score_diff": 2.2933731079101562
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 31.520309448242188,
+        "score_diff": 2.1822757720947266
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 27.488740921020508,
+        "score_diff": 1.8492927551269531
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 28.742586135864254,
+        "score_diff": 0.5954475402832067
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 28.131072998046875,
+        "score_diff": 1.206960678100586
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 28.948665618896484,
+        "score_diff": 0.38936805725097656
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 25.021957397460938,
+        "score_diff": 4.316076278686523
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 24.97543716430664,
+        "score_diff": 4.36259651184082
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 25.696598052978516,
+        "score_diff": 3.6414356231689453
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 26.06096649169922,
+        "score_diff": 3.277067184448242
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 26.720712661743164,
+        "score_diff": 2.617321014404297
+      }
+    }
+  },
+  "falcon-and-cc": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 331.0194091796875,
+        "score_diff": 301.68137550354004
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 318.52117919921875,
+        "score_diff": 289.1831455230713
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 312.40887451171875,
+        "score_diff": 283.0708408355713
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 154.8462677001953,
+        "score_diff": 125.50823402404785
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 154.0310516357422,
+        "score_diff": 124.69301795959473
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 157.18959045410156,
+        "score_diff": 127.8515567779541
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 103.5223159790039,
+        "score_diff": 74.18428230285645
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 107.6340103149414,
+        "score_diff": 78.29597663879395
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 103.18920135498048,
+        "score_diff": 73.85116767883302
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 92.27156066894533,
+        "score_diff": 62.933526992797866
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 90.64271545410156,
+        "score_diff": 61.3046817779541
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 90.08858489990234,
+        "score_diff": 60.75055122375488
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 69.19779205322266,
+        "score_diff": 39.859758377075195
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 68.69439697265625,
+        "score_diff": 39.35636329650879
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 69.4135971069336,
+        "score_diff": 40.07556343078613
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 64.94619750976562,
+        "score_diff": 35.608163833618164
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 64.14436340332031,
+        "score_diff": 34.80632972717285
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 63.12313079833984,
+        "score_diff": 33.785097122192376
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14594.0,
+        "matched_score": 59.85908889770508,
+        "score_diff": 30.521055221557617
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 53.69334030151367,
+        "score_diff": 24.35530662536621
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 62.5915641784668,
+        "score_diff": 33.253530502319336
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 29052.0,
+        "matched_score": 32.05885314941406,
+        "score_diff": 2.7208194732666016
+      },
+      "small aux 2": {
+        "matched_step": 29042.0,
+        "matched_score": 32.09218215942383,
+        "score_diff": 2.754148483276367
+      },
+      "small aux 3": {
+        "matched_step": 29042.0,
+        "matched_score": 31.57205581665039,
+        "score_diff": 2.2340221405029297
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 17500.0,
+        "matched_score": 29.41418075561523,
+        "score_diff": 0.07614707946776988
+      },
+      "small aux 2": {
+        "matched_step": 18750.0,
+        "matched_score": 29.412904739379883,
+        "score_diff": 0.07487106323242188
+      },
+      "small aux 3": {
+        "matched_step": 17500.0,
+        "matched_score": 29.60825538635254,
+        "score_diff": 0.2702217102050781
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 10000.0,
+        "matched_score": 29.150026321411133,
+        "score_diff": 0.18800735473632812
+      },
+      "small aux 2": {
+        "matched_step": 10000.0,
+        "matched_score": 29.54705810546875,
+        "score_diff": 0.20902442932128906
+      },
+      "small aux 3": {
+        "matched_step": 10000.0,
+        "matched_score": 28.813928604125977,
+        "score_diff": 0.5241050720214844
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 30.049137115478516,
+        "score_diff": 0.7111034393310547
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 27.40493392944336,
+        "score_diff": 1.9330997467041016
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 30.65237617492676,
+        "score_diff": 1.3143424987793004
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 25.90366554260254,
+        "score_diff": 3.434368133544922
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 25.231464385986328,
+        "score_diff": 4.106569290161133
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 25.36676788330078,
+        "score_diff": 3.9712657928466797
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 30.94326400756836,
+        "score_diff": 1.6052303314208984
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 33.34426498413086,
+        "score_diff": 4.006231307983398
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 32.61769485473633,
+        "score_diff": 3.279661178588867
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 21.716751098632812,
+        "score_diff": 7.621282577514648
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 20.789525985717773,
+        "score_diff": 8.548507690429688
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 21.576757431030273,
+        "score_diff": 7.7612762451171875
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 21.16969871520996,
+        "score_diff": 8.1683349609375
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 21.46308135986328,
+        "score_diff": 7.87495231628418
+      }
+    }
+  },
+  "falcon-and-cc-qc-10p": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 331.8810729980469,
+        "score_diff": 302.5430393218994
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 316.6829833984375,
+        "score_diff": 287.34494972229004
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 331.220703125,
+        "score_diff": 301.88266944885254
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 188.86007690429688,
+        "score_diff": 159.5220432281494
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 186.273193359375,
+        "score_diff": 156.93515968322754
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 178.65579223632812,
+        "score_diff": 149.31775856018066
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 111.54535675048828,
+        "score_diff": 82.20732307434082
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 113.6910629272461,
+        "score_diff": 84.35302925109863
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 111.0872802734375,
+        "score_diff": 81.74924659729004
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 98.48509216308594,
+        "score_diff": 69.14705848693848
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 96.62555694580078,
+        "score_diff": 67.28752326965332
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 97.78053283691406,
+        "score_diff": 68.4424991607666
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 71.32334899902344,
+        "score_diff": 41.98531532287598
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 73.72068786621094,
+        "score_diff": 44.38265419006348
+      },
+      "small aux 3": {
+        "matched_step": 21250.0,
+        "matched_score": 73.74578857421875,
+        "score_diff": 44.40775489807129
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 69.75475311279297,
+        "score_diff": 40.41671943664551
+      },
+      "small aux 2": {
+        "matched_step": 23750.0,
+        "matched_score": 69.32386016845703,
+        "score_diff": 39.98582649230957
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 69.03018188476562,
+        "score_diff": 39.692148208618164
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 62.853858947753906,
+        "score_diff": 33.515825271606445
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 61.4844856262207,
+        "score_diff": 32.14645195007324
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 60.901344299316406,
+        "score_diff": 31.563310623168945
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 29042.0,
+        "matched_score": 32.7176628112793,
+        "score_diff": 3.379629135131836
+      },
+      "small aux 2": {
+        "matched_step": 29042.0,
+        "matched_score": 33.70557403564453,
+        "score_diff": 4.36754035949707
+      },
+      "small aux 3": {
+        "matched_step": 27500.0,
+        "matched_score": 32.649417877197266,
+        "score_diff": 3.3113842010498047
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 20000.0,
+        "matched_score": 29.361967086791992,
+        "score_diff": 0.02393341064453125
+      },
+      "small aux 2": {
+        "matched_step": 20000.0,
+        "matched_score": 29.448196411132812,
+        "score_diff": 0.11016273498535156
+      },
+      "small aux 3": {
+        "matched_step": 20000.0,
+        "matched_score": 29.16162109375,
+        "score_diff": 0.17641258239746094
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 13750.0,
+        "matched_score": 29.03352928161621,
+        "score_diff": 0.30450439453125
+      },
+      "small aux 2": {
+        "matched_step": 11250.0,
+        "matched_score": 29.606447219848633,
+        "score_diff": 0.2684135437011719
+      },
+      "small aux 3": {
+        "matched_step": 13750.0,
+        "matched_score": 29.233335494995117,
+        "score_diff": 0.10469818115234375
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 28.475282669067383,
+        "score_diff": 0.8627510070800781
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 28.248998641967773,
+        "score_diff": 1.0890350341796875
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 28.800424575805664,
+        "score_diff": 0.5376091003417969
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 26.925533294677734,
+        "score_diff": 2.4125003814697266
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 27.644697189331055,
+        "score_diff": 1.6933364868164062
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 26.036235809326172,
+        "score_diff": 3.301797866821289
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 33.549068450927734,
+        "score_diff": 4.211034774780273
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 24.722185134887695,
+        "score_diff": 4.615848541259766
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 24.61410903930664,
+        "score_diff": 4.72392463684082
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 22.2777042388916,
+        "score_diff": 7.060329437255859
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 21.888254165649418,
+        "score_diff": 7.449779510498043
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 22.66941261291504,
+        "score_diff": 6.668621063232422
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 22.157350540161133,
+        "score_diff": 7.180683135986328
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 21.999271392822266,
+        "score_diff": 7.338762283325195
+      }
+    }
+  },
+  "falcon-and-cc-qc-20p": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 302.1026306152344,
+        "score_diff": 272.7645969390869
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 309.7770080566406,
+        "score_diff": 280.43897438049316
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 304.4215393066406,
+        "score_diff": 275.08350563049316
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 170.32797241210938,
+        "score_diff": 140.9899387359619
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 164.27142333984375,
+        "score_diff": 134.9333896636963
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 160.75625610351562,
+        "score_diff": 131.41822242736816
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 102.8067626953125,
+        "score_diff": 73.46872901916504
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 109.0806655883789,
+        "score_diff": 79.74263191223145
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 104.2448959350586,
+        "score_diff": 74.90686225891113
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 90.63125610351562,
+        "score_diff": 61.293222427368164
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 93.05247497558594,
+        "score_diff": 63.71444129943848
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 93.5536117553711,
+        "score_diff": 64.21557807922363
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 68.4541244506836,
+        "score_diff": 39.11609077453613
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 68.80596160888672,
+        "score_diff": 39.46792793273926
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 67.55393981933594,
+        "score_diff": 38.21590614318848
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 23750.0,
+        "matched_score": 64.1885986328125,
+        "score_diff": 34.85056495666504
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 64.0846176147461,
+        "score_diff": 34.74658393859863
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 65.58892059326172,
+        "score_diff": 36.25088691711426
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 58.670135498046875,
+        "score_diff": 29.332101821899414
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 57.89803314208984,
+        "score_diff": 28.559999465942376
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 57.76081466674805,
+        "score_diff": 28.422780990600586
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 28750.0,
+        "matched_score": 31.104917526245117,
+        "score_diff": 1.7668838500976562
+      },
+      "small aux 2": {
+        "matched_step": 29042.0,
+        "matched_score": 32.15562438964844,
+        "score_diff": 2.8175907135009766
+      },
+      "small aux 3": {
+        "matched_step": 29042.0,
+        "matched_score": 32.44129943847656,
+        "score_diff": 3.1032657623291016
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 17500.0,
+        "matched_score": 29.275121688842773,
+        "score_diff": 0.0629119873046875
+      },
+      "small aux 2": {
+        "matched_step": 17500.0,
+        "matched_score": 29.561996459960938,
+        "score_diff": 0.22396278381347656
+      },
+      "small aux 3": {
+        "matched_step": 17500.0,
+        "matched_score": 29.81795883178711,
+        "score_diff": 0.47992515563964844
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 10000.0,
+        "matched_score": 28.707521438598633,
+        "score_diff": 0.6305122375488281
+      },
+      "small aux 2": {
+        "matched_step": 7500.0,
+        "matched_score": 29.668373107910156,
+        "score_diff": 0.3303394317626953
+      },
+      "small aux 3": {
+        "matched_step": 10000.0,
+        "matched_score": 29.685474395751953,
+        "score_diff": 0.3474407196044922
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 29.7669734954834,
+        "score_diff": 0.4289398193359375
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 31.280296325683594,
+        "score_diff": 1.9422626495361328
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 30.335018157958984,
+        "score_diff": 0.9969844818115234
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 24.943357467651367,
+        "score_diff": 4.394676208496094
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 24.94524383544922,
+        "score_diff": 4.392789840698242
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 25.18206787109375,
+        "score_diff": 4.155965805053711
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 31.654563903808594,
+        "score_diff": 2.316530227661133
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 32.38939666748047,
+        "score_diff": 3.051362991333008
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 31.43467140197754,
+        "score_diff": 2.096637725830078
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 21.075008392333984,
+        "score_diff": 8.263025283813477
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 20.73589134216309,
+        "score_diff": 8.602142333984371
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 20.619049072265625,
+        "score_diff": 8.718984603881836
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 21.07177734375,
+        "score_diff": 8.266256332397461
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 20.502859115600582,
+        "score_diff": 8.835174560546879
+      }
+    }
+  },
+  "falcon-and-cc-qc-orig-10p": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 272.24005126953125,
+        "score_diff": 242.9020175933838
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 288.19122314453125,
+        "score_diff": 258.8531894683838
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 275.81805419921875,
+        "score_diff": 246.4800205230713
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 135.70803833007812,
+        "score_diff": 106.37000465393066
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 141.44723510742188,
+        "score_diff": 112.10920143127441
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 135.54383850097656,
+        "score_diff": 106.2058048248291
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 94.80716705322266,
+        "score_diff": 65.4691333770752
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 95.96173858642578,
+        "score_diff": 66.62370491027832
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 93.48876953125,
+        "score_diff": 64.15073585510254
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 80.10311126708984,
+        "score_diff": 50.76507759094238
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 81.84203338623047,
+        "score_diff": 52.50399971008301
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 83.27176666259766,
+        "score_diff": 53.933732986450195
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 63.551292419433594,
+        "score_diff": 34.21325874328613
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 62.27872467041016,
+        "score_diff": 32.9406909942627
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 60.57780456542969,
+        "score_diff": 31.239770889282227
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 23750.0,
+        "matched_score": 58.2339973449707,
+        "score_diff": 28.895963668823242
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 59.164306640625,
+        "score_diff": 29.82627296447754
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 56.5474967956543,
+        "score_diff": 27.209463119506836
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 52.85670852661133,
+        "score_diff": 23.518674850463867
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 53.37383270263672,
+        "score_diff": 24.035799026489258
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 52.40096282958984,
+        "score_diff": 23.062929153442376
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 27500.0,
+        "matched_score": 29.365978240966797,
+        "score_diff": 0.027944564819335938
+      },
+      "small aux 2": {
+        "matched_step": 29042.0,
+        "matched_score": 29.51403045654297,
+        "score_diff": 0.1759967803955078
+      },
+      "small aux 3": {
+        "matched_step": 28750.0,
+        "matched_score": 29.2148380279541,
+        "score_diff": 0.12319564819335938
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 29.008716583251953,
+        "score_diff": 0.3293170928955078
+      },
+      "small aux 2": {
+        "matched_step": 13750.0,
+        "matched_score": 29.14953994750977,
+        "score_diff": 0.18849372863769176
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 29.78973388671875,
+        "score_diff": 0.45170021057128906
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 7500.0,
+        "matched_score": 28.84102249145508,
+        "score_diff": 0.49701118469237926
+      },
+      "small aux 2": {
+        "matched_step": 6250.0,
+        "matched_score": 29.278554916381836,
+        "score_diff": 0.059478759765625
+      },
+      "small aux 3": {
+        "matched_step": 7500.0,
+        "matched_score": 29.179065704345703,
+        "score_diff": 0.1589679718017578
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 28.431310653686523,
+        "score_diff": 0.9067230224609375
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 28.55934715270996,
+        "score_diff": 0.7786865234375
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 29.041685104370117,
+        "score_diff": 0.29634857177734375
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 33.66838073730469,
+        "score_diff": 4.330347061157227
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 32.23216247558594,
+        "score_diff": 2.8941287994384766
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 32.578922271728516,
+        "score_diff": 3.2408885955810547
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 31.37916374206543,
+        "score_diff": 2.0411300659179688
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 30.27795028686523,
+        "score_diff": 0.9399166107177699
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 30.10614585876465,
+        "score_diff": 0.7681121826171875
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 20.431663513183594,
+        "score_diff": 8.906370162963867
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 20.12356758117676,
+        "score_diff": 9.2144660949707
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 20.068544387817383,
+        "score_diff": 9.269489288330078
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 20.74592399597168,
+        "score_diff": 8.592109680175781
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 20.464677810668945,
+        "score_diff": 8.873355865478516
+      }
+    }
+  },
+  "falcon-and-cc-qc-tulu-10p": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 226.53819274902344,
+        "score_diff": 197.20015907287598
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 236.2171936035156,
+        "score_diff": 206.87915992736814
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 235.4465484619141,
+        "score_diff": 206.10851478576663
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 107.71273040771484,
+        "score_diff": 78.37469673156738
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 111.19226837158205,
+        "score_diff": 81.85423469543458
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 113.05406951904295,
+        "score_diff": 83.7160358428955
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 77.35818481445312,
+        "score_diff": 48.020151138305664
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 77.65003204345703,
+        "score_diff": 48.31199836730957
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 78.51770782470703,
+        "score_diff": 49.17967414855957
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 68.32899475097656,
+        "score_diff": 38.9909610748291
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 67.1986083984375,
+        "score_diff": 37.86057472229004
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 67.13423156738281,
+        "score_diff": 37.79619789123535
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 53.51678085327149,
+        "score_diff": 24.17874717712403
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 52.034873962402344,
+        "score_diff": 22.696840286254883
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 52.90372085571289,
+        "score_diff": 23.56568717956543
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 49.85881042480469,
+        "score_diff": 20.520776748657227
+      },
+      "small aux 2": {
+        "matched_step": 22500.0,
+        "matched_score": 48.65345001220703,
+        "score_diff": 19.31541633605957
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 50.301265716552734,
+        "score_diff": 20.963232040405273
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 45.88499069213867,
+        "score_diff": 16.54695701599121
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 41.12594985961914,
+        "score_diff": 11.78791618347168
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 45.57295608520508,
+        "score_diff": 16.234922409057617
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 20000.0,
+        "matched_score": 29.28317070007324,
+        "score_diff": 0.0548629760742223
+      },
+      "small aux 2": {
+        "matched_step": 21250.0,
+        "matched_score": 29.1115779876709,
+        "score_diff": 0.2264556884765625
+      },
+      "small aux 3": {
+        "matched_step": 21250.0,
+        "matched_score": 28.9912109375,
+        "score_diff": 0.34682273864746094
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 10000.0,
+        "matched_score": 29.32253074645996,
+        "score_diff": 0.0155029296875
+      },
+      "small aux 2": {
+        "matched_step": 10000.0,
+        "matched_score": 29.211076736450195,
+        "score_diff": 0.12695693969726562
+      },
+      "small aux 3": {
+        "matched_step": 10000.0,
+        "matched_score": 29.35582733154297,
+        "score_diff": 0.017793655395507812
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 29.705724716186523,
+        "score_diff": 0.3676910400390625
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 29.066020965576172,
+        "score_diff": 0.27201271057128906
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 29.71536636352539,
+        "score_diff": 0.3773326873779297
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 25.60553741455078,
+        "score_diff": 3.7324962615966797
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 25.88367080688477,
+        "score_diff": 3.4543628692626918
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 26.013093948364254,
+        "score_diff": 3.3249397277832067
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 28.40007209777832,
+        "score_diff": 0.9379615783691406
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 28.554460525512695,
+        "score_diff": 0.7835731506347656
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 29.072221755981445,
+        "score_diff": 0.2658119201660156
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 26.12242126464844,
+        "score_diff": 3.21561241149902
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 19.96141815185547,
+        "score_diff": 9.376615524291992
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 26.38147735595703,
+        "score_diff": 2.9565563201904297
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 18.80130958557129,
+        "score_diff": 10.536724090576172
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 18.1265926361084,
+        "score_diff": 11.211441040039062
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 18.31824493408203,
+        "score_diff": 11.01978874206543
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 18.723936080932617,
+        "score_diff": 10.614097595214844
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 18.150196075439453,
+        "score_diff": 11.187837600708008
+      }
+    }
+  },
+  "dclm-baseline": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 216.09315490722656,
+        "score_diff": 186.7551212310791
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 217.9626312255859,
+        "score_diff": 188.62459754943845
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 216.09375,
+        "score_diff": 186.75571632385254
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 112.8008804321289,
+        "score_diff": 83.46284675598145
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 111.96805572509766,
+        "score_diff": 82.6300220489502
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 120.31106567382812,
+        "score_diff": 90.97303199768066
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 78.38902282714844,
+        "score_diff": 49.05098915100098
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 76.71955108642578,
+        "score_diff": 47.38151741027832
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 75.92411041259766,
+        "score_diff": 46.586076736450195
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 67.99037170410156,
+        "score_diff": 38.6523380279541
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 67.70046997070312,
+        "score_diff": 38.362436294555664
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 67.63265228271484,
+        "score_diff": 38.29461860656738
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 51.4749641418457,
+        "score_diff": 22.136930465698242
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 51.30342483520508,
+        "score_diff": 21.965391159057617
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 51.829795837402344,
+        "score_diff": 22.491762161254883
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 48.52739334106445,
+        "score_diff": 19.189359664916992
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 47.417781829833984,
+        "score_diff": 18.079748153686523
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 48.09415054321289,
+        "score_diff": 18.75611686706543
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 45.44570541381836,
+        "score_diff": 16.1076717376709
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 45.27968978881836,
+        "score_diff": 15.941656112670898
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 44.17855453491211,
+        "score_diff": 14.840520858764648
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 20000.0,
+        "matched_score": 29.406641006469727,
+        "score_diff": 0.06860733032226562
+      },
+      "small aux 2": {
+        "matched_step": 20000.0,
+        "matched_score": 29.31603622436523,
+        "score_diff": 0.021997451782230115
+      },
+      "small aux 3": {
+        "matched_step": 18750.0,
+        "matched_score": 29.8689022064209,
+        "score_diff": 0.5308685302734375
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 7500.0,
+        "matched_score": 29.21553421020508,
+        "score_diff": 0.12249946594237926
+      },
+      "small aux 2": {
+        "matched_step": 7500.0,
+        "matched_score": 29.63103675842285,
+        "score_diff": 0.2930030822753906
+      },
+      "small aux 3": {
+        "matched_step": 7500.0,
+        "matched_score": 29.37120246887207,
+        "score_diff": 0.033168792724609375
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 29.087261199951172,
+        "score_diff": 0.25077247619628906
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 28.007200241088867,
+        "score_diff": 1.3308334350585938
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 28.339359283447266,
+        "score_diff": 0.9986743927001953
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 33.118995666503906,
+        "score_diff": 3.7809619903564453
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 32.38764190673828,
+        "score_diff": 3.0496082305908203
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 33.2310676574707,
+        "score_diff": 3.893033981323242
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 28.005596160888672,
+        "score_diff": 1.332437515258789
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 28.40402030944824,
+        "score_diff": 0.9340133666992223
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 28.477529525756836,
+        "score_diff": 0.860504150390625
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 25.91050910949707,
+        "score_diff": 3.4275245666503906
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 25.799270629882812,
+        "score_diff": 3.5387630462646484
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 25.66282844543457,
+        "score_diff": 3.6752052307128906
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 17.776853561401367,
+        "score_diff": 11.561180114746094
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 17.79227066040039,
+        "score_diff": 11.54576301574707
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 17.843996047973633,
+        "score_diff": 11.494037628173828
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 18.028175354003903,
+        "score_diff": 11.309858322143558
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 17.947437286376953,
+        "score_diff": 11.390596389770508
+      }
+    }
+  },
+  "dclm-baseline-qc-7p-fw2": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 193.12454223632812,
+        "score_diff": 163.78650856018066
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 198.43820190429688,
+        "score_diff": 169.1001682281494
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 204.52186584472656,
+        "score_diff": 175.1838321685791
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 103.15333557128906,
+        "score_diff": 73.8153018951416
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 105.53401947021484,
+        "score_diff": 76.19598579406738
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 106.9254150390625,
+        "score_diff": 77.58738136291504
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 71.66337585449219,
+        "score_diff": 42.32534217834473
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 72.6369857788086,
+        "score_diff": 43.29895210266113
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 72.87651062011719,
+        "score_diff": 43.53847694396973
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 63.563262939453125,
+        "score_diff": 34.225229263305664
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 63.291038513183594,
+        "score_diff": 33.95300483703613
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 63.521236419677734,
+        "score_diff": 34.18320274353027
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 49.248680114746094,
+        "score_diff": 19.910646438598633
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 48.56204605102539,
+        "score_diff": 19.22401237487793
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 49.08180618286133,
+        "score_diff": 19.743772506713867
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 46.41795349121094,
+        "score_diff": 17.079919815063477
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 45.84037780761719,
+        "score_diff": 16.502344131469727
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 45.90834426879883,
+        "score_diff": 16.570310592651367
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 38.73112106323242,
+        "score_diff": 9.393087387084961
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 38.90129852294922,
+        "score_diff": 9.563264846801758
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 42.34221267700195,
+        "score_diff": 13.004179000854492
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 17500.0,
+        "matched_score": 29.286151885986328,
+        "score_diff": 0.05188179016113281
+      },
+      "small aux 2": {
+        "matched_step": 18750.0,
+        "matched_score": 28.99195671081543,
+        "score_diff": 0.34607696533203125
+      },
+      "small aux 3": {
+        "matched_step": 18750.0,
+        "matched_score": 28.918140411376953,
+        "score_diff": 0.4198932647705078
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 6250.0,
+        "matched_score": 29.362449645996097,
+        "score_diff": 0.024415969848636365
+      },
+      "small aux 2": {
+        "matched_step": 6250.0,
+        "matched_score": 29.69766616821289,
+        "score_diff": 0.3596324920654297
+      },
+      "small aux 3": {
+        "matched_step": 7500.0,
+        "matched_score": 28.88871383666992,
+        "score_diff": 0.4493198394775426
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 28.45260238647461,
+        "score_diff": 0.8854312896728516
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 30.683984756469727,
+        "score_diff": 1.3459510803222656
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 30.254655838012695,
+        "score_diff": 0.9166221618652344
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 32.19915771484375,
+        "score_diff": 2.861124038696289
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 32.1906623840332,
+        "score_diff": 2.852628707885742
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 31.185041427612305,
+        "score_diff": 1.8470077514648438
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 27.234540939331055,
+        "score_diff": 2.1034927368164062
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 27.417932510375977,
+        "score_diff": 1.9201011657714844
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 27.426210403442383,
+        "score_diff": 1.9118232727050781
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 25.29405403137207,
+        "score_diff": 4.043979644775391
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 25.356107711791992,
+        "score_diff": 3.9819259643554688
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 25.27997779846191,
+        "score_diff": 4.05805587768555
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 17.888288497924805,
+        "score_diff": 11.449745178222656
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 17.784921646118164,
+        "score_diff": 11.553112030029297
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 17.743791580200195,
+        "score_diff": 11.594242095947266
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 17.93495750427246,
+        "score_diff": 11.403076171875
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 17.63393783569336,
+        "score_diff": 11.704095840454102
+      }
+    }
+  },
+  "dclm-baseline-qc-7p-fw3": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 220.17286682128903,
+        "score_diff": 190.83483314514157
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 219.63087463378903,
+        "score_diff": 190.29284095764157
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 217.14620971679688,
+        "score_diff": 187.8081760406494
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 115.93700408935548,
+        "score_diff": 86.59897041320802
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 118.3053207397461,
+        "score_diff": 88.96728706359863
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 112.80280303955078,
+        "score_diff": 83.46476936340332
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 80.44833374023438,
+        "score_diff": 51.110300064086914
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 80.02205657958984,
+        "score_diff": 50.68402290344238
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 80.31069946289062,
+        "score_diff": 50.972665786743164
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 69.79518127441406,
+        "score_diff": 40.4571475982666
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 70.68201446533203,
+        "score_diff": 41.34398078918457
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 70.05130767822266,
+        "score_diff": 40.713274002075195
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 53.40242385864258,
+        "score_diff": 24.064390182495117
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 53.565223693847656,
+        "score_diff": 24.227190017700195
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 53.951271057128906,
+        "score_diff": 24.613237380981445
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 50.21687316894531,
+        "score_diff": 20.87883949279785
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 48.91447067260742,
+        "score_diff": 19.57643699645996
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 50.52926254272461,
+        "score_diff": 21.19122886657715
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 47.14363861083984,
+        "score_diff": 17.805604934692376
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 46.97330093383789,
+        "score_diff": 17.63526725769043
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 46.0272102355957,
+        "score_diff": 16.689176559448242
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 22500.0,
+        "matched_score": 29.508041381835938,
+        "score_diff": 0.17000770568847656
+      },
+      "small aux 2": {
+        "matched_step": 23750.0,
+        "matched_score": 29.24938583374023,
+        "score_diff": 0.08864784240723012
+      },
+      "small aux 3": {
+        "matched_step": 22500.0,
+        "matched_score": 29.088661193847656,
+        "score_diff": 0.2493724822998047
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 10000.0,
+        "matched_score": 29.318470001220703,
+        "score_diff": 0.019563674926757812
+      },
+      "small aux 2": {
+        "matched_step": 11250.0,
+        "matched_score": 28.944093704223633,
+        "score_diff": 0.3939399719238281
+      },
+      "small aux 3": {
+        "matched_step": 11250.0,
+        "matched_score": 29.224319458007812,
+        "score_diff": 0.11371421813964844
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 5000.0,
+        "matched_score": 29.06591033935547,
+        "score_diff": 0.2721233367919922
+      },
+      "small aux 2": {
+        "matched_step": 5000.0,
+        "matched_score": 28.57660675048828,
+        "score_diff": 0.7614269256591797
+      },
+      "small aux 3": {
+        "matched_step": 5000.0,
+        "matched_score": 28.87655258178711,
+        "score_diff": 0.46148109436035156
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 27.645462036132812,
+        "score_diff": 1.6925716400146484
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 27.254384994506836,
+        "score_diff": 2.083648681640625
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 26.770584106445312,
+        "score_diff": 2.5674495697021484
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 29.718488693237305,
+        "score_diff": 0.38045501708984375
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 29.43312644958496,
+        "score_diff": 0.0950927734375
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 29.70869255065918,
+        "score_diff": 0.37065887451171875
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 27.724021911621097,
+        "score_diff": 1.6140117645263636
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 27.499143600463867,
+        "score_diff": 1.8388900756835938
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 27.74514961242676,
+        "score_diff": 1.5928840637206996
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 19.613006591796875,
+        "score_diff": 9.725027084350586
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 19.68712615966797,
+        "score_diff": 9.650907516479492
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 19.423568725585938,
+        "score_diff": 9.914464950561523
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 19.611669540405273,
+        "score_diff": 9.726364135742188
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 19.306255340576172,
+        "score_diff": 10.031778335571289
+      }
+    }
+  },
+  "dclm-baseline-qc-fw-3p": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 231.5065765380859,
+        "score_diff": 202.16854286193845
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 230.4322052001953,
+        "score_diff": 201.09417152404785
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 233.6883850097656,
+        "score_diff": 204.35035133361814
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 122.7062759399414,
+        "score_diff": 93.36824226379395
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 125.27748107910156,
+        "score_diff": 95.9394474029541
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 121.63658905029295,
+        "score_diff": 92.2985553741455
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 85.66956329345703,
+        "score_diff": 56.33152961730957
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 85.90059661865234,
+        "score_diff": 56.56256294250488
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 86.23812103271484,
+        "score_diff": 56.90008735656738
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 74.12262725830078,
+        "score_diff": 44.78459358215332
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 76.84213256835938,
+        "score_diff": 47.504098892211914
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 75.33377075195312,
+        "score_diff": 45.995737075805664
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 58.26177215576172,
+        "score_diff": 28.923738479614258
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 57.4735221862793,
+        "score_diff": 28.135488510131836
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 58.38135528564453,
+        "score_diff": 29.04332160949707
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 53.87202453613281,
+        "score_diff": 24.53399085998535
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 53.496238708496094,
+        "score_diff": 24.158205032348633
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 54.17402648925781,
+        "score_diff": 24.83599281311035
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 45.81848907470703,
+        "score_diff": 16.48045539855957
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 49.26045608520508,
+        "score_diff": 19.922422409057617
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 45.516719818115234,
+        "score_diff": 16.178686141967773
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 26250.0,
+        "matched_score": 29.17051696777344,
+        "score_diff": 0.16751670837401988
+      },
+      "small aux 2": {
+        "matched_step": 26250.0,
+        "matched_score": 29.475971221923828,
+        "score_diff": 0.1379375457763672
+      },
+      "small aux 3": {
+        "matched_step": 29042.0,
+        "matched_score": 29.306079864501953,
+        "score_diff": 0.03195381164550781
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 29.229970932006836,
+        "score_diff": 0.108062744140625
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 29.26392936706543,
+        "score_diff": 0.07410430908203125
+      },
+      "small aux 3": {
+        "matched_step": 13750.0,
+        "matched_score": 29.391054153442383,
+        "score_diff": 0.053020477294921875
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 6250.0,
+        "matched_score": 29.630271911621097,
+        "score_diff": 0.29223823547363637
+      },
+      "small aux 2": {
+        "matched_step": 6250.0,
+        "matched_score": 28.88610458374023,
+        "score_diff": 0.4519290924072301
+      },
+      "small aux 3": {
+        "matched_step": 6250.0,
+        "matched_score": 29.389604568481445,
+        "score_diff": 0.051570892333984375
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 28.990291595458984,
+        "score_diff": 0.34774208068847656
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 28.581478118896484,
+        "score_diff": 0.7565555572509766
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 28.30717658996582,
+        "score_diff": 1.0308570861816406
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 32.19194412231445,
+        "score_diff": 2.853910446166992
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 31.717086791992188,
+        "score_diff": 2.3790531158447266
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 31.15458106994629,
+        "score_diff": 1.8165473937988281
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 29.46935272216797,
+        "score_diff": 0.1313190460205078
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 28.973997116088867,
+        "score_diff": 0.36403656005859375
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 29.32314682006836,
+        "score_diff": 0.014886856079101562
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 20.982080459594727,
+        "score_diff": 8.355953216552734
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 21.11796188354492,
+        "score_diff": 8.220071792602543
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 20.87270736694336,
+        "score_diff": 8.465326309204102
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 21.46509552001953,
+        "score_diff": 7.87293815612793
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 20.985950469970703,
+        "score_diff": 8.352083206176758
+      }
+    }
+  },
+  "dclm-baseline-qc-fw-10p": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 213.85267639160156,
+        "score_diff": 184.5146427154541
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 216.3972320556641,
+        "score_diff": 187.05919837951663
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 214.6343994140625,
+        "score_diff": 185.29636573791504
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 112.3641128540039,
+        "score_diff": 83.02607917785645
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 118.47755432128906,
+        "score_diff": 89.1395206451416
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 115.67465209960938,
+        "score_diff": 86.33661842346191
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 75.61487579345703,
+        "score_diff": 46.27684211730957
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 78.79690551757812,
+        "score_diff": 49.458871841430664
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 78.8894271850586,
+        "score_diff": 49.55139350891113
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 68.66139221191406,
+        "score_diff": 39.3233585357666
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 69.03083801269531,
+        "score_diff": 39.69280433654785
+      },
+      "small aux 3": {
+        "matched_step": 15000.0,
+        "matched_score": 68.83650970458984,
+        "score_diff": 39.49847602844238
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 51.87040328979492,
+        "score_diff": 22.53236961364746
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 53.40859603881836,
+        "score_diff": 24.0705623626709
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 52.8432502746582,
+        "score_diff": 23.505216598510742
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 49.292118072509766,
+        "score_diff": 19.954084396362305
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 49.778316497802734,
+        "score_diff": 20.440282821655273
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 49.76152420043945,
+        "score_diff": 20.423490524291992
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 45.784912109375,
+        "score_diff": 16.44687843322754
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 42.12360382080078,
+        "score_diff": 12.78557014465332
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 45.73139953613281,
+        "score_diff": 16.39336585998535
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 21250.0,
+        "matched_score": 29.189605712890625,
+        "score_diff": 0.14842796325683594
+      },
+      "small aux 2": {
+        "matched_step": 21250.0,
+        "matched_score": 29.233135223388672,
+        "score_diff": 0.10489845275878906
+      },
+      "small aux 3": {
+        "matched_step": 20000.0,
+        "matched_score": 29.812868118286133,
+        "score_diff": 0.4748344421386719
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 8750.0,
+        "matched_score": 29.365928649902344,
+        "score_diff": 0.027894973754882812
+      },
+      "small aux 2": {
+        "matched_step": 10000.0,
+        "matched_score": 29.774723052978516,
+        "score_diff": 0.4366893768310547
+      },
+      "small aux 3": {
+        "matched_step": 10000.0,
+        "matched_score": 29.29835319519043,
+        "score_diff": 0.03968048095703125
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 5000.0,
+        "matched_score": 28.234663009643555,
+        "score_diff": 1.1033706665039062
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 29.44134521484375,
+        "score_diff": 0.10331153869628906
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 29.567628860473633,
+        "score_diff": 0.22959518432617188
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 26.456697463989254,
+        "score_diff": 2.8813362121582067
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 26.307607650756836,
+        "score_diff": 3.030426025390625
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 25.851144790649418,
+        "score_diff": 3.4868888854980433
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 29.206453323364254,
+        "score_diff": 0.13158035278320668
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 29.000030517578125,
+        "score_diff": 0.33800315856933594
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 28.94303321838379,
+        "score_diff": 0.3950004577636719
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 26.96620178222656,
+        "score_diff": 2.371831893920902
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 27.223651885986328,
+        "score_diff": 2.114381790161133
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 27.098072052001953,
+        "score_diff": 2.239961624145508
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 19.212331771850582,
+        "score_diff": 10.125701904296879
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 19.361989974975582,
+        "score_diff": 9.976043701171879
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 19.03145980834961,
+        "score_diff": 10.306573867797852
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 18.904386520385746,
+        "score_diff": 10.433647155761715
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 19.188167572021484,
+        "score_diff": 10.149866104125977
+      }
+    }
+  },
+  "dclm-baseline-qc-10p": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 205.89442443847656,
+        "score_diff": 176.5563907623291
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 209.3187561035156,
+        "score_diff": 179.98072242736814
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 208.6652069091797,
+        "score_diff": 179.32717323303223
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 110.13352966308594,
+        "score_diff": 80.79549598693848
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 109.26834106445312,
+        "score_diff": 79.93030738830566
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 110.09420776367188,
+        "score_diff": 80.75617408752441
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 76.8902816772461,
+        "score_diff": 47.55224800109863
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 76.83248901367188,
+        "score_diff": 47.494455337524414
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 76.8030776977539,
+        "score_diff": 47.465044021606445
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 69.22723388671875,
+        "score_diff": 39.88920021057129
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 68.2591781616211,
+        "score_diff": 38.92114448547363
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 68.0243911743164,
+        "score_diff": 38.686357498168945
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 51.36792755126953,
+        "score_diff": 22.02989387512207
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 51.64214324951172,
+        "score_diff": 22.304109573364258
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 52.40298843383789,
+        "score_diff": 23.06495475769043
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 23750.0,
+        "matched_score": 48.585693359375,
+        "score_diff": 19.24765968322754
+      },
+      "small aux 2": {
+        "matched_step": 23750.0,
+        "matched_score": 48.90727615356445,
+        "score_diff": 19.569242477416992
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 48.167457580566406,
+        "score_diff": 18.829423904418945
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 41.33242416381836,
+        "score_diff": 11.994390487670898
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 41.51803207397461,
+        "score_diff": 12.179998397827148
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 46.77867889404297,
+        "score_diff": 17.440645217895508
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 20000.0,
+        "matched_score": 29.455163955688477,
+        "score_diff": 0.11713027954101562
+      },
+      "small aux 2": {
+        "matched_step": 21250.0,
+        "matched_score": 29.45553398132324,
+        "score_diff": 0.1175003051757777
+      },
+      "small aux 3": {
+        "matched_step": 20000.0,
+        "matched_score": 29.36667823791504,
+        "score_diff": 0.028644561767578125
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 7500.0,
+        "matched_score": 30.014982223510746,
+        "score_diff": 0.6769485473632848
+      },
+      "small aux 2": {
+        "matched_step": 8750.0,
+        "matched_score": 29.269502639770508,
+        "score_diff": 0.06853103637695312
+      },
+      "small aux 3": {
+        "matched_step": 7500.0,
+        "matched_score": 29.782604217529297,
+        "score_diff": 0.44457054138183594
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 29.32636260986328,
+        "score_diff": 0.011671066284179688
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 29.316429138183594,
+        "score_diff": 0.021604537963867188
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 29.338138580322266,
+        "score_diff": 0.0001049041748046875
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 25.88458824157715,
+        "score_diff": 3.4534454345703125
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 26.17759895324707,
+        "score_diff": 3.1604347229003906
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 25.547971725463867,
+        "score_diff": 3.7900619506835938
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 28.70677375793457,
+        "score_diff": 0.6312599182128906
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 29.138187408447266,
+        "score_diff": 0.1998462677001953
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 29.089799880981445,
+        "score_diff": 0.24823379516601562
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 26.657207489013672,
+        "score_diff": 2.680826187133789
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 26.700212478637695,
+        "score_diff": 2.6378211975097656
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 26.894603729248047,
+        "score_diff": 2.443429946899414
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 18.812644958496097,
+        "score_diff": 10.525388717651364
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 18.620765686035156,
+        "score_diff": 10.717267990112305
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 18.747310638427734,
+        "score_diff": 10.590723037719727
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 19.02752113342285,
+        "score_diff": 10.31051254272461
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 18.783052444458008,
+        "score_diff": 10.554981231689453
+      }
+    }
+  },
+  "dclm-baseline-qc-20p": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 200.77284240722656,
+        "score_diff": 171.4348087310791
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 204.2005920410156,
+        "score_diff": 174.86255836486814
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 207.1923828125,
+        "score_diff": 177.85434913635254
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 107.4094009399414,
+        "score_diff": 78.07136726379395
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 108.37133026123048,
+        "score_diff": 79.03329658508302
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 107.06674194335938,
+        "score_diff": 77.72870826721191
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 74.10082244873047,
+        "score_diff": 44.76278877258301
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 75.15140533447266,
+        "score_diff": 45.813371658325195
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 75.23658752441406,
+        "score_diff": 45.8985538482666
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 66.85968780517578,
+        "score_diff": 37.52165412902832
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 66.96765899658203,
+        "score_diff": 37.62962532043457
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 67.28072357177734,
+        "score_diff": 37.94268989562988
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 51.34678268432617,
+        "score_diff": 22.00874900817871
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 51.918968200683594,
+        "score_diff": 22.580934524536133
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 50.831886291503906,
+        "score_diff": 21.493852615356445
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 47.675018310546875,
+        "score_diff": 18.336984634399414
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 47.26890182495117,
+        "score_diff": 17.93086814880371
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 46.90022277832031,
+        "score_diff": 17.56218910217285
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14594.0,
+        "matched_score": 44.50027847290039,
+        "score_diff": 15.16224479675293
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 40.53473281860352,
+        "score_diff": 11.196699142456062
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 40.29888916015625,
+        "score_diff": 10.960855484008789
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 20000.0,
+        "matched_score": 29.320777893066406,
+        "score_diff": 0.017255783081054688
+      },
+      "small aux 2": {
+        "matched_step": 18750.0,
+        "matched_score": 29.443527221679688,
+        "score_diff": 0.10549354553222656
+      },
+      "small aux 3": {
+        "matched_step": 18750.0,
+        "matched_score": 29.40022087097168,
+        "score_diff": 0.06218719482421875
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 7500.0,
+        "matched_score": 29.327165603637695,
+        "score_diff": 0.010868072509765625
+      },
+      "small aux 2": {
+        "matched_step": 7500.0,
+        "matched_score": 29.40276336669922,
+        "score_diff": 0.06472969055175781
+      },
+      "small aux 3": {
+        "matched_step": 6250.0,
+        "matched_score": 29.828155517578125,
+        "score_diff": 0.49012184143066406
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 28.76066780090332,
+        "score_diff": 0.5773658752441406
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 28.47854995727539,
+        "score_diff": 0.8594837188720703
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 28.50531578063965,
+        "score_diff": 0.8327178955078125
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 32.798912048339844,
+        "score_diff": 3.460878372192383
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 32.23439025878906,
+        "score_diff": 2.8963565826416016
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 32.165428161621094,
+        "score_diff": 2.827394485473633
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 28.109140396118164,
+        "score_diff": 1.2288932800292969
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 28.641746520996097,
+        "score_diff": 0.6962871551513636
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 27.79734992980957,
+        "score_diff": 1.5406837463378906
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 26.24953269958496,
+        "score_diff": 3.0885009765625
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 25.98293685913086,
+        "score_diff": 3.3550968170166016
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 25.64563369750977,
+        "score_diff": 3.6923999786376918
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 18.221525192260746,
+        "score_diff": 11.116508483886715
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 18.01868438720703,
+        "score_diff": 11.31934928894043
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 18.229772567749023,
+        "score_diff": 11.108261108398438
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 18.289899826049805,
+        "score_diff": 11.048133850097656
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 18.31753158569336,
+        "score_diff": 11.020502090454102
+      }
+    }
+  },
+  "dclm-baseline-25p-dolma1.7-75p": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 161.5854949951172,
+        "score_diff": 132.24746131896973
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 155.89755249023438,
+        "score_diff": 126.55951881408691
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 160.78079223632812,
+        "score_diff": 131.44275856018066
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 80.44584655761719,
+        "score_diff": 51.10781288146973
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 78.2513656616211,
+        "score_diff": 48.91333198547363
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 87.92521667480469,
+        "score_diff": 58.58718299865723
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 56.54514694213867,
+        "score_diff": 27.20711326599121
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 55.69191360473633,
+        "score_diff": 26.353879928588867
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 54.68694686889648,
+        "score_diff": 25.348913192749016
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 49.94003677368164,
+        "score_diff": 20.60200309753418
+      },
+      "small aux 2": {
+        "matched_step": 15000.0,
+        "matched_score": 48.707801818847656,
+        "score_diff": 19.369768142700195
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 53.66100311279297,
+        "score_diff": 24.322969436645508
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 38.60262298583984,
+        "score_diff": 9.264589309692376
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 37.731231689453125,
+        "score_diff": 8.393198013305664
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 37.988285064697266,
+        "score_diff": 8.650251388549805
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 36.561767578125,
+        "score_diff": 7.223733901977539
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 35.680335998535156,
+        "score_diff": 6.342302322387695
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 35.4145393371582,
+        "score_diff": 6.076505661010742
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14584.0,
+        "matched_score": 33.46692657470703,
+        "score_diff": 4.12889289855957
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 33.913414001464844,
+        "score_diff": 4.575380325317383
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 32.72561264038086,
+        "score_diff": 3.3875789642333984
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 8750.0,
+        "matched_score": 29.16046714782715,
+        "score_diff": 0.1775665283203125
+      },
+      "small aux 2": {
+        "matched_step": 7500.0,
+        "matched_score": 29.53701400756836,
+        "score_diff": 0.19898033142089844
+      },
+      "small aux 3": {
+        "matched_step": 7500.0,
+        "matched_score": 29.346311569213867,
+        "score_diff": 0.00827789306640625
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 28.803531646728516,
+        "score_diff": 0.5345020294189453
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 29.320510864257812,
+        "score_diff": 0.017522811889648438
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 29.274145126342773,
+        "score_diff": 0.0638885498046875
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 32.62305450439453,
+        "score_diff": 3.2850208282470703
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 32.67353439331055,
+        "score_diff": 3.335500717163086
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 32.053443908691406,
+        "score_diff": 2.7154102325439453
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 25.49458885192871,
+        "score_diff": 3.84344482421875
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 25.712648391723633,
+        "score_diff": 3.625385284423828
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 25.687007904052734,
+        "score_diff": 3.6510257720947266
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 22.31180953979492,
+        "score_diff": 7.026224136352543
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 22.50851058959961,
+        "score_diff": 6.829523086547852
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 22.354183197021484,
+        "score_diff": 6.983850479125977
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 20.906373977661133,
+        "score_diff": 8.431659698486328
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 20.770917892456055,
+        "score_diff": 8.567115783691406
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 20.686017990112305,
+        "score_diff": 8.652015686035156
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 14.974458694458008,
+        "score_diff": 14.363574981689453
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 14.79929256439209,
+        "score_diff": 14.538741111755371
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.837328910827637,
+        "score_diff": 14.500704765319824
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 14.929637908935549,
+        "score_diff": 14.408395767211912
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 14.767208099365234,
+        "score_diff": 14.570825576782227
+      }
+    }
+  },
+  "dclm-baseline-50p-dolma1.7-50p": {
+    "4M": {
+      "default": {
+        "matched_step": 5735.0,
+        "matched_score": 165.18612670898438,
+        "score_diff": 135.8480930328369
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 162.61599731445312,
+        "score_diff": 133.27796363830566
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 166.341552734375,
+        "score_diff": 137.00351905822754
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 85.7538833618164,
+        "score_diff": 56.415849685668945
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 84.91505432128906,
+        "score_diff": 55.5770206451416
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 84.66930389404297,
+        "score_diff": 55.33127021789551
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 58.21578598022461,
+        "score_diff": 28.87775230407715
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 60.09480667114258,
+        "score_diff": 30.756772994995117
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 58.23927688598633,
+        "score_diff": 28.901243209838867
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15117.0,
+        "matched_score": 52.28325653076172,
+        "score_diff": 22.945222854614258
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 53.31168365478515,
+        "score_diff": 23.973649978637688
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 52.13269805908203,
+        "score_diff": 22.79466438293457
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 40.522315979003906,
+        "score_diff": 11.184282302856445
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 40.92123794555664,
+        "score_diff": 11.58320426940918
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 40.53870391845703,
+        "score_diff": 11.20067024230957
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 38.1702766418457,
+        "score_diff": 8.832242965698242
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 37.52630615234375,
+        "score_diff": 8.188272476196289
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 38.815067291259766,
+        "score_diff": 9.477033615112305
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14594.0,
+        "matched_score": 35.66556167602539,
+        "score_diff": 6.32752799987793
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 34.11336898803711,
+        "score_diff": 4.775335311889648
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 34.851417541503906,
+        "score_diff": 5.513383865356445
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 10000.0,
+        "matched_score": 29.046443939208984,
+        "score_diff": 0.29158973693847656
+      },
+      "small aux 2": {
+        "matched_step": 10000.0,
+        "matched_score": 29.107206344604492,
+        "score_diff": 0.23082733154296875
+      },
+      "small aux 3": {
+        "matched_step": 10000.0,
+        "matched_score": 29.24707794189453,
+        "score_diff": 0.09095573425292969
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 30.753942489624023,
+        "score_diff": 1.4159088134765625
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 30.97134780883789,
+        "score_diff": 1.6333141326904297
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 30.95517349243164,
+        "score_diff": 1.6171398162841797
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 26.1673641204834,
+        "score_diff": 3.1706695556640625
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 26.311420440673828,
+        "score_diff": 3.026613235473633
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 26.208755493164062,
+        "score_diff": 3.1292781829833984
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 26.512353897094727,
+        "score_diff": 2.8256797790527344
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 26.680816650390625,
+        "score_diff": 2.657217025756836
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 26.548471450805664,
+        "score_diff": 2.789562225341797
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 23.502296447753903,
+        "score_diff": 5.835737228393558
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 23.589561462402344,
+        "score_diff": 5.748472213745117
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 23.48482322692871,
+        "score_diff": 5.85321044921875
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 21.385210037231445,
+        "score_diff": 7.952823638916016
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 21.60297966003418,
+        "score_diff": 7.735054016113281
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 21.417726516723633,
+        "score_diff": 7.920307159423828
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 15.322739601135254,
+        "score_diff": 14.015294075012207
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 15.224285125732422,
+        "score_diff": 14.113748550415039
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 15.342727661132812,
+        "score_diff": 13.995306015014648
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 15.195741653442385,
+        "score_diff": 14.142292022705076
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 15.431159019470217,
+        "score_diff": 13.906874656677244
+      }
+    }
+  },
+  "dclm-baseline-75p-dolma1.7-25p": {
+    "4M": {
+      "default": {
+        "matched_step": 5725.0,
+        "matched_score": 183.85223388671875,
+        "score_diff": 154.5142002105713
+      },
+      "small aux 2": {
+        "matched_step": 5725.0,
+        "matched_score": 181.0185089111328,
+        "score_diff": 151.68047523498535
+      },
+      "small aux 3": {
+        "matched_step": 5725.0,
+        "matched_score": 181.2067108154297,
+        "score_diff": 151.86867713928223
+      }
+    },
+    "6M": {
+      "default": {
+        "matched_step": 9182.0,
+        "matched_score": 100.11994934082033,
+        "score_diff": 70.78191566467287
+      },
+      "small aux 2": {
+        "matched_step": 9182.0,
+        "matched_score": 95.40961456298828,
+        "score_diff": 66.07158088684082
+      },
+      "small aux 3": {
+        "matched_step": 9182.0,
+        "matched_score": 93.158447265625,
+        "score_diff": 63.82041358947754
+      }
+    },
+    "8M": {
+      "default": {
+        "matched_step": 13039.0,
+        "matched_score": 65.18090057373047,
+        "score_diff": 35.84286689758301
+      },
+      "small aux 2": {
+        "matched_step": 13039.0,
+        "matched_score": 65.58879852294922,
+        "score_diff": 36.25076484680176
+      },
+      "small aux 3": {
+        "matched_step": 13039.0,
+        "matched_score": 63.976749420166016,
+        "score_diff": 34.638715744018555
+      }
+    },
+    "10M": {
+      "default": {
+        "matched_step": 15000.0,
+        "matched_score": 57.89695739746094,
+        "score_diff": 28.558923721313477
+      },
+      "small aux 2": {
+        "matched_step": 15117.0,
+        "matched_score": 57.91832733154297,
+        "score_diff": 28.580293655395508
+      },
+      "small aux 3": {
+        "matched_step": 15117.0,
+        "matched_score": 57.224266052246094,
+        "score_diff": 27.886232376098633
+      }
+    },
+    "14M": {
+      "default": {
+        "matched_step": 21953.0,
+        "matched_score": 43.838233947753906,
+        "score_diff": 14.500200271606445
+      },
+      "small aux 2": {
+        "matched_step": 21953.0,
+        "matched_score": 43.815799713134766,
+        "score_diff": 14.477766036987305
+      },
+      "small aux 3": {
+        "matched_step": 21953.0,
+        "matched_score": 43.88409805297851,
+        "score_diff": 14.546064376831048
+      }
+    },
+    "16M": {
+      "default": {
+        "matched_step": 24432.0,
+        "matched_score": 41.69448471069336,
+        "score_diff": 12.356451034545898
+      },
+      "small aux 2": {
+        "matched_step": 24432.0,
+        "matched_score": 40.99065399169922,
+        "score_diff": 11.652620315551758
+      },
+      "small aux 3": {
+        "matched_step": 24432.0,
+        "matched_score": 40.52388000488281,
+        "score_diff": 11.185846328735352
+      }
+    },
+    "20M": {
+      "default": {
+        "matched_step": 14594.0,
+        "matched_score": 40.0737419128418,
+        "score_diff": 10.735708236694336
+      },
+      "small aux 2": {
+        "matched_step": 14584.0,
+        "matched_score": 37.04288864135742,
+        "score_diff": 7.704854965209961
+      },
+      "small aux 3": {
+        "matched_step": 14584.0,
+        "matched_score": 40.34640121459961,
+        "score_diff": 11.008367538452148
+      }
+    },
+    "60M": {
+      "default": {
+        "matched_step": 13750.0,
+        "matched_score": 29.679319381713867,
+        "score_diff": 0.34128570556640625
+      },
+      "small aux 2": {
+        "matched_step": 13750.0,
+        "matched_score": 29.09003639221191,
+        "score_diff": 0.24799728393555043
+      },
+      "small aux 3": {
+        "matched_step": 12500.0,
+        "matched_score": 29.22962760925293,
+        "score_diff": 0.10840606689453125
+      }
+    },
+    "90M": {
+      "default": {
+        "matched_step": 3750.0,
+        "matched_score": 29.515867233276367,
+        "score_diff": 0.17783355712890625
+      },
+      "small aux 2": {
+        "matched_step": 3750.0,
+        "matched_score": 29.40288543701172,
+        "score_diff": 0.06485176086425781
+      },
+      "small aux 3": {
+        "matched_step": 3750.0,
+        "matched_score": 30.226703643798828,
+        "score_diff": 0.8886699676513672
+      }
+    },
+    "150M": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 28.518875122070312,
+        "score_diff": 0.8191585540771484
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 27.85055160522461,
+        "score_diff": 1.4874820709228516
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 28.140470504760746,
+        "score_diff": 1.1975631713867152
+      }
+    },
+    "300M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 28.680423736572266,
+        "score_diff": 0.6576099395751953
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 28.86225128173828,
+        "score_diff": 0.4757823944091797
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 28.521562576293945,
+        "score_diff": 0.8164710998535156
+      }
+    },
+    "530M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 24.955284118652344,
+        "score_diff": 4.382749557495117
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 24.72152328491211,
+        "score_diff": 4.616510391235352
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 24.944042205810547,
+        "score_diff": 4.393991470336914
+      }
+    },
+    "750M": {
+      "default": {
+        "matched_step": 1250.0,
+        "matched_score": 23.029720306396484,
+        "score_diff": 6.308313369750977
+      },
+      "small aux 2": {
+        "matched_step": 1250.0,
+        "matched_score": 22.677492141723633,
+        "score_diff": 6.660541534423828
+      },
+      "small aux 3": {
+        "matched_step": 1250.0,
+        "matched_score": 22.817581176757812,
+        "score_diff": 6.520452499389648
+      }
+    },
+    "1B": {
+      "default": {
+        "matched_step": 2500.0,
+        "matched_score": 16.06777000427246,
+        "score_diff": 13.270263671875
+      },
+      "small aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 15.98216152191162,
+        "score_diff": 13.355872154235842
+      },
+      "small aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 16.024600982666016,
+        "score_diff": 13.313432693481445
+      },
+      "large aux 2": {
+        "matched_step": 2500.0,
+        "matched_score": 16.02008819580078,
+        "score_diff": 13.31794548034668
+      },
+      "large aux 3": {
+        "matched_step": 2500.0,
+        "matched_score": 16.168941497802734,
+        "score_diff": 13.169092178344727
+      }
+    }
+  }
+}

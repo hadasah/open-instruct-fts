@@ -188,10 +188,11 @@ def main(
                 # main_grid is the top-level grid, the sweep will run over all combinations of these hyperparameters, 
                 # combined with the subgrids
                 "main_grid": { 
-                    "--model_name_or_path": [model],
-                    "--model_revision": model_revisions,
-                    "--learning_rate": [2e-7, 2e-6, 2e-5, 2e-4],
-                    # "--max_train_samples": [14000, 28000], 
+                    "model_name_or_path": [model],
+                    "model_revision": model_revisions,
+                    "learning_rate": [2e-7, 2e-6, 2e-5, 2e-4],
+                    "logging_steps": [1],
+                    # "max_train_samples": [14000, 28000], 
                 },
                 # allows you to bundle multiple hyperparameters together
                 "subgrids": {

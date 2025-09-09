@@ -12,7 +12,14 @@ import os
 import random
 import subprocess
 import sys
-from utils import seq_dict_update, has_file_been_modified_recently
+from constants import HP_SHORT_NAMES, DD_MODEL_SIZES_INFO, DD_TRAIN_SET_GROUPS, DD_SEQ_LEN, OPEN_INSTRUCT_COMMANDS
+from utils import (
+    seq_dict_update, 
+    has_file_been_modified_recently, 
+    model_short_name, 
+    fetch_model_paths, 
+    unroll_args
+)
 
 # BASH_IF_CLAUSE = """
 # if [[ "$SLURM_ARRAY_TASK_ID" == "{index}" ]]; then
@@ -178,7 +185,9 @@ def run_grid(
     include_job_id=False,
     hashname=False,
     replace_jobname_slashes=True,
+    sweep_name_position="start",
     sweep_wandb_tags=[],
+    sweep_wandb_config={},
     saveroot='',
     logroot='',
     mem_gb=64,
@@ -261,37 +270,69 @@ def run_grid(
         items = list(set(items + name_keys))  # remove duplicates
         return items
 
-    def make_job_name(name_keys_list, args_dict, sweep_name='', subgrid_name=''):
+    def make_job_name(name_keys_list, args_dict, sweep_name='', subgrid_name='', sweep_name_position="start"):
         name_list = []
-        if sweep_name:
+        if sweep_name and sweep_name_position == "start":
             name_list.append(sweep_name)
         if subgrid_name:
             name_list.append(subgrid_name)
+        name_list.append(model_short_name(args_dict['model_name_or_path'], args_dict['model_revision'], shorten=True))
         for key in name_keys_list:
+            if key in ['--model_name_or_path', 'model_name_or_path', '--model_revision', 'model_revision']:
+                continue
             value = args_dict.get(key, None)
             if value is None or isinstance(value, collections.abc.Mapping):
                 continue
-            short_key = key.replace("_", "").split('.')[-1] if '.' in key else key
+            short_key = key.replace("--", "").replace("-", "")
+            short_key = HP_SHORT_NAMES.get(short_key, short_key).replace("_", "")
             if type(value) == str:
                 value = value.replace('_', '')
                 if ' ' in value:
-                    value = value.replace(' --', '_').replace(' -', '_')
-                    value = value.replace(' ', '=')
+                    value = value.replace(' --', '_').replace(' -', '_').replace(' ', '=')
             name_list.append('{}={}'.format(short_key, str(value)))
+        if sweep_name and sweep_name_position == "end":
+            name_list.append(sweep_name)
         return '_'.join(name_list)
     
-    def unroll_args(d, prefix=''):
-        """Unrolls a dict of args into a list of strings."""
-        args = {}
-        for k, v in d.items():
-            if isinstance(v, collections.abc.Mapping):
-                args = seq_dict_update([args, unroll_args(v, f'{prefix}.{k}' if prefix else k)])
+    def get_wandb_tags_and_config_str(cmd_args, prefix, sweep_tags, sweep_config):
+        """Get wandb tags from the command args."""
+        command = ""
+        for c in OPEN_INSTRUCT_COMMANDS:
+            if c in prefix:
+                command = c
+                break
+        tags = deepcopy(sweep_tags) if sweep_tags else []
+        tags.append(command)
+        if 'model_name_or_path' in cmd_args:
+            short_name = cmd_args['model_name_or_path'].rsplit('-', 1)[0]
+            short_name = short_name.split('-', 1)[1]
+            for train_set_group, train_set_names in DD_TRAIN_SET_GROUPS.items():
+                if any([s in short_name for s in train_set_names]):
+                    tags.append(train_set_group)
+        wandb_tags_str = ','.join(list(set(tags))) if tags else ""
+
+        config = deepcopy(sweep_config) if sweep_config else {}
+        params = ""
+        model_info = {}
+        if 'model_name_or_path' in cmd_args:
+            for model_size in DD_MODEL_SIZES_INFO:
+                if model_size in cmd_args['model_name_or_path']:
+                    model_info = DD_MODEL_SIZES_INFO[model_size]
+                    params = int(model_info["model_size"])
+        if params:
+            config["model_size"] = params
+            if "model_revision" in cmd_args and cmd_args["model_revision"] != "main":
+                config["model_pretrain_steps"] = int(cmd_args["model_revision"].split("-")[0][4:])
             else:
-                if prefix:
-                    args[f"{prefix}.{k}"] = v
-                else:
-                    args[k] = v
-        return args
+                config["model_pretrain_steps"] = model_info.get("training_steps", None)
+            config["model_pretrain_compute"] = 6 * params * config["model_pretrain_steps"] * DD_SEQ_LEN * model_info.get("batch_size", 1)  # in A100-80GB-GPU days
+            
+            config["finetune_unique_sequences"] = cmd_args.get("max_train_samples", OPEN_INSTRUCT_COMMANDS.get(command, {}).get("sequences"))
+            config["finetune_sequences"] = config["finetune_unique_sequences"] * int(cmd_args.get("num_train_epochs", 1))
+
+        wandb_config_str = ','.join([f"{str(k)}={str(v)}" for k, v in config.items()])
+        return wandb_tags_str, wandb_config_str
+
     
 
     def check_if_job_succeeded_before(job_name, save_root):
@@ -314,34 +355,6 @@ def run_grid(
             print(f"Job {job_name} may be running right now, skipping.")
         return running
 
-
-    def maybe_replace_model_path(main_grid, use_local_model=True):
-        from open_instruct.utils import download_from_hf
-
-        if not use_local_model:
-            return main_grid  # do not download model if use_local_model is False
-        
-        if os.path.exists(main_grid['--model_name_or_path'][0]) and os.path.isfile(os.path.join(main_grid['--model_name_or_path'][0], 'config.json')):
-            return main_grid  # already a local path
-    
-        model_name_or_path, model_revision = main_grid['--model_name_or_path'][0], main_grid['--model_revision'][0]
-        hf_cache = (
-            os.path.join(os.environ.get('HF_HOME'), "hub")
-            if os.environ.get('HF_HOME') 
-            else os.environ.get('HF_HUB_CACHE') or os.path.expanduser('~/.cache/huggingface')
-        )
-        if not os.path.exists(os.path.join(hf_cache, f'models--{model_name_or_path.replace("/", "--")}', 'refs', model_revision)):
-            raise RuntimeError("""
-                               Model not found in Hugging Face cache. Please download the model first by running:
-                               `huggingface-cli download --model_name_or_path {model_name_or_path} --model_revision {model_revision}`
-                               or set `use_local_model=False`
-                               """.format(model_name_or_path=model_name_or_path, model_revision=model_revision))
-        # download_from_hf(model_name_or_path, model_revision) # first download the model
-        main_grid['--model_name_or_path'] = [download_from_hf(model_name_or_path, model_revision)] # then get the path
-        main_grid['--model_revision'] = ["main"]
-        return main_grid
-    
-
     if not prefix:
         raise ValueError('Need prefix command')
     SAVE_ROOT = saveroot
@@ -362,12 +375,11 @@ def run_grid(
 
     all_permutation_dicts = {}
     main_grid = seq_dict_update([default_grid, grid["main_grid"]])
-    main_grid = maybe_replace_model_path(main_grid, use_local_model=use_local_model)
+    model_path_lookup = fetch_model_paths(main_grid, use_local_model=use_local_model)
     if not grid.get("subgrids"):
         grid["subgrids"] = {"default": {}}
     for subgrid_name, subgrid in grid["subgrids"].items():
         subgrid_merged = seq_dict_update([main_grid, subgrid])
-        print(subgrid_merged)
         all_permutation_dicts[subgrid_name] = list(c_prod(subgrid_merged)) if subgrid_merged else [{}]
         name_key_lists[subgrid_name] = get_name_keys(subgrid_merged, name_keys=name_keys)
 
@@ -384,33 +396,6 @@ def run_grid(
     else:
         cutoff = None
 
-    def get_wandb_tags_str(cmd_args, sweep_tags, ):
-        """Get wandb tags from the command args."""
-        tags = deepcopy(sweep_tags) if sweep_tags else []
-        if 'command' in cmd_args:
-            tags.append(cmd_args['command'])
-        if 'model_name_or_path' in cmd_args:
-            short_name = cmd_args['model_name_or_path'].rsplit('-', 1)[0]
-            short_name = short_name.split('-', 1)[1]
-            if any([s == short_name for s in [
-                                                "dclm-baseline",
-                                                "dclm-baseline-25p-dolma1.7-75p",
-                                                "dclm-baseline-50p-dolma1.7-50p",
-                                                "dclm-baseline-75p-dolma1.7-25p",
-                                                "dolma1_7",
-            ]]):
-                tags.append('dclm-dolma')
-            if any([s == short_name for s in [
-                                                "dclm-baseline",
-                                                "dclm-baseline-qc-7p-fw2",
-                                                "dclm-baseline-qc-7p-fw3",
-                                                "dclm-baseline-qc-fw-3p",
-                                                "dclm-baseline-qc-fw-10p",
-                                                "dclm-baseline-qc-10p",
-                                                "dclm-baseline-qc-20p",
-            ]]):
-                tags.append('dolma-qc')
-        return ','.join(tags)
 
     final_jobs = []
     job_id = job_id_start
@@ -420,16 +405,34 @@ def run_grid(
         for config_dict in permutations_dicts:
             for _ in range(num_copies):
                 cmd_args = unroll_args(config_dict)
-                name = make_job_name(name_key_list, cmd_args, sweep_name=sweep_name, subgrid_name=subgrid_name)
+                if 'model' in cmd_args:
+                    cmd_args["model_name_or_path"], cmd_args["model_revision"] = cmd_args.get("model")
+                    del cmd_args["model"]
+                name = make_job_name(name_key_list, cmd_args, sweep_name=sweep_name, subgrid_name=subgrid_name, sweep_name_position=sweep_name_position)
                 name = name[:cutoff] if cutoff else name
                 name = name.replace('/', '--') if replace_jobname_slashes else name
                 name = sha1(name) if hashname else name
-                wandb_tags_str = get_wandb_tags_str(cmd_args, sweep_tags=sweep_wandb_tags)
+
+                if "model_name_or_path" in cmd_args and "model_revision" in cmd_args:
+                    cmd_args["model_name_or_path"], cmd_args["model_revision"] = model_path_lookup.get(
+                        (cmd_args.get("model_name_or_path"), cmd_args.get("model_revision")), 
+                        (cmd_args.get("model_name_or_path"), cmd_args.get("model_revision"))
+                    )
+                elif "--model_name_or_path" in cmd_args and "--model_revision" in cmd_args:
+                    cmd_args["model_name_or_path"], cmd_args["model_revision"] = model_path_lookup.get(
+                        (cmd_args.get("--model_name_or_path"), cmd_args.get("--model_revision")), 
+                        (cmd_args.get("--model_name_or_path"), cmd_args.get("--model_revision"))
+                    )
+                
+
+                wandb_tags_str, wandb_config_str = get_wandb_tags_and_config_str(cmd_args, prefix=prefix, sweep_tags=sweep_wandb_tags, sweep_config=sweep_wandb_config)
                 wandb_tags_str = "--wandb_tags " + wandb_tags_str if wandb_tags_str else ""
+                wandb_config_str = "--wandb_config " + wandb_config_str if wandb_config_str else ""
                 cmd = (
-                    f"{prefix} --exp_name {name} --run_name {name} --output_dir {SAVE_ROOT} {wandb_tags_str}" + " " +
-                    ' '.join([f'{k} {v}' if (v is not None and v!="") else k for k, v in cmd_args.items()])
+                    f"{prefix} --exp_name {name} --run_name {name} --output_dir {SAVE_ROOT} {wandb_tags_str} {wandb_config_str}" + " " +
+                    ' '.join([f'--{k} {v}' if (v is not None and v!="") else f"--{k}" for k, v in cmd_args.items()])
                 )
+                cmd = cmd.replace("----", "--")  # in case some keys already have --
                 if include_job_id:
                     name += '/_jobid=' + str(job_id)
                 final_jobs.append(Job(cmd=cmd, name=name))
@@ -439,7 +442,6 @@ def run_grid(
     if dry_mode:
         return
 
-    print(f'Launching a total of {len(final_jobs)} jobs. \nYour jobs will run for {jobtime}.')
     # ans = input(
     #     'About to launch {} jobs for a total of {} GPUs. Continue? (Y/y to proceed) '.format(
     #         len(final_jobs), nodes * gpus * len(final_jobs)
@@ -514,6 +516,8 @@ def run_grid(
                 job_port=sweep_port_start+i,
             )
         )
+        
+    print(f'Launching a total of {len(final_jobs)} jobs. \nYour jobs will run for {jobtime}.')
     print(final_jobs)
     submit_array_jobs(
         SWEEP_NAME=sweep_name,

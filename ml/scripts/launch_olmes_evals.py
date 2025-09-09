@@ -1,5 +1,6 @@
 import argparse
 import copy
+import glob
 import inspect
 import json
 import logging
@@ -10,6 +11,8 @@ import subprocess
 import sys
 import wandb
 from typing import List
+
+from constants import *
 
 ## This is the main launching script for running evaluations.
 ## It should have minimal dependencies so it can run without installing extra packages
@@ -70,6 +73,7 @@ _parser.add_argument("--models",
 _parser.add_argument("--model-type", type=str, help="Model type (e.g., 'hf' or 'vllm')")
 _parser.add_argument("--revisions", default="", type=str, help="Revision of model in HF hub")
 _parser.add_argument("--model-paths", default="", type=str, help="Paths to model files")
+_parser.add_argument("--model-sweep-names", default="", type=str, help="Path to top-level folder with models")
 _parser.add_argument("--model-sweep-paths", default="", type=str, help="Path to top-level folder with models")
 _parser.add_argument(
     "--use-all-ckpts",
@@ -290,7 +294,7 @@ def launch_eval(args_dict: dict):
     if args_dict["model_args"]:
         model_config = update_nested_dict(model_config, parse_args_string(args_dict["model_args"]))
     for model_key in ["revision", "model_type"]:
-        if args_dict[model_key]:
+        if args_dict.get(model_key):
             model_config[model_key] = args_dict[model_key]
     task_configs = []
     tasks = args_dict["task"]
@@ -400,7 +404,9 @@ def launch_eval(args_dict: dict):
             i -= 1
             if "2025" in run_id: 
                 break
-        run_eval_args["wandb-run-path"] = args_dict["wandb_run_path"] if "wandb_run_path" in args_dict else f"{args_dict['wandb_entity']}/{args_dict['wandb_project']}/runs/{run_id}"
+            elif any([c in run_id for c in OPEN_INSTRUCT_COMMANDS.keys()]):
+                break
+        run_eval_args["wandb-run-path"] = args_dict["wandb_run_path"] if args_dict.get("wandb_run_path", None) else f"{args_dict['wandb_entity']}/{args_dict['wandb_project']}/runs/{run_id}"
     if model_config:
         run_eval_args["model-args"] = model_config
 
@@ -450,29 +456,35 @@ def main():
             [models[i], revisions[i]] = maybe_model.split(":", 1)
     model_paths = args_dict.get("model_paths", "").split(",") if args_dict.get("model_paths", "") != "" else []
     assert not (len(models) > 0 and len(model_paths) > 0), "Cannot specify both --models and --model-paths!"
+    print(models, revisions, model_paths)
+
+    model_sweep_names = args_dict.get("model_sweep_names", "").split(",") if args_dict.get("model_sweep_names", "") != "" else []
+    model_sweep_paths = args_dict.get("model_sweep_paths", "").split(",")  if args_dict.get("model_sweep_paths", "") != "" else []
+    assert not (len(model_sweep_paths) > 0 and len(model_sweep_names) > 0), "Cannot specify both --model-sweep-paths and --model-sweep-names!"
     
-    if args_dict.get("model_sweep_paths", "") != "":
-        assert len(models) == 0 and len(model_paths) == 0, "Cannot specify --model-sweep-paths with --models or --model-paths!"
-        model_sweep_paths = args_dict.get("model_sweep_paths", "").split(",")
-        for model_sweep_path in model_sweep_paths:
+    if len(model_sweep_names) > 0:
+        for i, model_sweep_name in enumerate(model_sweep_names):
+            model_sweep_paths.append(os.path.join(USER_PROJECT_SPEC["DEFAULT_SAVE_PATH"], model_sweep_name))
+    for maybe_model_sweep_path in model_sweep_paths:
+        for model_sweep_path in glob.glob(maybe_model_sweep_path.strip()):
             for root, dirs, files in os.walk(model_sweep_path.strip()):
                 if "config.json" in files and "pytorch_model.bin" in files:
                     if args.use_all_ckpts or "final" in root:
                         model_paths.append(root)
     
-    if len(models) > 1:
+    if len(models) > 0:
         for model, revision in zip(models, revisions):
             model_args_dict = copy.deepcopy(args_dict)
             model_args_dict["model"] = model.strip()
             model_args_dict["revision"] = revision.strip()
             model_args_dict["output_dir"] = os.path.join(
-                model_args_dict["output_dir"], model_args_dict["model"].replace("/", "_")
+                model_args_dict["output_dir"], f'{model_args_dict["model"].replace("/", "_")}__{model_args_dict["revision"]}'
             )
             logger.info(f"Launching eval for model: {model_args_dict['model']}")
             maybe_rc = launch_eval(model_args_dict)
             if maybe_rc is not None and int(maybe_rc) != os.EX_OK:
                 sys.exit(int(maybe_rc))
-    if len(model_paths) > 1:
+    if len(model_paths) > 0:
         for model_path in model_paths:
             model_args_dict = copy.deepcopy(args_dict)
             model_args_dict["model_path"] = model_path.strip()

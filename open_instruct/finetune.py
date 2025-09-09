@@ -27,6 +27,7 @@ try:
 except Exception:
     pass
 # isort: on
+import copy
 import json
 import logging
 import math
@@ -340,6 +341,8 @@ class FlatArguments:
     """The entity (team) of wandb's project"""
     wandb_tags: Optional[str] = None
     """The tags to use for the wandb run. If not set, will use the exp_name and fetch tags dynamically."""
+    wandb_config: Optional[str] = None
+    """String containing key,value pairs to add to the wandb config."""
     push_to_hub: bool = True
     """Whether to upload the saved model to huggingface"""
     hf_entity: Optional[str] = None
@@ -459,9 +462,10 @@ def main(args: FlatArguments, tc: TokenizerConfig):
 
         if args.report_to in ["wandb", "all" ]:
             os.makedirs(os.path.join(args.output_dir, "wandb"), exist_ok=True)
+        wandb_config = copy.deepcopy(experiment_config).update({c.split("=", 1)[0]: c.split("=", 1)[1] for c in args.wandb_config.split(",")}) if args.wandb_config else experiment_config
         accelerator.init_trackers(
             args.wandb_project_name,
-            experiment_config,
+            wandb_config,
             init_kwargs={
                 "wandb": {
                     "dir": args.output_dir,
@@ -773,10 +777,13 @@ def main(args: FlatArguments, tc: TokenizerConfig):
             starting_epoch = resume_step // len(train_dataloader)
             completed_steps = resume_step // args.gradient_accumulation_steps
             resume_step -= starting_epoch * len(train_dataloader)
-        with open(os.path.join(args.output_dir, "metrics.json"), "r") as f:
-            metrics = json.load(f)
-        local_total_tokens = torch.tensor(metrics["total_tokens"], dtype=torch.int64, device=accelerator.device)
-        total_token_including_padding = torch.tensor(metrics["total_tokens_including_padding"], dtype=torch.int64, device=accelerator.device)
+        if os.path.exists(os.path.join(last_checkpoint_path, "metrics.json")):
+            with open(os.path.join(last_checkpoint_path, "metrics.json"), "r") as f:
+                metrics = json.load(f)
+        else:
+            metrics = {}
+        local_total_tokens = torch.tensor(metrics.get("total_tokens", 0), dtype=torch.int64, device=accelerator.device)
+        total_token_including_padding = torch.tensor(metrics.get("total_tokens_including_padding", 0), dtype=torch.int64, device=accelerator.device)
 
     print(f"Starting from epoch {starting_epoch} and step {completed_steps}.")
     # update the progress_bar if load from checkpoint
@@ -864,9 +871,9 @@ def main(args: FlatArguments, tc: TokenizerConfig):
                         accelerator.gather(total_loss).mean().item()
                         / accelerator.gather(log_toks).mean().item()
                     )
-                    print("total_loss", accelerator.gather(total_loss))
-                    print("total_tokens", accelerator.gather(log_toks))
-                    print("avg_loss", avg_loss)
+                    # print("total_loss", accelerator.gather(total_loss))
+                    # print("total_tokens", accelerator.gather(log_toks))
+                    # print("avg_loss", avg_loss)
                     metrics_to_log = {
                         "learning_rate": lr_scheduler.get_last_lr()[0],
                         "train_loss": avg_loss,
@@ -933,6 +940,10 @@ def main(args: FlatArguments, tc: TokenizerConfig):
             if args.output_dir is not None:
                 output_dir = os.path.join(args.output_dir, output_dir)
             accelerator.save_state(output_dir)
+            with open (
+                os.path.join(get_last_checkpoint_path(args, incomplete=True), "metrics.json"), "w"
+            ) as f:
+                f.write(json.dumps(metrics_to_log, indent=2))
             # use this to mark the checkpoint as completely saved, to avoid restoring from garbled checkpoints
             with open(
                 os.path.join(get_last_checkpoint_path(args, incomplete=True), "COMPLETED"),

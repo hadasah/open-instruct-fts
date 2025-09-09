@@ -1270,7 +1270,7 @@ class LocalDatasetTransformationCache:
         combined_dataset = concatenate_datasets(transformed_datasets)
         if dataset_skip_cache:
             return combined_dataset
-
+        print("CACHE_PATH", cache_path)
         # Save to local cache
         combined_dataset.save_to_disk(cache_path)
         self.save_config(self.config_hash, dcs, tc)
