@@ -677,6 +677,10 @@ def get_wandb_tags() -> List[str]:
 # Check pointing utilities
 def get_last_checkpoint(folder: str, incomplete: bool = False) -> Optional[str]:
     content = os.listdir(folder)
+
+    if os.path.exists(os.path.join(folder, "final", "COMPLETED")):
+        return os.path.join(folder, "final")
+
     checkpoint_steps = [path for path in content if path.startswith("step_")]
     checkpoint_epochs = [path for path in content if path.startswith("epoch_")]
     if len(checkpoint_steps) > 0 and len(checkpoint_epochs) > 0:

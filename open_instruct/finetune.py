@@ -462,7 +462,8 @@ def main(args: FlatArguments, tc: TokenizerConfig):
 
         if args.report_to in ["wandb", "all" ]:
             os.makedirs(os.path.join(args.output_dir, "wandb"), exist_ok=True)
-        wandb_config = copy.deepcopy(experiment_config).update({c.split("=", 1)[0]: c.split("=", 1)[1] for c in args.wandb_config.split(",")}) if args.wandb_config else experiment_config
+        wandb_config = copy.deepcopy(experiment_config)
+        wandb_config.update({c.split("=", 1)[0]: c.split("=", 1)[1] for c in args.wandb_config.split(",")}) if args.wandb_config else experiment_config
         accelerator.init_trackers(
             args.wandb_project_name,
             wandb_config,
@@ -761,6 +762,9 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     # Potentially load in the weights and states from a previous save
     last_checkpoint_path = get_last_checkpoint_path(args)
     if last_checkpoint_path:
+        if "final" in last_checkpoint_path:
+            accelerator.print("Found final checkpoint, training is already complete.")
+            return
         accelerator.print(f"Resumed from checkpoint: {last_checkpoint_path}")
         accelerator.load_state(last_checkpoint_path)
         # Extract `epoch_{i}` or `step_{i}`
@@ -794,6 +798,7 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     total_loss = 0
     total_aux_loss = 0
     log_toks = 0
+    metrics_to_log = {}
     for epoch in range(starting_epoch, args.num_train_epochs):
         model.train()
         train_dataloader.set_epoch(epoch)

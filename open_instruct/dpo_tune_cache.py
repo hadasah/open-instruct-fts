@@ -30,6 +30,7 @@ try:
 except Exception:
     pass
 # isort: on
+import copy
 import logging
 import math
 import os
@@ -375,6 +376,8 @@ class FlatArguments:
     """The entity (team) of wandb's project"""
     wandb_tags: Optional[str] = None
     """The tags to use for the wandb run. If not set, will use the exp_name and fetch tags dynamically."""
+    wandb_config: Optional[str] = None
+    """String containing key,value pairs to add to the wandb config."""
     push_to_hub: bool = True
     """Whether to upload the saved model to huggingface"""
     hf_entity: Optional[str] = None
@@ -519,16 +522,20 @@ def main(args: FlatArguments, tc: TokenizerConfig):
         experiment_config = vars(args)
         # TensorBoard cannot log Enums, need the raw value
         experiment_config["lr_scheduler_type"] = experiment_config["lr_scheduler_type"]
-
+        wandb_config = copy.deepcopy(experiment_config)
+        wandb_config.update({c.split("=", 1)[0]: c.split("=", 1)[1] for c in args.wandb_config.split(",")}) if args.wandb_config else experiment_config
+        accelerator.init_trackers(
+            args.wandb_project_name,
+            wandb_config,
         # (Optional) Ai2 internal tracking
         # if args.wandb_entity is None:
         #     args.wandb_entity = maybe_use_ai2_wandb_entity()
         # if accelerator.is_main_process and is_beaker_job():
         #     experiment_config.update(vars(beaker_config))
-        experiment_config.update(vars(tc))
-        accelerator.init_trackers(
-            args.wandb_project_name,
-            experiment_config,
+        # experiment_config.update(vars(tc))
+        # accelerator.init_trackers(
+        #     args.wandb_project_name,
+        #     experiment_config,
             init_kwargs={
                 "wandb": {
                     "dir": args.output_dir,
@@ -823,6 +830,9 @@ def main(args: FlatArguments, tc: TokenizerConfig):
     last_checkpoint_path = get_last_checkpoint_path(args)
     resume_step = None
     if last_checkpoint_path:
+        if "final" in last_checkpoint_path:
+            accelerator.print("Found final checkpoint, training is already complete.")
+            return
         accelerator.print(f"Resumed from checkpoint: {last_checkpoint_path}")
         accelerator.load_state(last_checkpoint_path)
         # Extract `epoch_{i}` or `step_{i}`
@@ -1041,7 +1051,7 @@ def main(args: FlatArguments, tc: TokenizerConfig):
             accelerator,
             model,
             tokenizer,
-            args.output_dir,
+            os.path.join(args.output_dir, "final"),
             args.use_lora,
         )
 

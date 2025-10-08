@@ -276,7 +276,10 @@ def run_grid(
             name_list.append(sweep_name)
         if subgrid_name:
             name_list.append(subgrid_name)
-        name_list.append(model_short_name(args_dict['model_name_or_path'], args_dict['model_revision'], shorten=True))
+        try:
+            name_list.append(model_short_name(args_dict['model_name_or_path'], args_dict['model_revision'], shorten=True))
+        except:
+            name_list.append(model_short_name(args_dict['--model_name_or_path'], args_dict['--model_revision'], shorten=True))
         for key in name_keys_list:
             if key in ['--model_name_or_path', 'model_name_or_path', '--model_revision', 'model_revision']:
                 continue
@@ -333,11 +336,10 @@ def run_grid(
         wandb_config_str = ','.join([f"{str(k)}={str(v)}" for k, v in config.items()])
         return wandb_tags_str, wandb_config_str
 
-    
 
     def check_if_job_succeeded_before(job_name, save_root):
         """Check if a job has already been run before."""
-        wandb_log_path = os.path.join(save_root, job_name, 'wandb', 'wandb', 'latest-run', 'logs', 'debug.log')
+        wandb_log_path = os.path.join(save_root, job_name, 'wandb', 'latest-run', 'logs', 'debug.log')
         if os.path.exists(wandb_log_path):
             with open(wandb_log_path, 'r') as f:
                 s = f.read()
@@ -349,7 +351,7 @@ def run_grid(
     # if updated in the last 10 minutes, assume it's running
     def check_if_job_is_running(job_name, save_root, recent_threshold_seconds=600):
         """Check if a job is currently running."""
-        stdout_path = os.path.join(save_root, job_name, 'stdout')
+        stdout_path = os.path.join(save_root, job_name, 'stderr')
         running = has_file_been_modified_recently(stdout_path, recent_threshold_seconds=recent_threshold_seconds) 
         if running:
             print(f"Job {job_name} may be running right now, skipping.")
@@ -375,7 +377,7 @@ def run_grid(
 
     all_permutation_dicts = {}
     main_grid = seq_dict_update([default_grid, grid["main_grid"]])
-    model_path_lookup = fetch_model_paths(main_grid, use_local_model=use_local_model)
+    main_grid, model_path_lookup = fetch_model_paths(main_grid, use_local_model=use_local_model)
     if not grid.get("subgrids"):
         grid["subgrids"] = {"default": {}}
     for subgrid_name, subgrid in grid["subgrids"].items():
@@ -408,6 +410,7 @@ def run_grid(
                 if 'model' in cmd_args:
                     cmd_args["model_name_or_path"], cmd_args["model_revision"] = cmd_args.get("model")
                     del cmd_args["model"]
+                print(cmd_args)
                 name = make_job_name(name_key_list, cmd_args, sweep_name=sweep_name, subgrid_name=subgrid_name, sweep_name_position=sweep_name_position)
                 name = name[:cutoff] if cutoff else name
                 name = name.replace('/', '--') if replace_jobname_slashes else name
@@ -438,10 +441,6 @@ def run_grid(
                 final_jobs.append(Job(cmd=cmd, name=name))
                 job_id += 1
 
-    print(f'Example of first job:\n{final_jobs[0].cmd}\n')
-    if dry_mode:
-        return
-
     # ans = input(
     #     'About to launch {} jobs for a total of {} GPUs. Continue? (Y/y to proceed) '.format(
     #         len(final_jobs), nodes * gpus * len(final_jobs)
@@ -450,6 +449,28 @@ def run_grid(
     # if ans.strip().lower() != 'y':
     #     print('Aborting...')
     #     sys.exit(-1)
+
+    # Filter out jobs based on debug mode, indices, and status
+    if debug_mode and len(final_jobs) > 1:
+        final_jobs = final_jobs[:1]
+    elif include_jobs_indices:
+        final_jobs = [final_jobs[i] for i in include_jobs_indices]
+    jobs_to_filter = []
+    if filter_succeeded:
+        jobs_to_filter += [i for i, job in enumerate(final_jobs) if check_if_job_succeeded_before(job.name, SAVE_ROOT)]
+    if filter_running:
+        jobs_to_filter += [i for i, job in enumerate(final_jobs)  if check_if_job_is_running(job.name, SAVE_ROOT)]
+    print(f"List of job indices launching {[i for i in range(len(final_jobs)) if i not in jobs_to_filter]}")
+
+
+    final_jobs = [final_jobs[i] for i in range(len(final_jobs)) if i not in jobs_to_filter]
+    print(f'Example of first job:\n{final_jobs[0].cmd}\n')
+    print(f'Launching a total of {len(final_jobs)} jobs. \nYour jobs will run for {jobtime}.')
+    print(final_jobs)
+
+    if dry_mode:
+        print("Dry mode, not launching jobs.")
+        return
 
     # Copy the directory if needed
     to_copy = [] + copy_dirs
@@ -464,18 +485,6 @@ def run_grid(
         NEW_DIR_PATH = '{SAVE_ROOT}/{repo_name}'.format(**locals())
     else:
         NEW_DIR_PATH = DIR_PATH
-
-
-    # Filter out jobs based on debug mode, indices, and status
-    if debug_mode and len(final_jobs) > 1:
-        final_jobs = final_jobs[:1]
-    elif include_jobs_indices:
-        final_jobs = [final_jobs[i] for i in include_jobs_indices]
-    if filter_succeeded:
-        final_jobs = [job for job in final_jobs if not check_if_job_succeeded_before(job.name, SAVE_ROOT)]
-    if filter_running:
-        final_jobs = [job for job in final_jobs if not check_if_job_is_running(job.name, SAVE_ROOT)]
-
 
 
     # Dump grid, specs, jobs to files
@@ -517,8 +526,7 @@ def run_grid(
             )
         )
         
-    print(f'Launching a total of {len(final_jobs)} jobs. \nYour jobs will run for {jobtime}.')
-    print(final_jobs)
+
     submit_array_jobs(
         SWEEP_NAME=sweep_name,
         SAVE_ROOT=SAVE_ROOT,

@@ -181,7 +181,7 @@ def main(
             # combined with the subgrids
             "main_grid": { 
                 "model": model_args_list,
-                "learning_rate": [5e-5, 5e-6],
+                "learning_rate": [5e-6], #[5e-5, 5e-6],
                 # "max_train_samples": [14000, 28000], 
             },
             # allows you to bundle multiple hyperparameters together
@@ -189,9 +189,9 @@ def main(
                 # "1Mtx1": {"max_train_samples": [1400], "num_train_epochs": [1],},
                 # "1Mtx10": {"max_train_samples": [1400], "num_train_epochs": [10],},
                 # "1Mtx100": {"max_train_samples": [1400], "num_train_epochs": [100],},
-                "10Mtx1": {"max_train_samples": [14000], "num_train_epochs": [1],},
+                # "10Mtx1": {"max_train_samples": [14000], "num_train_epochs": [1],},
                 # "10Mtx10": {"max_train_samples": [14000], "num_train_epochs": [10],},
-                "100Mtx1": {"max_train_samples": [140000], "num_train_epochs": [1],},
+                # "100Mtx1": {"max_train_samples": [140000], "num_train_epochs": [1],},
                 "Ft": {},
             },
         }
@@ -295,5 +295,5 @@ if __name__ == '__main__':
         mem=args.mem,
         include_jobs_indices=([int(i) for i in args.include_jobs_indices.split(",")] if args.include_jobs_indices else None),
         filter_running=not args.no_filter,
-        filter_succeeded=True,
+        filter_succeeded=not args.no_filter,
     )

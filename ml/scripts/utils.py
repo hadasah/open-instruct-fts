@@ -3,6 +3,8 @@ import itertools
 import json
 import os
 import pandas as pd
+import pathlib
+import subprocess
 import time
 
 from copy import deepcopy
@@ -62,21 +64,24 @@ def has_file_been_modified_recently(filepath, recent_threshold_seconds=3600):
 def model_short_name(model, revision="", shorten=True):
     if not shorten:
         return f"{model}".replace('/', '--')
-    uploader, model_name = model.split('/')
-    model_name, model_size = model_name.rsplit('-', 1)
-    model_train_data = model_name.replace("DataDecide-", "")
+    try:
+        uploader, model_name = model.split('/')
+        model_name, model_size = model_name.rsplit('-', 1)
+        model_train_data = model_name.replace("DataDecide-", "")
 
-    if revision:
-        if "step" in revision:
-            step_str, seed = revision.split("step")[1].split("-seed-")
-        else:
-            assert revision == "main", f"Unexpected revision format: {revision}"
-            step_str = str(DD_MODEL_SIZES_INFO.get(model_size, {}).get("training_steps", ""))
-            seed = "default"
-    seed = DD_MODEL_SEEDS_DICT.get(seed.replace("-", " "), seed)
-    model_train_data = DD_TRAIN_SETS_SHORT_NAMES.get(model_train_data, model_train_data)
-    
-    return f"DD-{model_train_data}-{model_size}-{step_str}-{seed}"
+        if revision:
+            if "step" in revision:
+                step_str, seed = revision.split("step")[1].split("-seed-")
+            else:
+                assert revision == "main", f"Unexpected revision format: {revision}"
+                step_str = str(DD_MODEL_SIZES_INFO.get(model_size, {}).get("training_steps", ""))
+                seed = "default"
+        seed = DD_MODEL_SEEDS_DICT.get(seed.replace("-", " "), seed)
+        model_train_data = DD_TRAIN_SETS_SHORT_NAMES.get(model_train_data, model_train_data)
+        
+        return f"DD-{model_train_data}-{model_size}-{step_str}-{seed}"
+    except Exception as e:
+        return f"{model}".replace('/', '--')
 
 
 def unroll_args(d, prefix=''):
@@ -99,6 +104,7 @@ def fetch_model_paths(main_grid, use_local_model=True):
         return  # do not download model if use_local_model is False
     
     model_path_lookup = {}
+    new_models = []
     if 'model' in main_grid:
         models = main_grid.get('model', main_grid.get('--model', []))
     else:
@@ -107,24 +113,33 @@ def fetch_model_paths(main_grid, use_local_model=True):
         models = list(itertools.product(model_name_or_paths, model_revisions))
     for model_name_or_path, model_revision in models:
         if os.path.exists(model_name_or_path) and os.path.isfile(os.path.join(model_name_or_path, 'config.json')):
-            return main_grid
-        hf_cache = (
-            os.path.join(os.environ.get('HF_HOME'), "hub")
-            if os.environ.get('HF_HOME') 
-            else os.environ.get('HF_HUB_CACHE') or os.path.expanduser('~/.cache/huggingface')
-        )
-        if not os.path.exists(os.path.join(hf_cache, f'models--{model_name_or_path.replace("/", "--")}', 'refs', model_revision)):
-            raise RuntimeError("""
-                            Model not found in Hugging Face cache. Please download the model first by running:
-                            `huggingface-cli download {model_name_or_path} --revision {model_revision}`
-                            or set `use_local_model=False`
-                            """.format(model_name_or_path=model_name_or_path, model_revision=model_revision))
-        # download_from_hf(model_name_or_path, model_revision) # first download the model
-        model_path_lookup[(model_name_or_path, model_revision)] = (
-            download_from_hf(model_name_or_path, model_revision), # then get the path
-            "main"
-        )
-    return model_path_lookup
+            path_parts = reversed(pathlib.Path(model_name_or_path).parts)
+            for p in path_parts:
+                if p.startswith("25") or p.startswith("2025"):  # assuming run ids start with year like 2023 or 2025
+                    model_path_lookup[(p, model_revision)] = (model_name_or_path, model_revision)
+                    new_models.append((p, model_revision))
+                    break
+        else:
+            hf_cache = (
+                os.path.join(os.environ.get('HF_HOME'), "hub")
+                if os.environ.get('HF_HOME') 
+                else os.environ.get('HF_HUB_CACHE') or os.path.expanduser('~/.cache/huggingface')
+            )
+            if not os.path.exists(os.path.join(hf_cache, f'models--{model_name_or_path.replace("/", "--")}', 'refs', model_revision)):
+                # raise RuntimeError("""
+                #                 Model not found in Hugging Face cache. Please download the model first by running:
+                #                 `huggingface-cli download {model_name_or_path} --revision {model_revision}`
+                #                 or set `use_local_model=False`
+                #                 """.format(model_name_or_path=model_name_or_path, model_revision=model_revision))
+                subprocess.run(f"huggingface-cli download {model_name_or_path} --revision {model_revision}", shell=True, check=True)
+            # download_from_hf(model_name_or_path, model_revision) # first download the model
+            model_path_lookup[(model_name_or_path, model_revision)] = (
+                download_from_hf(model_name_or_path, model_revision), # then get the path
+                "main"
+            )
+            new_models.append((model_name_or_path, model_revision))
+    main_grid['model'] = new_models
+    return main_grid, model_path_lookup
 
 
 def grab_perf_matched_models(

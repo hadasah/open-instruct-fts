@@ -52,7 +52,7 @@ def grab_perf_matched_models(
         threshold_metric_diff=0.1,
 ):
     for match_pretrain_data_set in match_pretrain_data_sets:
-        perf_matches = []
+        m_perf_matches = []
         for m_size, m_size_dict in matched_dict[match_pretrain_data_set].items():
             if not isinstance(m_size_dict, dict) or len(m_size_dict) == 0:
                 continue
@@ -61,7 +61,7 @@ def grab_perf_matched_models(
                     continue
                 if "matched_step" not in m_seed_dict:
                     import pdb;pdb.set_trace()
-                perf_matches.append(
+                m_perf_matches.append(
                     {
                         "model_size": m_size, 
                         "model_seed": m_seed, 
@@ -71,13 +71,13 @@ def grab_perf_matched_models(
                     } 
                 )
         
-        perf_matches = sorted(perf_matches, key=lambda item: item["score_diff"])
+        m_perf_matches = sorted(m_perf_matches, key=lambda item: item["score_diff"])
         perf_match_str = []
         i = 0
         while True:
-            if i >= len(perf_matches) or perf_matches[i]["score_diff"] > threshold_metric_diff:
+            if i >= len(m_perf_matches) or m_perf_matches[i]["score_diff"] > threshold_metric_diff:
                 break
-            perf_match_str += [f"{match_pretrain_data_set}:{perf_matches[i]['model_size']}:{str(int(perf_matches[i]['model_step']))}:{DD_MODEL_SEEDS_DICT[perf_matches[i]['model_seed']]}"]
+            perf_match_str += [f"{match_pretrain_data_set}:{m_perf_matches[i]['model_size']}:{str(int(m_perf_matches[i]['model_step']))}:{DD_MODEL_SEEDS_DICT[m_perf_matches[i]['model_seed']]}"]
             i += 1
         print(match_pretrain_data_set, " ", '::'.join(perf_match_str))
 
@@ -152,6 +152,7 @@ def match_models_by_perf(
                             "matched_score": json.loads(best_match_row.metrics)[metric_to_match],
                             "score_diff": best_match_row["diff"]
                         }
+        return model_perf_matches
                 
 
     # print(perf_matches)
@@ -188,7 +189,8 @@ if __name__ == "__main__":
         for model_size in DD_MODEL_SIZES_INFO:
             perf_matches[pretrain_data][model_size] = {}
             model_info = DD_MODEL_SIZES_INFO[model_size]
-            full_pretrain_steps = model_info.get("training_steps", None)
+            # full_pretrain_steps = model_info.get("training_steps", None)
+            full_pretrain_steps = DD_MODEL_STEPS_SETS.get(model_size, None)
             temp_steps = [p * full_pretrain_steps for p in args.pretrain_step_portions]
             pretrain_steps = copy.copy(args.pretrain_steps)
             for step in temp_steps:
@@ -208,7 +210,6 @@ if __name__ == "__main__":
                     if os.path.exists(fname):
                         with open(fname, 'r') as f:
                             perf_matches[pretrain_data][model_size][seed][step] = json.load(f)
-                            
                             print(fname) 
                     else:
                         perf_matches[pretrain_data][model_size][seed][step] = match_models_by_perf(
@@ -220,10 +221,9 @@ if __name__ == "__main__":
                             output_dir=args.output_dir
                         )
                         with open(fname, 'w') as f:
-                            json.dump(perf_matches, f, indent=2)
-                    
+                            json.dump(perf_matches[pretrain_data][model_size][seed][step], f, indent=2)
                     if args.print:
-                        print(f"Performance matched models for {pretrain_data}, {model_size}, seed {seed}, step {step}:")
+                        print(f"\nPerformance matched models for {pretrain_data}, {model_size}, seed {seed}, step {step}:")
                         grab_perf_matched_models(
                             perf_matches[pretrain_data][model_size][seed][step],
                             match_pretrain_data_sets=args.match_pretrain_data_sets, # just print for the first match dataset

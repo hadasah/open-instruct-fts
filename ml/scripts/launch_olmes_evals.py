@@ -75,6 +75,7 @@ _parser.add_argument("--revisions", default="", type=str, help="Revision of mode
 _parser.add_argument("--model-paths", default="", type=str, help="Paths to model files")
 _parser.add_argument("--model-sweep-names", default="", type=str, help="Path to top-level folder with models")
 _parser.add_argument("--model-sweep-paths", default="", type=str, help="Path to top-level folder with models")
+_parser.add_argument("--filter-string", default="", type=str, help="Filter string to select model paths when using --model-sweep-paths or --model-sweep-names")
 _parser.add_argument(
     "--use-all-ckpts",
     action="store_true",
@@ -456,10 +457,9 @@ def main():
             [models[i], revisions[i]] = maybe_model.split(":", 1)
     model_paths = args_dict.get("model_paths", "").split(",") if args_dict.get("model_paths", "") != "" else []
     assert not (len(models) > 0 and len(model_paths) > 0), "Cannot specify both --models and --model-paths!"
-    print(models, revisions, model_paths)
 
     model_sweep_names = args_dict.get("model_sweep_names", "").split(",") if args_dict.get("model_sweep_names", "") != "" else []
-    model_sweep_paths = args_dict.get("model_sweep_paths", "").split(",")  if args_dict.get("model_sweep_paths", "") != "" else []
+    model_sweep_paths = args_dict.get("model_sweep_paths", "").split(",") if args_dict.get("model_sweep_paths", "") != "" else []
     assert not (len(model_sweep_paths) > 0 and len(model_sweep_names) > 0), "Cannot specify both --model-sweep-paths and --model-sweep-names!"
     
     if len(model_sweep_names) > 0:
@@ -471,7 +471,15 @@ def main():
                 if "config.json" in files and "pytorch_model.bin" in files:
                     if args.use_all_ckpts or "final" in root:
                         model_paths.append(root)
-    
+    print(models, revisions, model_paths)
+
+    if args_dict.get("filter_string", None) is not None and args_dict.get("filter_string", "") != "":
+        for fs in args_dict.get("filter_string", "").split(","):
+            # models = [m for m in models if fs in m]
+            # revisions = [r for m, r in zip(models, revisions) if fs in m]
+            model_paths = [m for m in model_paths if fs in m]
+    print(models, revisions, model_paths)
+
     if len(models) > 0:
         for model, revision in zip(models, revisions):
             model_args_dict = copy.deepcopy(args_dict)

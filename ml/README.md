@@ -152,5 +152,20 @@ MODELS=allenai/DataDecide-dolma1_7-60M:step29042-seed-default
 MODELS=allenai/DataDecide-dolma1_7-150M:step37500-seed-default
 sbatch shell_scripts/run_script_with_defaults.sh olmes "python /gscratch/zlab/margsli/gitfiles/open-instruct-fts/ml/scripts/launch_olmes_evals.py --task tulu_3_dev --models allenai/DataDecide-dolma1_7-150M:step37500-seed-default --use-all-ckpts --model-args chat_template=tulu --output-dir /gscratch/zlab/margsli/gitfiles/open-instruct-fts/models/_eval_results"
 
+sbatch shell_scripts/run_script_with_defaults.sh olmes "python /gscratch/zlab/margsli/gitfiles/open-instruct-fts/ml/scripts/launch_olmes_evals.py --task core_9mcqa:rc::olmes:full --log-to-wandb --model-sweep-names 250909*"
+
+sbatch shell_scripts/run_script_with_defaults.sh olmes "python /gscratch/zlab/margsli/gitfiles/open-instruct-fts/ml/scripts/launch_olmes_evals.py --task gsm8k::tulu drop::llama3 ifeval::tulu --model-paths /gscratch/zlab/margsli/gitfiles/open-instruct-fts/models/250909-220627_test_match_60M_finetune/250909-220627_test_match_60M_finetune_100Mtx1_DD-dclm_25_d17_75-150M-10000-0_lr=5e-06/model/final"
+
+sbatch shell_scripts/run_script_with_defaults.sh olmes "python /gscratch/zlab/margsli/gitfiles/open-instruct-fts/ml/scripts/launch_olmes_evals.py --task minerva_math::tulu ifeval::tulu codex_humanevalplus --limit 0.1 --model-sweep-names 250909-220627* --filter-string Ft"
+
+
+gsm8k::olmes minerva_math_algebra::olmes minerva_math_algebra::llama3 codex_humaneval:3shot:bpb::none codex_humaneval:3shot::none codex_humanevalplus::none popqa truthfulqa::olmo1 alpaca_eval_v2 bbh_boolean_expressions:cot-v1::olmes
 
 ```
+
+"bbh:cot-v1::tulu", "minerva_math::tulu", "mmlu:mc::tulu",  "gsm8k", "drop", "codex_humanevalplus", "ifeval", "popqa"
+
+#
+
+ core_9mcqa:rc::olmes:full tulu_3_dev gsm8k::olmes drop::llama3 minerva_math_algebra::olmes minerva_math_algebra::llama3 ifeval::tulu codex_humanevalplus codex_humaneval:3shot:bpb::none codex_humaneval:3shot::none codex_humanevalplus::none popqa truthfulqa::olmo1 alpaca_eval_v2 bbh_boolean_expressions:cot-v1::tulu
+
