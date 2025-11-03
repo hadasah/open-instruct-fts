@@ -52,7 +52,7 @@ Read-only will work, as long as you don't need to uplaod model checkpoints to hu
 Optionally, make a `~/.fts.sh` file that you can source from:
 ```bash
 export ENV_NAME=fts
-export FTS_DIR=
+export FTS_DIR=/gscratch/zlab/margsli/gitfiles/open-instruct-fts
 export MODEL_DIR=${FTS_DIR}/models
 module load cuda/12.4.1
 mamba activate $ENV_NAME
@@ -161,6 +161,8 @@ sbatch shell_scripts/run_script_with_defaults.sh olmes "python /gscratch/zlab/ma
 
 gsm8k::olmes minerva_math_algebra::olmes minerva_math_algebra::llama3 codex_humaneval:3shot:bpb::none codex_humaneval:3shot::none codex_humanevalplus::none popqa truthfulqa::olmo1 alpaca_eval_v2 bbh_boolean_expressions:cot-v1::olmes
 
+sbatch shell_scripts/run_script_a40.sh olmes "python /gscratch/zlab/margsli/gitfiles/open-instruct-fts/ml/scripts/launch_olmes_evals.py --task tulu_3_dev --models allenai/Llama-3.1-Tulu-3-8B-DPO --output-dir /gscratch/zlab/margsli/gitfiles/open-instruct-fts/models/_eval_results"
+
 ```
 
 "bbh:cot-v1::tulu", "minerva_math::tulu", "mmlu:mc::tulu",  "gsm8k", "drop", "codex_humanevalplus", "ifeval", "popqa"
@@ -169,3 +171,8 @@ gsm8k::olmes minerva_math_algebra::olmes minerva_math_algebra::llama3 codex_huma
 
  core_9mcqa:rc::olmes:full tulu_3_dev gsm8k::olmes drop::llama3 minerva_math_algebra::olmes minerva_math_algebra::llama3 ifeval::tulu codex_humanevalplus codex_humaneval:3shot:bpb::none codex_humaneval:3shot::none codex_humanevalplus::none popqa truthfulqa::olmo1 alpaca_eval_v2 bbh_boolean_expressions:cot-v1::tulu
 
+codex_humaneval:3shot::none codex_humaneval:3shot::olmo3 codex_humaneval:0-shot-chat 
+
+mmlu:mc::olmes mmlu:cot::none minerva_math::llama3 minerva_math::olmes minerva_math::bpb bbh:cot-v1::olmes ifeval:0-shot-cot popqa drop::olmes drop:0shot-chat::olmes drop:rc::gen2mc drop:mc::gen2mc 
+
+arc_challenge:mc::olmes arc_easy:mc::olmes boolq:mc::olmes hellaswag:mc::olmes openbookqa:mc::olmes piqa:mc::olmes socialiqa:mc::olmes winogrande:mc::olmes

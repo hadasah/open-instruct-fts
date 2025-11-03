@@ -65,3 +65,8 @@ if [[ "$SLURM_PROCID" == "0" ]]; then
     CUDA_LAUNCH_BLOCKING=1 torchrun --nproc-per-node=gpu --rdzv-endpoint=$MASTER_ADDR:$MASTER_PORT {cmd} 
 fi
 ```
+
+#### Using chat template = tulu yields different results 
+
+For TULU SFT & DPO models, setting chat template to tulu should make no difference, but results do differ
+Turns out, if chat template is set, the context begins with "<s>" (followed by the "<|user|>" tag), while if the chat template is not set, the context directly begins with the "<|user|>" tag. This is because the CHAT_TEMPLATES function create_prompt_with_tulu_chat_format automatically inserts a BOS token

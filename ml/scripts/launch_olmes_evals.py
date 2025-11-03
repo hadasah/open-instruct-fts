@@ -1,5 +1,5 @@
 import argparse
-import copy
+from copy import deepcopy
 import glob
 import inspect
 import json
@@ -280,7 +280,7 @@ def launch_eval(args_dict: dict):
         logger.warning("No model specified, only saving requests")
         model_config = {"model": "none"}
     elif model in MODEL_CONFIGS:
-        model_config = copy.deepcopy(MODEL_CONFIGS[model])
+        model_config = deepcopy(MODEL_CONFIGS[model])
         if "metadata" not in model_config:
             model_config["metadata"] = {}
         model_config["metadata"]["alias"] = model
@@ -307,7 +307,7 @@ def launch_eval(args_dict: dict):
         if task.endswith(".jsonl"):
             task_configs += load_jsonl(task)
         elif task in TASK_CONFIGS:
-            task_config = copy.deepcopy(TASK_CONFIGS[task])
+            task_config = deepcopy(TASK_CONFIGS[task])
             if "metadata" not in task_config:
                 task_config["metadata"] = {}
             task_config["metadata"]["alias"] = task
@@ -322,7 +322,7 @@ def launch_eval(args_dict: dict):
             # Allow updates to existing configured tasks
             if task_config["task_name"] in TASK_CONFIGS:
                 new_task_config = task_config
-                task_config = copy.deepcopy(TASK_CONFIGS[new_task_config["task_name"]])
+                task_config = deepcopy(TASK_CONFIGS[new_task_config["task_name"]])
                 del new_task_config["task_name"]
                 task_config = update_nested_dict(task_config, new_task_config)
             elif len(task_config) == 1:
@@ -482,7 +482,7 @@ def main():
 
     if len(models) > 0:
         for model, revision in zip(models, revisions):
-            model_args_dict = copy.deepcopy(args_dict)
+            model_args_dict =deepcopy(args_dict)
             model_args_dict["model"] = model.strip()
             model_args_dict["revision"] = revision.strip()
             model_args_dict["output_dir"] = os.path.join(
