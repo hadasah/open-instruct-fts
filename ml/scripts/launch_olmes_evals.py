@@ -494,7 +494,7 @@ def main():
                 sys.exit(int(maybe_rc))
     if len(model_paths) > 0:
         for model_path in model_paths:
-            model_args_dict = copy.deepcopy(args_dict)
+            model_args_dict = deepcopy(args_dict)
             model_args_dict["model_path"] = model_path.strip()
             if model_args_dict.get("output_dir", None) is None:
                 model_args_dict["output_dir"] = os.path.join(

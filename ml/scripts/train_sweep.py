@@ -193,6 +193,7 @@ def main(
                 # "10Mtx10": {"max_train_samples": [14000], "num_train_epochs": [10],},
                 # "100Mtx1": {"max_train_samples": [140000], "num_train_epochs": [1],},
                 "Ft": {},
+                "2.5Ft": {"num_train_epochs": [5],}
             },
         }
         default_grid = seq_dict_update([MODEL_HP_DEFAULTS.get('all'), #MODEL_HP_DEFAULTS.get(model, {}),
